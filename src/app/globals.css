@@ -1,0 +1,391 @@
+@import "tailwindcss";
+
+/* ============================================================================
+   NAZARA — the design system, once.
+   Volume One's tokens are the Tailwind theme. There is no other source of
+   colour, type, spacing or easing anywhere in this codebase: if a value is
+   not below, it does not exist, and `bg-gray-100` will not compile to
+   anything meaningful because the default palette is not extended.
+   ========================================================================= */
+
+/* --- Raw values. These are the only literals in the project. ------------- */
+:root {
+  /* Grounds — Daylight */
+  --nz-ground: #eaebe4;          /* Quarry Dust  */
+  --nz-surface: #f4f5f0;         /* Makrana      */
+  --nz-surface-raised: #fbfbf8;  /* Bone         */
+
+  /* Ink */
+  --nz-ink: #141814;             /* Nero         */
+  --nz-ink-2: #565b52;           /* Slate        */
+  --nz-ink-3: #878c81;           /* Ash          */
+
+  /* Line */
+  --nz-line: #d2d4c9;
+  --nz-line-strong: #b4b8aa;
+
+  /* Accent — Backlight. Never a fill. */
+  --nz-accent: #b5822f;
+  --nz-accent-ink: #7a5620;
+
+  /* Semantic */
+  --nz-success: #4c6b52;         /* Quarried     */
+  --nz-error: #9a3b2e;           /* Fissure      */
+  --nz-warning: #8a6b22;         /* On Hold      */
+
+  /* State */
+  --nz-ink-hover: #1d241e;
+  --nz-scrim: rgb(15 20 17 / 0.55);
+  --nz-scrim-heavy: rgb(15 20 17 / 0.82);
+}
+
+/* The default "system" state stamps nothing on the root, so only the media
+   query separates light from dark. The :not() guard lets an explicit light
+   choice win over a dark OS. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --nz-ground: #0f1411;
+    --nz-surface: #171e19;
+    --nz-surface-raised: #1f2821;
+    --nz-ink: #e9ebe4;
+    --nz-ink-2: #a5aa9e;
+    --nz-ink-3: #737969;
+    --nz-line: #2a322c;
+    --nz-line-strong: #3d473f;
+    --nz-accent: #e0b278;
+    --nz-accent-ink: #e0b278;
+    --nz-success: #86a98d;
+    --nz-error: #d98878;
+    --nz-warning: #c79b45;
+    --nz-ink-hover: #2b352d;
+  }
+}
+
+[data-theme="dark"] {
+  --nz-ground: #0f1411;
+  --nz-surface: #171e19;
+  --nz-surface-raised: #1f2821;
+  --nz-ink: #e9ebe4;
+  --nz-ink-2: #a5aa9e;
+  --nz-ink-3: #737969;
+  --nz-line: #2a322c;
+  --nz-line-strong: #3d473f;
+  --nz-accent: #e0b278;
+  --nz-accent-ink: #e0b278;
+  --nz-success: #86a98d;
+  --nz-error: #d98878;
+  --nz-warning: #c79b45;
+  --nz-ink-hover: #2b352d;
+}
+
+/* The Viewing Room is dark by brand rule in either theme. Applying this class
+   to any subtree re-points the same token names, so every component inside it
+   inverts without a single conditional in React. */
+.viewing-room {
+  --nz-ground: #0f1411;
+  --nz-surface: #171e19;
+  --nz-surface-raised: #1f2821;
+  --nz-ink: #e9ebe4;
+  --nz-ink-2: #a5aa9e;
+  --nz-ink-3: #737969;
+  --nz-line: #2a322c;
+  --nz-line-strong: #3d473f;
+  --nz-accent: #e0b278;
+  --nz-accent-ink: #e0b278;
+  --nz-success: #86a98d;
+  --nz-error: #d98878;
+  --nz-warning: #c79b45;
+  --nz-ink-hover: #2b352d;
+  background-color: var(--nz-ground);
+  color: var(--nz-ink);
+}
+
+/* --- The theme. `inline` so utilities emit var(--nz-*) rather than a frozen
+       value, which is what lets .viewing-room invert at runtime. ----------- */
+@theme inline {
+  --color-*: initial;
+  --font-*: initial;
+  --text-*: initial;
+  --radius-*: initial;
+  --ease-*: initial;
+  --shadow-*: initial;
+
+  --color-ground: var(--nz-ground);
+  --color-surface: var(--nz-surface);
+  --color-raised: var(--nz-surface-raised);
+  --color-ink: var(--nz-ink);
+  --color-ink-2: var(--nz-ink-2);
+  --color-ink-3: var(--nz-ink-3);
+  --color-line: var(--nz-line);
+  --color-line-strong: var(--nz-line-strong);
+  --color-accent: var(--nz-accent);
+  --color-accent-ink: var(--nz-accent-ink);
+  --color-success: var(--nz-success);
+  --color-error: var(--nz-error);
+  --color-warning: var(--nz-warning);
+  --color-ink-hover: var(--nz-ink-hover);
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  /* Loaded by next/font in layout.tsx; the variables are set on <html>. */
+  --font-display: var(--font-bodoni), Didot, "Bodoni MT", Georgia, serif;
+  --font-ui: var(--font-archivo), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: var(--font-plex), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Type scale — Volume One §04. Desktop values; fluid clamps below. */
+  --text-display-xl: 10.5rem;
+  --text-display-xl--line-height: 0.9;
+  --text-display-xl--letter-spacing: 0.06em;
+  --text-display-l: 7.5rem;
+  --text-display-l--line-height: 0.94;
+  --text-display-l--letter-spacing: -0.025em;
+  --text-display-m: 5.5rem;
+  --text-display-m--line-height: 0.96;
+  --text-display-m--letter-spacing: -0.022em;
+  --text-h1: 4rem;
+  --text-h1--line-height: 1.02;
+  --text-h1--letter-spacing: -0.02em;
+  --text-h2: 2.875rem;
+  --text-h2--line-height: 1.08;
+  --text-h2--letter-spacing: -0.015em;
+  --text-h3: 2rem;
+  --text-h3--line-height: 1.18;
+  --text-h3--letter-spacing: -0.01em;
+  --text-h4: 1.25rem;
+  --text-h4--line-height: 1.3;
+  --text-h4--letter-spacing: -0.005em;
+  --text-lead: 1.375rem;
+  --text-lead--line-height: 1.55;
+  --text-body-l: 1.25rem;
+  --text-body-l--line-height: 1.6;
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.65;
+  --text-body--letter-spacing: 0.005em;
+  --text-body-s: 0.9375rem;
+  --text-body-s--line-height: 1.6;
+  --text-caption: 0.8125rem;
+  --text-caption--line-height: 1.5;
+  --text-label: 0.6875rem;
+  --text-label--line-height: 1.2;
+  --text-label--letter-spacing: 0.18em;
+  --text-label-xs: 0.625rem;
+  --text-label-xs--line-height: 1.2;
+  --text-label-xs--letter-spacing: 0.22em;
+  --text-button: 0.8125rem;
+  --text-button--line-height: 1;
+  --text-button--letter-spacing: 0.12em;
+  --text-data-l: 2.5rem;
+  --text-data-l--line-height: 1.1;
+  --text-data: 0.8125rem;
+  --text-data--line-height: 1.55;
+  --text-data--letter-spacing: 0.02em;
+  --text-data-s: 0.72rem;
+  --text-data-s--line-height: 1.45;
+  --text-data-s--letter-spacing: 0.055em;
+
+  /* Rectangles are cut; circles are drilled. There is no radius scale. */
+  --radius-none: 0;
+  --radius-circle: 9999px;
+
+  /* Motion — three curves, no fourth. */
+  --ease-stone: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-cut: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-lift: cubic-bezier(0.33, 0, 0, 1);
+
+  /* Two shadows, both for floating layers only. */
+  --shadow-lift: 0 1px 2px rgb(15 20 17 / 0.04), 0 8px 24px rgb(15 20 17 / 0.06);
+  --shadow-modal: 0 24px 80px rgb(15 20 17 / 0.18);
+
+  /* Ratios — the slab is the true proportion of a gangsaw cut. */
+  --aspect-slab: 1.684;
+  --aspect-block: 1;
+  --aspect-plane: 4 / 5;
+  --aspect-bench: 21 / 9;
+
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 90rem;
+  --breakpoint-2xl: 120rem;
+}
+
+/* Durations sit outside @theme because Tailwind v4 expects integers on
+   duration-*; these are consumed through the `duration-*` arbitrary values
+   and from lib/motion.ts on the JS side. */
+@utility duration-instant { transition-duration: 120ms; }
+@utility duration-state { transition-duration: 240ms; }
+@utility duration-rule { transition-duration: 400ms; }
+@utility duration-element { transition-duration: 480ms; }
+@utility duration-image { transition-duration: 700ms; }
+@utility duration-reveal { transition-duration: 800ms; }
+@utility duration-curtain { transition-duration: 1200ms; }
+
+/* --- Base ---------------------------------------------------------------- */
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: var(--nz-line);
+  }
+
+  html {
+    /* Lenis drives scrolling; native smooth would fight it. */
+    scroll-behavior: auto;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--nz-ground);
+    color: var(--nz-ink);
+    font-family: var(--font-ui);
+    font-size: var(--text-body);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+
+  h1, h2, h3, h4 {
+    font-weight: 400;
+    text-wrap: balance;
+  }
+
+  /* Bodoni's optical size axis is the difference between a Didone that looks
+     couture and one that looks like a free font. */
+  .font-display {
+    font-optical-sizing: auto;
+  }
+
+  :focus-visible {
+    outline: 1px solid var(--nz-accent);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: var(--nz-ink);
+    color: var(--nz-ground);
+  }
+
+  /* Numerals line up in every table and spec line in the system. */
+  .font-mono, table, [data-numeric] {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* --- Layout utilities ---------------------------------------------------- */
+
+/* The page grid. Margins and gutters step exactly as Volume One §05 specifies,
+   so a component asking for `col-span-6` lands on the real grid at every
+   breakpoint rather than on an approximation of it. */
+@utility grid-page {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: 1rem;
+  padding-inline: 1.25rem;
+  width: 100%;
+  margin-inline: auto;
+
+  @media (width >= 48rem) {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    column-gap: 1.25rem;
+    padding-inline: 2.5rem;
+  }
+  @media (width >= 64rem) {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 1.5rem;
+    padding-inline: 3rem;
+  }
+  @media (width >= 90rem) {
+    column-gap: 2rem;
+    padding-inline: 5rem;
+    max-width: 100rem;
+  }
+  @media (width >= 120rem) {
+    column-gap: 2.5rem;
+    padding-inline: 7.5rem;
+    max-width: 107.5rem;
+  }
+}
+
+/* Same horizontal rhythm as grid-page, for blocks that are not gridded. */
+@utility gutter {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  @media (width >= 48rem) { padding-inline: 2.5rem; }
+  @media (width >= 64rem) { padding-inline: 3rem; }
+  @media (width >= 90rem) { padding-inline: 5rem; max-width: 100rem; }
+  @media (width >= 120rem) { padding-inline: 7.5rem; max-width: 107.5rem; }
+}
+
+/* Section rhythm: 64 / 96 / 160. The emptiness is the product. */
+@utility section-y {
+  padding-block: 4rem;
+  @media (width >= 48rem) { padding-block: 6rem; }
+  @media (width >= 64rem) { padding-block: 10rem; }
+}
+
+/* Fluid display sizes. Each clamp interpolates between the mobile and desktop
+   columns of the responsive table in Volume One §04 — never a blanket scale. */
+/* The scale in Volume One §04 is a type specimen; these are the sizes that
+   survive the measure they actually sit in. display-l sits in a five-column
+   measure beside a full-bleed slab, so 120px cannot hold a two-line headline
+   without colliding with the image — 60px fills that column exactly. */
+/* The mobile end is set by the longest authored line, "A hundred million
+   years,", which has to clear the 20px gutter on a 390px phone. */
+@utility text-display-fluid-l { font-size: clamp(1.75rem, 3.7vw, 3.375rem); }
+@utility text-display-fluid-m { font-size: clamp(2rem, 3.8vw, 3.25rem); }
+@utility text-h1-fluid { font-size: clamp(2.125rem, 4.6vw, 4rem); }
+@utility text-h2-fluid { font-size: clamp(1.75rem, 3.4vw, 2.875rem); }
+@utility text-h3-fluid { font-size: clamp(1.4375rem, 2.4vw, 2rem); }
+
+/* --- Motion primitives --------------------------------------------------- */
+
+/* The curtain: a clip-path wipe with the image counter-scaling inside it.
+   Held in CSS rather than Framer Motion because it runs on hundreds of nodes
+   and compositor-only properties keep the Library grid at 60fps. */
+@utility curtain-hidden {
+  clip-path: inset(0 100% 0 0);
+}
+@utility curtain-shown {
+  clip-path: inset(0 0 0 0);
+}
+
+/* Backlight is never a fill. This is the only shape it takes: a 1px rule that
+   grows from the left on hover. */
+@utility rule-ignite {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0 auto;
+    bottom: 0;
+    height: 1px;
+    width: 0;
+    background: var(--nz-accent);
+    transition: width 400ms var(--ease-stone);
+  }
+  &:hover::after,
+  &:focus-visible::after {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Every reveal collapses to a 200ms fade. Sticky positioning is layout, not
+     motion, and is deliberately left alone. */
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 200ms !important;
+  }
+  .curtain-hidden {
+    clip-path: none;
+    opacity: 0;
+  }
+  .curtain-shown {
+    opacity: 1;
+  }
+}

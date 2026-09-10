@@ -1,0 +1,1210 @@
+<title>Nazara Site Blueprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap">
+
+<style>
+/* ============================================================
+   NAZARA — SITE BLUEPRINT, VOLUME TWO
+   Tokens are inherited verbatim from Volume One. Nothing in this
+   document introduces a colour, a face, a radius or a curve that
+   the brand manual did not already define.
+   ============================================================ */
+
+:root {
+  --ground:#EAEBE4; --surface:#F4F5F0; --surface-2:#FBFBF8;
+  --ink:#141814; --ink-2:#565B52; --ink-3:#878C81;
+  --line:#D2D4C9; --line-2:#B4B8AA;
+  --backlight:#B5822F; --backlight-ink:#7A5620;
+  --good:#4C6B52; --bad:#9A3B2E; --warn:#8A6B22;
+  --f-display:"Bodoni Moda",Didot,"Bodoni MT",Georgia,"Times New Roman",serif;
+  --f-ui:Archivo,"Helvetica Neue",Helvetica,Arial,"Segoe UI",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --ease-stone:cubic-bezier(0.16,1,0.30,1);
+  --ease-cut:cubic-bezier(0.65,0,0.35,1);
+  --ease-lift:cubic-bezier(0.33,0,0.00,1);
+  --rail:168px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground:#0F1411; --surface:#171E19; --surface-2:#1F2821;
+    --ink:#E9EBE4; --ink-2:#A5AA9E; --ink-3:#737969;
+    --line:#2A322C; --line-2:#3D473F;
+    --backlight:#E0B278; --backlight-ink:#E0B278;
+    --good:#86A98D; --bad:#D98878; --warn:#C79B45;
+  }
+}
+:root[data-theme="dark"] {
+  --ground:#0F1411; --surface:#171E19; --surface-2:#1F2821;
+  --ink:#E9EBE4; --ink-2:#A5AA9E; --ink-3:#737969;
+  --line:#2A322C; --line-2:#3D473F;
+  --backlight:#E0B278; --backlight-ink:#E0B278;
+  --good:#86A98D; --bad:#D98878; --warn:#C79B45;
+}
+/* The Viewing Room — dark in either theme, per Volume One */
+.band {
+  --ground:#0F1411; --surface:#171E19; --surface-2:#1F2821;
+  --ink:#E9EBE4; --ink-2:#A5AA9E; --ink-3:#737969;
+  --line:#2A322C; --line-2:#3D473F;
+  --backlight:#E0B278; --backlight-ink:#E0B278;
+  --good:#86A98D; --bad:#D98878; --warn:#C79B45;
+  background:var(--ground); color:var(--ink);
+}
+
+* { box-sizing:border-box; }
+body {
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:var(--f-ui); font-size:17px; line-height:1.65;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+p{margin:0} h1,h2,h3,h4{margin:0;font-weight:400;text-wrap:balance}
+ul,ol{margin:0;padding:0;list-style:none} a{color:inherit}
+:focus-visible{outline:1px solid var(--backlight);outline-offset:3px}
+
+.h1{font-family:var(--f-display);font-size:clamp(34px,5.4vw,58px);line-height:1.03;letter-spacing:-0.02em}
+.h2{font-family:var(--f-display);font-size:clamp(27px,3.6vw,40px);line-height:1.1;letter-spacing:-0.015em}
+.h3{font-family:var(--f-display);font-size:clamp(22px,2.4vw,30px);line-height:1.2;letter-spacing:-0.01em}
+.h4{font-family:var(--f-ui);font-size:19px;font-weight:500;line-height:1.3}
+.lead{font-size:clamp(19px,2vw,22px);line-height:1.55;color:var(--ink-2);max-width:32em;font-weight:300}
+.body{max-width:64ch}
+.body-s{font-size:15px;line-height:1.6}
+.mut{color:var(--ink-2)} .mut-3{color:var(--ink-3)}
+.label{font-size:11px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;line-height:1.2;color:var(--ink-3)}
+.mono{font-family:var(--f-mono);font-size:13px;letter-spacing:0.02em;font-variant-numeric:tabular-nums}
+.mono-s{font-family:var(--f-mono);font-size:11.5px;letter-spacing:0.045em;font-variant-numeric:tabular-nums}
+
+.wrap{max-width:1280px;margin:0 auto;padding:0 24px}
+.sec{padding:88px 0;border-top:1px solid var(--line)}
+.grid-rail{display:grid;grid-template-columns:1fr;gap:40px}
+@media (min-width:1000px){
+  .grid-rail{grid-template-columns:var(--rail) 1fr;gap:56px}
+  .rail{position:sticky;top:40px;align-self:start}
+}
+.rail-num{font-family:var(--f-mono);font-size:11.5px;letter-spacing:0.16em;color:var(--backlight-ink);display:block;margin-bottom:10px}
+.rail-title{font-size:13px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;line-height:1.4}
+.rail-note{margin-top:14px;font-size:12.5px;line-height:1.5;color:var(--ink-3);max-width:22ch}
+
+.stack{display:flex;flex-direction:column}
+.g8{gap:8px}.g12{gap:12px}.g16{gap:16px}.g24{gap:24px}.g32{gap:32px}.g40{gap:40px}.g56{gap:56px}
+.cols{display:grid;gap:28px;grid-template-columns:1fr}
+@media (min-width:720px){.cols-2{grid-template-columns:1fr 1fr}}
+@media (min-width:720px){.cols-3{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1000px){.cols-3{grid-template-columns:repeat(3,1fr)}}
+@media (min-width:860px){.cols-4{grid-template-columns:repeat(4,1fr)}}
+@media (min-width:520px) and (max-width:859px){.cols-4{grid-template-columns:repeat(2,1fr)}}
+.hr{height:1px;background:var(--line);border:0;margin:0}
+
+.plate{border:1px solid var(--line);background:var(--surface);padding:26px;position:relative}
+.plate-lab{font-family:var(--f-mono);font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:18px}
+.plate-dark{background:#0F1411;border-color:#2A322C;color:#E9EBE4;--line:#2A322C;--line-2:#3D473F;--ink:#E9EBE4;--ink-2:#A5AA9E;--ink-3:#737969;--backlight:#E0B278;--backlight-ink:#E0B278;--surface:#171E19}
+
+.rows{display:flex;flex-direction:column}
+.row{display:grid;gap:4px 22px;padding:15px 0;border-top:1px solid var(--line);align-items:baseline}
+.row:last-child{border-bottom:1px solid var(--line)}
+@media (min-width:760px){.row-2{grid-template-columns:190px 1fr}.row-3{grid-template-columns:180px 140px 1fr}}
+.row-k{font-size:13px;font-weight:500;letter-spacing:0.09em;text-transform:uppercase;color:var(--ink)}
+.row-v{font-size:14.5px;line-height:1.55;color:var(--ink-2)}
+
+.tw{overflow-x:auto;border:1px solid var(--line);background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:680px}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);font-size:13px;vertical-align:top}
+th{font-size:10.5px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap}
+td{color:var(--ink-2)}
+td.k{color:var(--ink);font-weight:500;white-space:nowrap}
+td.n{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:12px;color:var(--ink);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+
+.vlist li{padding:9px 0;border-top:1px solid var(--line);font-size:14.5px;color:var(--ink-2);line-height:1.55}
+.vlist li:first-child{border-top:0}
+.vlist b{color:var(--ink);font-weight:500}
+.dont{color:var(--bad)} .do{color:var(--good)}
+
+/* ---------------- wireframe vocabulary ---------------- */
+.wf{border:1px solid var(--line);background:var(--surface);padding:18px}
+.wf-lab{font-family:var(--f-mono);font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:14px}
+.wf-ruler{display:grid;grid-template-columns:repeat(12,1fr);gap:5px;margin-bottom:6px}
+.wf-ruler i{font-family:var(--f-mono);font-size:8.5px;color:var(--ink-3);font-style:normal;text-align:center;border-top:1px solid var(--line);padding-top:3px}
+.wf-stack{display:flex;flex-direction:column;gap:5px}
+.wf-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:5px}
+.wf-box{border:1px solid var(--line-2);min-height:38px;padding:6px 8px;display:flex;flex-direction:column;justify-content:flex-end;gap:5px}
+.wf-box em{font-family:var(--f-mono);font-size:8.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-3);font-style:normal;line-height:1.35}
+.wf-img{background:repeating-linear-gradient(45deg,transparent 0 5px,var(--line) 5px 6px)}
+.wf-dark{background:#0F1411;border-color:#3D473F}
+.wf-dark em{color:#8B9088}
+.wf-dark.wf-img{background:#0F1411 repeating-linear-gradient(45deg,transparent 0 5px,#2A322C 5px 6px)}
+.wf-bar{height:4px;background:var(--line-2);width:100%}
+.wf-bar.w60{width:60%} .wf-bar.w40{width:40%} .wf-bar.w80{width:80%} .wf-bar.w25{width:25%}
+.wf-dark .wf-bar{background:#3D473F}
+.wf-btn{border:1px solid var(--ink);color:var(--ink);font-family:var(--f-ui);font-size:8.5px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;padding:6px 12px;display:inline-block;align-self:flex-start}
+.wf-dark .wf-btn{border-color:#E0B278;color:#E0B278}
+.wf-accent{border-color:var(--backlight)}
+.c1{grid-column:span 1}.c2{grid-column:span 2}.c3{grid-column:span 3}.c4{grid-column:span 4}
+.c5{grid-column:span 5}.c6{grid-column:span 6}.c7{grid-column:span 7}.c8{grid-column:span 8}
+.c9{grid-column:span 9}.c10{grid-column:span 10}.c11{grid-column:span 11}.c12{grid-column:span 12}
+.h60{min-height:60px}.h80{min-height:80px}.h110{min-height:110px}.h150{min-height:150px}.h200{min-height:200px}
+
+/* mobile wireframe */
+.wfm{width:100%;max-width:230px;border:1px solid var(--line-2);padding:8px;display:flex;flex-direction:column;gap:5px;background:var(--surface-2)}
+.plate-dark .wfm{background:#171E19}
+
+/* ---------------- scroll map ---------------- */
+.smap{display:flex;flex-direction:column;gap:3px}
+.smap-row{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:stretch}
+.smap-n{font-family:var(--f-mono);font-size:10.5px;color:var(--backlight-ink);padding-top:10px;letter-spacing:0.08em}
+.smap-bar{border-left:2px solid var(--backlight);background:var(--surface);padding:10px 14px;display:flex;flex-wrap:wrap;gap:4px 18px;align-items:baseline;justify-content:space-between}
+.smap-bar.dk{background:#0F1411;border-left-color:#E0B278}
+.smap-bar.dk .smap-name{color:#E9EBE4}
+.smap-bar.dk .smap-meta{color:#737969}
+.smap-name{font-size:14.5px;font-weight:500;color:var(--ink)}
+.smap-meta{font-family:var(--f-mono);font-size:10.5px;letter-spacing:0.06em;color:var(--ink-3);text-transform:uppercase}
+
+/* ---------------- misc ---------------- */
+.seq{counter-reset:s;display:flex;flex-direction:column}
+.seq li{counter-increment:s;display:grid;grid-template-columns:34px 1fr;gap:14px;padding:12px 0;border-top:1px solid var(--line);font-size:14.5px;color:var(--ink-2);line-height:1.55}
+.seq li:first-child{border-top:0}
+.seq li::before{content:counter(s,decimal-leading-zero);font-family:var(--f-mono);font-size:11px;color:var(--backlight-ink);letter-spacing:0.08em}
+.seq b{color:var(--ink);font-weight:500}
+
+.mark{font-family:var(--f-display);letter-spacing:0.32em;text-transform:uppercase;padding-left:0.32em}
+.mast{padding:64px 0 76px}
+.mast-word{font-family:var(--f-display);font-size:clamp(48px,11vw,142px);line-height:0.9;letter-spacing:0.06em;text-transform:uppercase;padding-left:0.06em}
+.toc{display:grid;grid-template-columns:1fr}
+@media (min-width:640px){.toc{grid-template-columns:1fr 1fr;column-gap:44px}}
+.toc a{display:flex;align-items:baseline;gap:14px;padding:11px 0;border-top:1px solid var(--line);text-decoration:none;color:var(--ink);transition:color 200ms var(--ease-cut)}
+.toc a:hover{color:var(--backlight-ink)}
+.toc a span{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);letter-spacing:0.1em}
+.toc a b{font-weight:400;font-size:15px}
+
+.pill{display:inline-block;font-family:var(--f-mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;border:1px solid var(--line-2);padding:3px 9px;color:var(--ink-3)}
+.pill-a{border-color:var(--backlight);color:var(--backlight-ink)}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.001ms!important;transition-duration:.001ms!important}
+}
+</style>
+
+<!-- ================= MASTHEAD ================= -->
+<header class="wrap mast">
+  <div class="stack g32">
+    <div class="stack g16">
+      <p class="mono" style="color:var(--backlight-ink)">SITE BLUEPRINT · VOLUME TWO · 2026 · FOR DEVELOPMENT</p>
+      <h1 class="mast-word">Nazara</h1>
+      <p class="label" style="letter-spacing:0.3em">Eight pages · Desktop &amp; mobile · Every interaction specified</p>
+    </div>
+    <hr class="hr">
+    <div class="cols cols-2" style="gap:44px">
+      <div class="stack g24">
+        <p class="lead" style="color:var(--ink);max-width:26em">The site is a building. You arrive in the dark, one thing is lit, and then the room comes up around you.</p>
+        <p class="body mut">This volume applies the Nazara Brand Manual without extending it. Every colour, face, ratio, easing curve and duration used here is already defined in Volume One and is referenced by token name, never re-specified. Where this document says <em>Backlight</em>, <em>ease-stone</em> or <em>1.684&nbsp;:&nbsp;1</em>, it means the value in the manual and nothing else.</p>
+      </div>
+      <div>
+        <p class="label" style="margin-bottom:16px">Contents</p>
+        <nav class="toc">
+          <a href="#s00"><span>00</span><b>How to read this</b></a>
+          <a href="#s01"><span>01</span><b>Architecture &amp; navigation</b></a>
+          <a href="#s02"><span>02</span><b>Home</b></a>
+          <a href="#s03"><span>03</span><b>Collections · The Library</b></a>
+          <a href="#s04"><span>04</span><b>Collection detail · Stone</b></a>
+          <a href="#s05"><span>05</span><b>Projects · Works</b></a>
+          <a href="#s06"><span>06</span><b>About · Provenance</b></a>
+          <a href="#s07"><span>07</span><b>Architects</b></a>
+          <a href="#s08"><span>08</span><b>Downloads · The Index</b></a>
+          <a href="#s09"><span>09</span><b>Contact · Request a viewing</b></a>
+          <a href="#s10"><span>10</span><b>Interaction catalogue</b></a>
+          <a href="#s11"><span>11</span><b>Mobile doctrine</b></a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= 00 ================= -->
+<section id="s00" class="wrap sec">
+  <div class="grid-rail">
+    <div class="rail"><span class="rail-num">00</span><p class="rail-title">How to read this</p><p class="rail-note">Notation, wireframe key, and the one rule about scope.</p></div>
+    <div class="stack g32">
+      <h2 class="h2">Wireframes here are drawings, not mockups.</h2>
+      <p class="body mut">Every wireframe is set on the real 12-column grid at desktop and the real 4-column grid at mobile, with spans given in columns. Hatched boxes are photographs at their stated ratio. Solid bars are type at their stated token. Nothing in a wireframe is a colour proposal — colour comes from Volume One.</p>
+
+      <div class="cols cols-2">
+        <div class="wf">
+          <span class="wf-lab">Key</span>
+          <div class="wf-stack">
+            <div class="wf-grid">
+              <div class="wf-box wf-img c4 h80"><em>Photograph · ratio stated</em></div>
+              <div class="wf-box c4 h80"><div class="wf-bar w60"></div><div class="wf-bar"></div><div class="wf-bar w80"></div><em>Type block · token stated</em></div>
+              <div class="wf-box wf-dark c4 h80"><em>Viewing Room surface</em></div>
+            </div>
+            <div class="wf-grid">
+              <div class="wf-box c6" style="min-height:auto"><span class="wf-btn">Button</span><em>Component from Vol. One §06</em></div>
+              <div class="wf-box wf-accent c6" style="min-height:auto"><em>Backlight rule · interactive edge</em></div>
+            </div>
+          </div>
+        </div>
+        <div class="stack g16">
+          <p class="label">Notation used throughout</p>
+          <ul class="vlist">
+            <li><b>c2–c7</b> — the columns an element occupies on the 12-column desktop grid.</li>
+            <li><b>100vh, 140vh</b> — the scroll length a section occupies, not its visual height.</li>
+            <li><b>ease-stone / ease-cut / ease-lift</b> — the three curves from Volume One §07. No fourth curve exists.</li>
+            <li><b>Curtain</b> — the 1200 ms clip-path image wipe with 1.06 → 1.00 counter-scale.</li>
+            <li><b>Mason's line</b> — the 800 ms per-line headline reveal, 60 ms stagger.</li>
+            <li><b>Rule ignites</b> — a 1 px Backlight line growing left-to-right over 400 ms.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="plate">
+        <span class="plate-lab">Scope note — read before building</span>
+        <p class="body-s mut">Volume One's primary navigation carries five destinations: Library, Works, Provenance, Atelier, Journal. This volume specifies eight pages, of which Atelier and Journal are <strong style="color:var(--ink);font-weight:500">not included</strong> — they remain in the navigation as designed and are deferred to a later release; the build should ship them as single-template pages using the Provenance and Works layouts respectively. Conversely, Architects and Downloads are specified here in full but do <strong style="color:var(--ink);font-weight:500">not</strong> take navigation slots: they are a trade door, reached from the footer, the Library mega menu, and the foot of every stone page. Contact is not a navigation item either — it is the persistent <em>Request a viewing</em> action that sits in the header of every page.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 01 ARCHITECTURE ================= -->
+<section id="s01" class="wrap sec">
+  <div class="grid-rail">
+    <div class="rail"><span class="rail-num">01</span><p class="rail-title">Architecture &amp; navigation</p><p class="rail-note">Sitemap, header, mega menu, drawer, the Selection, transitions, loading.</p></div>
+    <div class="stack g40">
+
+      <div class="stack g24">
+        <h2 class="h1">Five doors, one action, and a tray that follows you.</h2>
+        <p class="body mut">The information architecture solves one problem: two audiences arriving at the same URL with opposite needs. A principal wants to be shown something. An architect wants to find something and leave with a file. The site serves the first with its main sequence and the second with a trade door that is never more than one click away, and it never asks anyone which one they are.</p>
+      </div>
+
+      <div class="plate">
+        <span class="plate-lab">Sitemap</span>
+        <ul class="seq">
+          <li><b>/ &nbsp;Home</b> — the sequence. One job: make the visitor want to look at stone for longer than they intended.</li>
+          <li><b>/library</b> — the Library index (Collections). Filterable, comparable, two view modes. → <b>/library/[stone]</b> Stone detail (Collection detail) → <b>/library/[stone]/[block]</b> Block detail, deep link from the slab index.</li>
+          <li><b>/works</b> — Works index (Projects) → <b>/works/[project]</b> Work detail.</li>
+          <li><b>/provenance</b> — About: the word, the manifesto, the quarries, Makrana, the atelier, the refusal.</li>
+          <li><b>/atelier</b> · <b>/journal</b> — in navigation, deferred (see §00).</li>
+          <li><b>/architects</b> — the trade door → <b>/architects/downloads</b> The Index · <b>/architects/samples</b> · <b>/architects/specify</b></li>
+          <li><b>/viewing</b> — Request a viewing (Contact). Also the destination of the header action from every page.</li>
+          <li><b>/selection</b> — the visitor's own tray of stones, shareable by link, exportable as PDF.</li>
+        </ul>
+      </div>
+
+      <div class="cols cols-2">
+        <div class="stack g16">
+          <p class="label">Header — behaviour on every page</p>
+          <div class="rows">
+            <div class="row row-2"><div class="row-k">Rest</div><div class="row-v">88 px. Wordmark left in Bodoni at 22 px / 0.32 em tracking. Five links right at label token. <em>Request a viewing</em> last, in Backlight Ink. A Selection counter sits between them once the tray holds anything.</div></div>
+            <div class="row row-2"><div class="row-k">Over a hero</div><div class="row-v">Fully transparent, contents in Chalk. No blur, no scrim — the hero's own bottom gradient carries the legibility. On Home the five links are absent until 8% scroll, then fade in over 400 ms; only the wordmark and the action are present at the top of the page.</div></div>
+            <div class="row row-2"><div class="row-k">Scrolled</div><div class="row-v">Collapses 88 → 72 px over 240 ms ease-cut. Ground becomes the page's own ground at 72% opacity with <span class="mono">backdrop-filter: blur(20px)</span>. A 1 px Hairline appears along the bottom edge.</div></div>
+            <div class="row row-2"><div class="row-k">Direction</div><div class="row-v">Hides upward on scroll down past 400 px; returns on any upward scroll, 240 ms ease-cut. Always visible at the top of the document and whenever a modal, drawer or lightbox is open.</div></div>
+            <div class="row row-2"><div class="row-k">Hover</div><div class="row-v">A Backlight rule grows under the link, 320 ms ease-stone. Current section's rule is present at rest, at Hairline Strong, and turns Backlight on hover.</div></div>
+          </div>
+        </div>
+        <div class="stack g16">
+          <p class="label">Library mega menu</p>
+          <div class="rows">
+            <div class="row row-2"><div class="row-k">Trigger</div><div class="row-v">Hover with 120 ms intent delay on desktop; click on touch. Opens on the Library link only — the other four navigate directly.</div></div>
+            <div class="row row-2"><div class="row-k">Panel</div><div class="row-v">Full width, Viewing Room, 420 px tall, no radius, no shadow other than <span class="mono">--shadow-lift</span>. Wipes down from the header edge over 480 ms ease-lift.</div></div>
+            <div class="row row-2"><div class="row-k">Contents</div><div class="row-v">Four columns of families with live counts in mono — MARBLE 22 · GRANITE 9 · ONYX 4 · QUARTZITE 3 · LIMESTONE 2 · SEMI-PRECIOUS 1 — then a fifth column holding one featured slab at 1.684&nbsp;:&nbsp;1 with its spec line, and beneath it two Rule links: <em>All forty-one stones</em> and <em>For architects</em>.</div></div>
+            <div class="row row-2"><div class="row-k">Reveal</div><div class="row-v">Family names stagger in at 60 ms, capped at eight. The featured slab curtains in from the left over 800 ms — a shortened curtain, because the panel is not the page.</div></div>
+            <div class="row row-2"><div class="row-k">Close</div><div class="row-v">On mouse-leave with 200 ms of forgiveness, on Escape, on scroll, or on any navigation. Wipes up over 320 ms ease-cut — faster leaving than arriving.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wf">
+        <span class="wf-lab">Header · desktop, rest / scrolled / mega menu open</span>
+        <div class="wf-stack">
+          <div class="wf-grid">
+            <div class="wf-box c3" style="min-height:auto"><em>NAZARA · Bodoni 22 / 0.32em</em></div>
+            <div class="wf-box c4" style="min-height:auto"><em>— air —</em></div>
+            <div class="wf-box c4" style="min-height:auto"><em>Library · Works · Provenance · Atelier · Journal</em></div>
+            <div class="wf-box wf-accent c1" style="min-height:auto"><em>Viewing</em></div>
+          </div>
+          <div class="wf-grid">
+            <div class="wf-box wf-dark c12 h150">
+              <div class="wf-grid" style="gap:5px">
+                <div class="wf-box wf-dark c2" style="min-height:70px"><em>Marble 22</em></div>
+                <div class="wf-box wf-dark c2" style="min-height:70px"><em>Granite 9</em></div>
+                <div class="wf-box wf-dark c2" style="min-height:70px"><em>Onyx 4</em></div>
+                <div class="wf-box wf-dark c2" style="min-height:70px"><em>Quartzite · Limestone · Semi-precious</em></div>
+                <div class="wf-box wf-dark wf-img c4" style="min-height:70px"><em>Featured slab · 1.684:1</em></div>
+              </div>
+              <em>MEGA MENU · full width · Viewing Room · wipes down 480 ms ease-lift</em>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cols cols-3">
+        <div class="plate">
+          <span class="plate-lab">The Selection — the tray</span>
+          <p class="body-s mut">A persistent, anonymous tray. <em>Add to selection</em> appears on every stone card and stone page. The header shows a mono count once it is non-empty: <span class="mono">SELECTION 4</span>. Clicking slides a Viewing Room panel in from the right over 480 ms ease-lift, 440 px wide, holding each stone at 1.684&nbsp;:&nbsp;1 with its spec line and a remove control. From the tray: <em>Download as PDF</em>, <em>Share by link</em>, <em>Request a viewing of these four</em> — which pre-fills the form. This is the conversion mechanic of the whole site and it never once uses the word cart, basket or wishlist.</p>
+        </div>
+        <div class="plate">
+          <span class="plate-lab">Footer — identical on every page</span>
+          <p class="body-s mut">Exactly as specified in Volume One §06: Viewing Room, 200 px top padding on desktop, wordmark at 44 px, one sentence of place, the Journal sign-up, Navigate and Studio columns, and the coordinate colophon. The only per-page variation permitted is a single contextual Rule link above the wordmark — on a stone page, <em>For architects →</em>; on a work, <em>Stones used in this project →</em>. Nothing else changes, ever.</p>
+        </div>
+        <div class="plate">
+          <span class="plate-lab">Page transitions</span>
+          <p class="body-s mut">A Viewing Room panel wipes up from the bottom edge over 600 ms ease-lift, covering the viewport. The incoming route renders behind it, scrolled to top. The panel then wipes off the top edge over 700 ms ease-stone. Total 1300 ms, of which the middle 200 ms is a full black hold — long enough to feel like a room change, short enough not to be a wait. The wordmark does not appear in the panel; the loader is the only place it does. Back and forward use the identical transition — direction is never reversed, because a room change is not undoable.</p>
+        </div>
+      </div>
+
+      <div class="stack g16">
+        <p class="label">Loading states — every one in the system</p>
+        <div class="tw">
+          <table>
+            <thead><tr><th>State</th><th>Appearance</th><th>Duration</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td class="k">First visit</td><td>The wetting — wordmark in Ash on Viewing Room, filling with Chalk from the bottom, centred. The only centred element in the system.</td><td class="n">1600 + 400 hold</td><td>Panel then wipes off the top, 700 ms ease-stone, straight into the Home hero curtain. Total to first frame: 2.7 s.</td></tr>
+              <tr><td class="k">Return within 24 h</td><td>The same panel, wordmark already filled.</td><td class="n">600</td><td>Cookie-gated. A returning visitor is never made to watch the ceremony twice.</td></tr>
+              <tr><td class="k">Route change</td><td>Viewing Room panel wipe, no wordmark.</td><td class="n">1300</td><td>See above.</td></tr>
+              <tr><td class="k">Image, not yet loaded</td><td>A flat Serpentine block at the exact final ratio.</td><td class="n">—</td><td>Never a blur-up, never a skeleton shimmer, never a spinner. Volume One §06 forbids all three.</td></tr>
+              <tr><td class="k">Image, arriving</td><td>Curtain — clip-path wipe from the left, 1.06 → 1.00 counter-scale.</td><td class="n">1200</td><td>Triggered on intersection at 15% of viewport height, not on load. Two images in one viewport wipe 120 ms apart.</td></tr>
+              <tr><td class="k">Filtering the Library</td><td>No loading state at all. The grid re-flows in place.</td><td class="n">480</td><td>FLIP transition, ease-stone. The result count crossfades over 120 ms — it never counts up.</td></tr>
+              <tr><td class="k">Pagination</td><td>The next 24 cards curtain in on a 60 ms stagger, capped at eight.</td><td class="n">1200</td><td>The page does not jump. The button becomes <span class="mono">1–48 OF 41</span> style range text.</td></tr>
+              <tr><td class="k">Form submitting</td><td>Button label crossfades to SENDING; the Backlight rule sweeps its bottom edge as an indeterminate loop.</td><td class="n">loop 900</td><td>No spinner. The rule is the only progress indicator the brand owns.</td></tr>
+              <tr><td class="k">Form succeeded</td><td>The form area wipes to Viewing Room over 600 ms; one Bodoni 32 line appears on the mason's line.</td><td class="n">600 + 800</td><td>"Your viewing is being arranged. We will write within one working day."</td></tr>
+              <tr><td class="k">File downloading</td><td>The row's baseline rule fills with Backlight left-to-right at true download progress. On completion the label swaps to SAVED in Quarried for 2 s.</td><td class="n">true</td><td>The one place in the system where a rule's length carries data.</td></tr>
+              <tr><td class="k">Nothing found</td><td>Type only. No illustration, no icon.</td><td class="n">—</td><td>"No stone matches those six filters. The nearest is Makrana Albeta." — always offer the nearest.</td></tr>
+              <tr><td class="k">Failed</td><td>One mono line in Fissure beneath the element that failed, with a Rule button: <em>Try again</em>.</td><td class="n">—</td><td>Never a modal, never a toast, never an apology.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 02 HOME ================= -->
+<div class="band">
+<section id="s02" class="wrap sec" style="border-top:0">
+  <div class="grid-rail">
+    <div class="rail"><span class="rail-num">02</span><p class="rail-title">Home</p><p class="rail-note">Seven sections · ~720 vh · the room comes up around you.</p></div>
+    <div class="stack g40">
+
+      <div class="stack g24">
+        <h2 class="h1">You arrive in the dark. One thing is lit. Then the lights come up.</h2>
+        <p class="lead">The homepage is a single choreographed sequence with one structural idea carrying it: the page begins on Viewing Room black and physically transitions to daylight as you scroll, then returns to black for the invitation. Everything else serves that arc.</p>
+      </div>
+
+      <div class="plate plate-dark">
+        <span class="plate-lab">Scroll map — the whole page at a glance</span>
+        <div class="smap">
+          <div class="smap-row"><span class="smap-n">00</span><div class="smap-bar dk" style="min-height:44px"><span class="smap-name">The wetting</span><span class="smap-meta">LOADER · 2.0 S · NOT SCROLLABLE</span></div></div>
+          <div class="smap-row"><span class="smap-n">01</span><div class="smap-bar dk" style="min-height:112px"><span class="smap-name">The first slab</span><span class="smap-meta">100 VH · DARK · CURTAIN + DRIFTING LIGHT</span></div></div>
+          <div class="smap-row"><span class="smap-n">02</span><div class="smap-bar" style="min-height:100px"><span class="smap-name">The threshold</span><span class="smap-meta">100 VH · LIGHT RISES OVER DARK · ONE SENTENCE</span></div></div>
+          <div class="smap-row"><span class="smap-n">03</span><div class="smap-bar" style="min-height:170px"><span class="smap-name">The long look</span><span class="smap-meta">200 VH · STICKY TRIPTYCH · CROSS-WIPE</span></div></div>
+          <div class="smap-row"><span class="smap-n">04</span><div class="smap-bar" style="min-height:130px"><span class="smap-name">The typology wall</span><span class="smap-meta">140 VH · GRID · DIFFERENTIAL SCROLL</span></div></div>
+          <div class="smap-row"><span class="smap-n">05</span><div class="smap-bar" style="min-height:90px"><span class="smap-name">One work</span><span class="smap-meta">90 VH · FULL BLEED 21:9 · BLUE HOUR</span></div></div>
+          <div class="smap-row"><span class="smap-n">06</span><div class="smap-bar dk" style="min-height:80px"><span class="smap-name">The refusal</span><span class="smap-meta">80 VH · DARK · TWO FIGURES, NO CHART</span></div></div>
+          <div class="smap-row"><span class="smap-n">07</span><div class="smap-bar dk" style="min-height:70px"><span class="smap-name">The viewing</span><span class="smap-meta">70 VH · DARK · PRIMARY CTA, ALONE</span></div></div>
+          <div class="smap-row"><span class="smap-n">08</span><div class="smap-bar dk" style="min-height:52px"><span class="smap-name">Footer</span><span class="smap-meta">DARK · UNCHANGED FROM VOL. ONE</span></div></div>
+        </div>
+        <p class="body-s" style="color:#737969;margin-top:18px">Dark → light → dark. The visitor passes through daylight and comes back to the Viewing Room to be invited in. There is no navigation menu event, no carousel, no tab, and no accordion anywhere on this page.</p>
+      </div>
+
+      <!-- HOME 01 -->
+      <div class="plate plate-dark">
+        <span class="plate-lab">§01 · The first slab — hero · 100 vh · Viewing Room</span>
+        <div class="cols cols-2" style="gap:32px">
+          <div class="wf" style="background:#171E19;border-color:#2A322C">
+            <span class="wf-lab">Desktop</span>
+            <div class="wf-grid">
+              <div class="wf-box wf-dark c4 h200">
+                <div class="wf-bar w25"></div>
+                <div class="wf-bar w80"></div><div class="wf-bar w60"></div>
+                <span class="wf-btn">Enter the library</span>
+                <em>c2–c6 · mono eyebrow, display-l, rule button</em>
+              </div>
+              <div class="wf-box wf-dark wf-img c8 h200"><em>Full-bleed to right edge · slab, raking light · c5–c12 + bleed</em></div>
+            </div>
+            <div class="wf-grid" style="margin-top:5px">
+              <div class="wf-box wf-dark c2" style="min-height:auto"><em>◯ scroll · c2, not centred</em></div>
+              <div class="wf-box wf-dark c10" style="min-height:auto"><em>— air —</em></div>
+            </div>
+          </div>
+          <div class="stack g16">
+            <div class="rows">
+              <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">Purpose</div><div class="row-v" style="color:#A5AA9E">Establish, in under three seconds and with no explanation, that this is not a supplier's website. One photograph, one sentence, one door.</div></div>
+              <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">Appearance</div><div class="row-v" style="color:#A5AA9E">Viewing Room ground. A single slab standing upright, lit at 20°, occupying columns 5–12 and bleeding off the right and bottom edges. Type flush left in columns 2–6, vertically centred against the image. No gradient except a Viewing Room wash 0 → 55% across the bottom 30% for legibility.</div></div>
+              <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">Exact content</div><div class="row-v" style="color:#A5AA9E"><span class="mono" style="color:#E0B278">MAKRANA ALBETA · BLOCK NZ-0412 · BENCH 7 · CUT 18.03.26</span><br><br><span class="h3" style="color:#E9EBE4">A hundred million years,<br>and then a decision.</span><br><br>Rule button: <em>Enter the library</em></div></div>
+              <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">Typography</div><div class="row-v" style="color:#A5AA9E">Eyebrow: data-s in Backlight. Headline: display-l, 120 px, Bodoni 400, sentence case, two lines, tracking −0.025 em. Button: button token. Three faces in one viewport, one instance each — the brand stated in full before the visitor has scrolled.</div></div>
+              <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">Animation</div><div class="row-v" style="color:#A5AA9E">Image curtains in from the bottom edge, 1200 ms ease-stone, starting the instant the loader panel clears. Eyebrow fades at 400 ms. Headline enters on the mason's line, both lines, 60 ms apart, beginning at 500 ms. Button's rule ignites left-to-right at 1400 ms. Scroll circle fades in last, at 1800 ms.</div></div>
+              <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">Ambient</div><div class="row-v" style="color:#A5AA9E"><strong style="color:#E9EBE4">The drifting light.</strong> A soft highlight travels slowly across the slab face on an 18 s linear loop, and the image itself scales 1.00 → 1.04 over 20 s, alternating. Neither is perceptible second to second; together they make the stone feel lit by a real, moving light rather than printed. This is the page's one ambient effect and it exists nowhere else on the site. Disabled entirely under reduced motion.</div></div>
+              <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">Scroll</div><div class="row-v" style="color:#A5AA9E">The hero is <span class="mono">position: sticky</span> and does not move. §02 scrolls up over it. The headline fades to 0 and translates −40 px across the first 40 vh; the image holds until it is fully covered.</div></div>
+              <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">Emotion</div><div class="row-v" style="color:#A5AA9E">Arrest. The visitor should stop, not scan. Measured by whether they read the sentence before scrolling.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HOME 02 -->
+      <div class="plate">
+        <span class="plate-lab">§02 · The threshold — 100 vh · Quarry Dust · the light comes up</span>
+        <div class="cols cols-2" style="gap:32px">
+          <div class="wf">
+            <span class="wf-lab">Desktop · one sentence, nothing else</span>
+            <div class="wf-grid">
+              <div class="wf-box c1" style="min-height:170px"><em>margin</em></div>
+              <div class="wf-box c8" style="min-height:170px"><div class="wf-bar w80"></div><div class="wf-bar w60"></div><em>c2–c9 · display-m · 88 px · Bodoni</em></div>
+              <div class="wf-box c3" style="min-height:170px"><em>air</em></div>
+            </div>
+          </div>
+          <div class="rows">
+            <div class="row row-2"><div class="row-k">Purpose</div><div class="row-v">The gallery lights coming up. Structurally it is the page's hinge: dark to light, image to type, spectacle to argument.</div></div>
+            <div class="row row-2"><div class="row-k">Appearance</div><div class="row-v">Pure Quarry Dust. One sentence in columns 2–9. Nothing else in the viewport — no image, no button, no rule, no scroll cue. 100 vh of one sentence is the most expensive gesture on the site and the reason the rest of it is believed.</div></div>
+            <div class="row row-2"><div class="row-k">Exact content</div><div class="row-v" style="font-family:var(--f-display);font-size:26px;line-height:1.15;color:var(--ink)">Nothing here was designed.<br>Everything here was chosen.</div></div>
+            <div class="row row-2"><div class="row-k">Animation</div><div class="row-v">The section is a solid Quarry Dust panel that scrolls up over the sticky hero — the light literally rising over the dark. No fade, no cross-dissolve. The sentence enters on the mason's line when the panel reaches 60% coverage, 800 ms, two lines 60 ms apart.</div></div>
+            <div class="row row-2"><div class="row-k">Spacing</div><div class="row-v">Type block optically centred at 46% of viewport height, never mathematically centred — a mathematically centred block reads low.</div></div>
+            <div class="row row-2"><div class="row-k">Emotion</div><div class="row-v">Relief, then attention. The eye rests after a full-bleed photograph, and the manifesto lands in the silence.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HOME 03 -->
+      <div class="plate">
+        <span class="plate-lab">§03 · The long look — 200 vh · sticky triptych</span>
+        <div class="cols cols-2" style="gap:32px">
+          <div class="wf">
+            <span class="wf-lab">Desktop · image sticks left, captions scroll right</span>
+            <div class="wf-grid">
+              <div class="wf-box wf-img c7 h200"><em>c1–c7 · STICKY · 4:5 · cross-wipes 3×</em></div>
+              <div class="wf-box c1 h200"><em>air</em></div>
+              <div class="wf-box c4 h200">
+                <div class="wf-bar w25"></div><div class="wf-bar w60"></div><div class="wf-bar"></div><div class="wf-bar w80"></div>
+                <em>c9–c12 · three captions scroll past · 66 vh each</em>
+              </div>
+            </div>
+          </div>
+          <div class="rows">
+            <div class="row row-2"><div class="row-k">Purpose</div><div class="row-v">Prove the manifesto. §02 made a claim; this shows the procedure that backs it. It is the only explanatory section on the homepage.</div></div>
+            <div class="row row-2"><div class="row-k">Appearance</div><div class="row-v">A sticky 4:5 photograph in columns 1–7, bleeding off the left edge. Three captions in columns 9–12 scroll past it, each occupying 66 vh. As each caption reaches 50% viewport height the sticky image cross-wipes to the next frame.</div></div>
+            <div class="row row-2"><div class="row-k">Exact content</div><div class="row-v">Eyebrow: <span class="mono">THE LONG LOOK</span><br><br><b>We wet it.</b> — Water shows a slab its own colour. Dry stone lies about what it will become.<br><br><b>We rake it.</b> — A light held almost flat against the face is the only way crystal, saw-scoring and the true depth of a vein will read.<br><br><b>We turn it.</b> — The same block gives a different drawing on every axis. Vein-cut is a landscape. Cross-cut is a bloom.<br><br>Closing line, after the third: <em>"Then we take it, or we leave it on the bench. There is no third option."</em></div></div>
+            <div class="row row-2"><div class="row-k">Photography</div><div class="row-v">Register III, from Volume One §08. Frame 1: water running down a dry slab, the wet edge advancing. Frame 2: a hand-held lamp raking a face at 20°, dust in the beam. Frame 3: two workers rotating a slab on an A-frame. Hands and tool, never faces.</div></div>
+            <div class="row row-2"><div class="row-k">Animation</div><div class="row-v">Cross-wipe: the incoming frame's clip-path opens from the bottom over 900 ms ease-stone while the outgoing holds beneath — no fade between photographs, ever. Captions enter on the mason's line and leave by fading only, so the eye is never pulled backwards.</div></div>
+            <div class="row row-2"><div class="row-k">Component</div><div class="row-v">Sticky container is native CSS <span class="mono">position: sticky</span>. This is not scroll-jacking: the scrollbar tracks the page 1:1 at all times, and stopping mid-section leaves a legible frame.</div></div>
+            <div class="row row-2"><div class="row-k">Emotion</div><div class="row-v">Craft respect. The specifier should recognise a real procedure; the principal should feel they are being let backstage.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HOME 04 -->
+      <div class="plate">
+        <span class="plate-lab">§04 · The typology wall — 140 vh · the payoff of Volume One §08</span>
+        <div class="cols cols-2" style="gap:32px">
+          <div class="wf">
+            <span class="wf-lab">Desktop · full-bleed 6-up grid, then three named cards</span>
+            <div class="wf-stack">
+              <div class="wf-grid" style="gap:3px">
+                <div class="wf-box wf-img c2 h60"><em></em></div><div class="wf-box wf-img c2 h60"><em></em></div>
+                <div class="wf-box wf-img c2 h60"><em></em></div><div class="wf-box wf-img c2 h60"><em></em></div>
+                <div class="wf-box wf-img c2 h60"><em></em></div><div class="wf-box wf-img c2 h60"><em></em></div>
+              </div>
+              <div class="wf-grid" style="gap:3px">
+                <div class="wf-box wf-img c2 h60"><em></em></div><div class="wf-box wf-img c2 h60"><em></em></div>
+                <div class="wf-box wf-img c2 h60"><em></em></div><div class="wf-box wf-img c2 h60"><em></em></div>
+                <div class="wf-box wf-img c2 h60"><em></em></div><div class="wf-box wf-img c2 h60"><em>FULL BLEED · 3 px gap · identical frames</em></div>
+              </div>
+              <div class="wf-grid">
+                <div class="wf-box wf-img c4 h110"><em>Slab card · 1.684:1</em></div>
+                <div class="wf-box wf-img c4 h110"><em>Slab card</em></div>
+                <div class="wf-box wf-img c4 h110"><em>Slab card</em></div>
+              </div>
+            </div>
+          </div>
+          <div class="rows">
+            <div class="row row-2"><div class="row-k">Purpose</div><div class="row-v">Deliver on the typology promise: hundreds of slabs photographed in an identical frame become hypnotic in a grid, and comparison becomes effortless. No competitor can retrofit this.</div></div>
+            <div class="row row-2"><div class="row-k">Appearance</div><div class="row-v">Twelve typology photographs, six across, edge to edge with a 3 px gap — the tightest gap anywhere in the system, because these are one object, not twelve. Below, on the normal grid, three named slab cards exactly as specified in Volume One §06.</div></div>
+            <div class="row row-2"><div class="row-k">Exact content</div><div class="row-v">Eyebrow: <span class="mono">THE LIBRARY</span> · Headline (h2): <em>"Forty-one stones, photographed in the same frame, so they can be compared honestly."</em> · Cards: Makrana Albeta, Verde Guatemala, Onice Miele, each with its full spec line · Rule button: <em>All forty-one</em></div></div>
+            <div class="row row-2"><div class="row-k">Scroll</div><div class="row-v">The grid's alternate rows translate at 96% and 104% of scroll speed — a 4% differential, well under the 12% parallax ceiling. Just enough that the wall breathes without anyone being able to say what is moving.</div></div>
+            <div class="row row-2"><div class="row-k">Hover</div><div class="row-v">A tile in the wall lifts to full opacity while its eleven neighbours drop to 55% over 400 ms ease-cut, and the stone's name appears in mono at the tile's bottom-left. The whole wall is a link to /library; individual tiles link to their stone.</div></div>
+            <div class="row row-2"><div class="row-k">Animation</div><div class="row-v">Tiles curtain in on a 60 ms stagger capped at eight, in reading order, as the wall crosses 15% of the viewport. Cards below curtain in 120 ms apart.</div></div>
+            <div class="row row-2"><div class="row-k">Emotion</div><div class="row-v">Abundance without volume claims. The visitor understands the scale of the holding by looking, not by being told a number over 5,000.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HOME 05 -->
+      <div class="plate">
+        <span class="plate-lab">§05 · One work — 90 vh · full bleed 21:9</span>
+        <div class="cols cols-2" style="gap:32px">
+          <div class="wf">
+            <span class="wf-lab">Desktop</span>
+            <div class="wf-stack">
+              <div class="wf-grid"><div class="wf-box wf-img c12 h150"><em>FULL BLEED · 21:9 · blue hour · ignores margins</em></div></div>
+              <div class="wf-grid">
+                <div class="wf-box c1" style="min-height:auto"><em></em></div>
+                <div class="wf-box c5" style="min-height:auto"><div class="wf-bar w60"></div><em>c2–c6 · display-m + mono credit</em></div>
+                <div class="wf-box c4" style="min-height:auto"><em>air</em></div>
+                <div class="wf-box c2" style="min-height:auto"><span class="wf-btn">Six works</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="rows">
+            <div class="row row-2"><div class="row-k">Purpose</div><div class="row-v">Show the stone installed, once. Showing one project is a stronger claim than showing six, and it forces the click for the rest.</div></div>
+            <div class="row row-2"><div class="row-k">Appearance</div><div class="row-v">A single 21:9 photograph, full bleed, ignoring the page margins entirely — the only 21:9 on the homepage, per the one-per-page rule in Volume One §05. Caption sits below on the grid, not over the image.</div></div>
+            <div class="row row-2"><div class="row-k">Exact content</div><div class="row-v">Headline (display-m): <em>Private Residence, Jodhpur</em><br><span class="mono">2025 · MAKRANA ALBETA, VEIN-CUT · 610 M² · STUDIO NAME, ARCHITECT</span><br>Rule button: <em>Six works</em></div></div>
+            <div class="row row-2"><div class="row-k">Photography</div><div class="row-v">Register II. Blue hour exterior or a north-lit interior at overcast noon. Verticals corrected. One human-scale element for reading size. Stone occupies no more than 60% of the frame.</div></div>
+            <div class="row row-2"><div class="row-k">Animation</div><div class="row-v">Curtain from the bottom edge upward, 1200 ms — the full-bleed variant. Caption enters on the mason's line 200 ms after the wipe completes, never during it.</div></div>
+            <div class="row row-2"><div class="row-k">Emotion</div><div class="row-v">Aspiration made concrete. The stone stops being a material and becomes a room the visitor can imagine standing in.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HOME 06 + 07 -->
+      <div class="cols cols-2">
+        <div class="plate plate-dark">
+          <span class="plate-lab">§06 · The refusal — 80 vh · Viewing Room</span>
+          <div class="rows">
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">Purpose</div><div class="row-v" style="color:#A5AA9E">The site's only statistic, and it is an inverted one. This single module does more competitive work than any About page.</div></div>
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">Exact content</div><div class="row-v" style="color:#A5AA9E"><span class="mono" style="color:#E0B278">PROVENANCE</span><br><br><span style="font-family:var(--f-mono);font-size:34px;font-weight:300;color:#E9EBE4;letter-spacing:-0.01em">406</span> <span style="color:#A5AA9E">blocks were bought in 2025.</span><br><span style="font-family:var(--f-mono);font-size:34px;font-weight:300;color:#E9EBE4">19</span> <span style="color:#A5AA9E">were kept.</span><br><br>Beneath, in mono: <span class="mono">SIX QUARRIES · MAKRANA 26.0553° N · KISHANGARH 26.5877° N · +4</span><br><br>Rule button: <em>Provenance</em></div></div>
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">Appearance</div><div class="row-v" style="color:#A5AA9E">Type only. No chart, no bar, no ring, no illustration — a graphic would make it look like a marketing claim. Figures at data-l in Plex Mono 300, tabular. Columns 2–8.</div></div>
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">Animation</div><div class="row-v" style="color:#A5AA9E">The two figures do <em>not</em> count up — Volume One forbids ticking counters. They arrive on the mason's line, 200 ms apart, and hold.</div></div>
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">Emotion</div><div class="row-v" style="color:#A5AA9E">Trust, arriving as a small shock. The visitor has never seen a supplier boast about what it rejected.</div></div>
+          </div>
+        </div>
+        <div class="plate plate-dark">
+          <span class="plate-lab">§07 · The viewing — 70 vh · the only primary button on the page</span>
+          <div class="rows">
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">Purpose</div><div class="row-v" style="color:#A5AA9E">Convert, once, at the end, having earned it. The Ink button appears exactly once on the homepage and this is where.</div></div>
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">Exact content</div><div class="row-v" style="color:#A5AA9E"><span class="h3" style="color:#E9EBE4">The library is open by appointment.</span><br><br>Ink button: <em>Request a viewing</em><br><br><span class="mono">MADANGANJ–KISHANGARH · 26.5877° N &nbsp;74.8560° E · MON–SAT 10.00–18.00 IST</span></div></div>
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">Appearance</div><div class="row-v" style="color:#A5AA9E">Viewing Room, columns 2–7, flush left. No photograph, no form embedded, no second option. The air around the button is the argument.</div></div>
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">Micro-interaction</div><div class="row-v" style="color:#A5AA9E">Hover: ground lifts to #1D241E, tracking opens 0.12 → 0.145 em, and the Backlight rule sweeps the bottom edge over 400 ms. Press: 0.99 scale. Nothing else on the page hovers like this, which is why it reads as the action.</div></div>
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">Emotion</div><div class="row-v" style="color:#A5AA9E">Invitation, not solicitation. The wording makes the visitor the one who must ask.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="plate plate-dark">
+        <span class="plate-lab">Home · mobile · 4 columns, 20 px margin, no cursor, no parallax</span>
+        <div class="cols cols-3" style="gap:24px">
+          <div class="wfm">
+            <div class="wf-box wf-dark" style="min-height:22px"><em>NAZARA ☰</em></div>
+            <div class="wf-box wf-dark wf-img" style="min-height:150px"><div class="wf-bar w60"></div><div class="wf-bar w80"></div><em>Hero 100 vh · image bleeds full · type over lower third</em></div>
+            <div class="wf-box" style="min-height:70px"><div class="wf-bar w80"></div><div class="wf-bar w60"></div><em>Threshold · display-m 40 px</em></div>
+            <div class="wf-box wf-img" style="min-height:80px"><em>Long look · stacked, not sticky</em></div>
+          </div>
+          <div class="wfm">
+            <div class="wf-box" style="min-height:26px"><em>We wet it. / caption</em></div>
+            <div class="wf-box wf-img" style="min-height:70px"><em>frame 2</em></div>
+            <div class="wf-box" style="min-height:26px"><em>We rake it.</em></div>
+            <div class="wf-box wf-img" style="min-height:70px"><em>frame 3</em></div>
+            <div class="wf-box" style="min-height:26px"><em>We turn it.</em></div>
+            <div class="wf-box wf-img" style="min-height:60px"><em>Typology wall · 2-up, 8 tiles</em></div>
+          </div>
+          <div class="wfm">
+            <div class="wf-box wf-img" style="min-height:60px"><em>Slab card 1 · 1.684:1</em></div>
+            <div class="wf-box wf-img" style="min-height:60px"><em>Slab card 2</em></div>
+            <div class="wf-box wf-img" style="min-height:80px"><em>One work · 4:5 not 21:9</em></div>
+            <div class="wf-box wf-dark" style="min-height:50px"><em>The refusal · 406 / 19</em></div>
+            <div class="wf-box wf-dark" style="min-height:44px"><span class="wf-btn">Request a viewing</span><em>full width, 52 px</em></div>
+          </div>
+        </div>
+        <ul class="vlist" style="--line:#2A322C;margin-top:20px">
+          <li style="color:#A5AA9E"><b style="color:#E9EBE4">Sticky triptych becomes a stack.</b> Sticky positioning on a short viewport traps the user; the three frames simply alternate image and caption down the page, each entering on the mason's line.</li>
+          <li style="color:#A5AA9E"><b style="color:#E9EBE4">The typology wall goes 2-up and drops to eight tiles.</b> Six across is illegible below 768 px, and the point of the wall is comparison, not count.</li>
+          <li style="color:#A5AA9E"><b style="color:#E9EBE4">21:9 becomes 4:5.</b> A cinematic crop on a phone is a letterbox strip; the Work photograph switches to the Plane ratio, which is why five ratios exist.</li>
+          <li style="color:#A5AA9E"><b style="color:#E9EBE4">The ambient drifting light stays, the 1.04 scale goes.</b> A slow scale on mobile fights the browser's own scroll compositing.</li>
+          <li style="color:#A5AA9E"><b style="color:#E9EBE4">Buttons go full width at 52 px.</b> The only place in the system where a button is full width, per Volume One §06.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ================= 03 LIBRARY ================= -->
+<section id="s03" class="wrap sec">
+  <div class="grid-rail">
+    <div class="rail"><span class="rail-num">03</span><p class="rail-title">Collections<br>The Library</p><p class="rail-note">/library · the working page. Opens already filtered to nothing, showing everything.</p></div>
+    <div class="stack g40">
+
+      <div class="stack g24">
+        <h2 class="h1">This page has no hero, because a tool that opens with a poster is a tool that wasted your first screen.</h2>
+        <p class="body mut">The Library opens in a working state: forty-one stones already on screen, filters visible and un-applied, the count stated in mono. An architect can begin comparing within 400 ms of the transition ending. The brand is carried by the photography and the type, not by a banner.</p>
+      </div>
+
+      <div class="wf">
+        <span class="wf-lab">Desktop · sticky filter rail c1–c2, grid c3–c12</span>
+        <div class="wf-ruler"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i>9</i><i>10</i><i>11</i><i>12</i></div>
+        <div class="wf-stack">
+          <div class="wf-grid">
+            <div class="wf-box c6" style="min-height:auto"><div class="wf-bar w40"></div><em>Eyebrow + h1 "The Library" + mono count</em></div>
+            <div class="wf-box c3" style="min-height:auto"><em>air</em></div>
+            <div class="wf-box c3" style="min-height:auto"><em>View: CARDS / TYPOLOGY · Sort: NEWEST / A–Z / SLABS</em></div>
+          </div>
+          <div class="wf-grid">
+            <div class="wf-box c2 h200"><div class="wf-bar w60"></div><div class="wf-bar w40"></div><div class="wf-bar w80"></div><div class="wf-bar w40"></div><em>STICKY · Family · Colour · Origin · Finish · Format · Availability</em></div>
+            <div class="wf-box wf-img c3 h110"><em>Slab card</em></div>
+            <div class="wf-box wf-img c3 h110"><em>Slab card</em></div>
+            <div class="wf-box wf-img c3 h110"><em>Slab card</em></div>
+            <div class="wf-box c1 h110"><em>air</em></div>
+          </div>
+          <div class="wf-grid">
+            <div class="wf-box c2" style="min-height:80px"><em>rail continues</em></div>
+            <div class="wf-box wf-img c3" style="min-height:80px"><em></em></div>
+            <div class="wf-box wf-img c3" style="min-height:80px"><em></em></div>
+            <div class="wf-box wf-img c3" style="min-height:80px"><em></em></div>
+            <div class="wf-box c1" style="min-height:80px"><em></em></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cols cols-2">
+        <div class="stack g16">
+          <p class="label">Sections, in order</p>
+          <div class="rows">
+            <div class="row row-2"><div class="row-k">Head</div><div class="row-v"><span class="mono">THE LIBRARY</span> · h1 <em>Forty-one stones</em> · beneath, in mono: <span class="mono">6 FAMILIES · 12 ORIGINS · 19 KEPT FROM 406 BLOCKS IN 2025</span>. No standfirst paragraph — the count is the standfirst.</div></div>
+            <div class="row row-2"><div class="row-k">Filter rail</div><div class="row-v">Sticky at c1–c2, top offset 120 px. Six groups as plain text lists with mono counts, not dropdowns — a specifier scans a list faster than they open a menu. Active filters get a Backlight rule on the left. A mono <em>Clear six filters</em> link appears only when filters are on.</div></div>
+            <div class="row row-2"><div class="row-k">Controls</div><div class="row-v">Top right, mono text links only: <span class="mono">VIEW · CARDS / TYPOLOGY</span> and <span class="mono">SORT · NEWEST / A–Z / SLABS REMAINING</span>. Active option carries a Backlight rule. No select elements, no icons, no segmented control.</div></div>
+            <div class="row row-2"><div class="row-k">Grid — Cards</div><div class="row-v">3-up at c3–c12 (three columns of 3 plus one column of air at c12 — the deliberate asymmetry that keeps the page from looking like a catalogue). 40 px gap. Slab card exactly per Volume One §06.</div></div>
+            <div class="row row-2"><div class="row-k">Grid — Typology</div><div class="row-v">The second view mode, and the reason architects will stay. Six across, 3 px gap, no captions, no names, identical frames — pure comparison. Names appear on hover in mono at the tile's bottom-left. The filter rail collapses to a single mono line to give the wall the full width.</div></div>
+            <div class="row row-2"><div class="row-k">Pagination</div><div class="row-v">24 per page. A Rule button reading <em>The next seventeen</em> — a real number, never "Load more". Above it, mono: <span class="mono">1–24 OF 41</span>. No infinite scroll: a library has an end, and pretending otherwise is a supermarket behaviour.</div></div>
+            <div class="row row-2"><div class="row-k">Foot</div><div class="row-v">One Rule link, <em>For architects →</em>, then the standard footer.</div></div>
+          </div>
+        </div>
+        <div class="stack g16">
+          <p class="label">Interactions</p>
+          <ul class="vlist">
+            <li><b>Filter click</b> — the option's rule ignites, the count crossfades over 120 ms, the grid re-flows with a FLIP transition, 480 ms ease-stone. Cards that survive move; cards that leave fade out over 200 ms first so the layout never jumps under the cursor.</li>
+            <li><b>Card hover</b> — image 1.00 → 1.03 over 700 ms, Backlight rule grows above the caption over 500 ms, cursor expands to the 78 px VIEW ring.</li>
+            <li><b>Add to selection</b> — a small Rule control appears at the card's bottom-right on hover only. On click the label swaps to <span class="mono">IN SELECTION</span> in Quarried, and the header's Selection count crossfades. No animation flies across the screen.</li>
+            <li><b>Typology hover</b> — the hovered tile holds full opacity, the rest of the wall drops to 55% over 400 ms ease-cut. This is the single most persuasive interaction on the site: it is exactly what a person does with their hands at a slab yard.</li>
+            <li><b>View toggle</b> — the grid does not reload. Cards morph into tiles with a FLIP transition over 600 ms ease-stone while captions fade out; reversing brings them back. The scroll position is preserved.</li>
+            <li><b>Keyboard</b> — arrow keys move a 1 px Backlight focus ring through the grid; Enter opens; Space adds to selection; <span class="mono">/</span> focuses filter search. The whole page is operable without a mouse, because half this audience uses a laptop trackpad in a site meeting.</li>
+            <li><b>Empty</b> — type only: <em>"No stone matches those six filters. The nearest is Makrana Albeta."</em> with the nearest stone's card beneath it.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cols cols-3">
+        <div class="plate"><span class="plate-lab">Scrolling</span><p class="body-s mut">Plain inertial scroll, damping 0.08. No parallax anywhere on this page — parallax on a comparison grid is actively hostile. The header collapses at 400 px; the filter rail sticks at 120 px; nothing else moves independently.</p></div>
+        <div class="plate"><span class="plate-lab">CTA placement</span><p class="body-s mut">No Ink button on this page at all. The primary action is <em>Add to selection</em>, distributed across every card, and the header's <em>Request a viewing</em> is always present. A page whose job is browsing does not interrupt browsing.</p></div>
+        <div class="plate"><span class="plate-lab">Mobile</span><p class="body-s mut">Filters collapse into a single sticky bar: <span class="mono">FILTER (2) · SORT · VIEW</span>. Tapping opens a full-height Viewing Room sheet from the bottom, 480 ms ease-lift, with the six groups as accordions and a fixed <em>Show 17 stones</em> button at the base. Cards go 1-up; typology goes 3-up.</p></div>
+      </div>
+
+      <div class="plate">
+        <span class="plate-lab">Expected user emotion</span>
+        <p class="body-s mut">Competence, then covetousness. The architect should feel the tool was built by someone who has actually specified stone; the principal should feel they are looking through a private index rather than a shop. Nobody should feel sold to on this page — the selling happened on the homepage and happens again on the stone page.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 04 STONE DETAIL ================= -->
+<div class="band">
+<section id="s04" class="wrap sec" style="border-top:0">
+  <div class="grid-rail">
+    <div class="rail"><span class="rail-num">04</span><p class="rail-title">Collection detail<br>Stone</p><p class="rail-note">/library/makrana-albeta · the page the business runs on.</p></div>
+    <div class="stack g40">
+
+      <div class="stack g24">
+        <h2 class="h1">Every other stone website ends at the photograph. This one begins there.</h2>
+        <p class="lead">The competitive advantage is entirely below the fold: the named block, the slab-by-slab index, the bookmatch viewer, and the rooms the stone already lives in. This page is where "Nothing here was designed, everything here was chosen" becomes checkable.</p>
+      </div>
+
+      <div class="wf" style="background:#171E19;border-color:#2A322C">
+        <span class="wf-lab">Desktop · full sequence</span>
+        <div class="wf-stack">
+          <div class="wf-grid"><div class="wf-box wf-dark wf-img c12 h150"><em>§1 HERO · typology photograph · 1.684:1 · full bleed · Viewing Room</em></div></div>
+          <div class="wf-grid">
+            <div class="wf-box wf-dark c1" style="min-height:110px"><em></em></div>
+            <div class="wf-box wf-dark c5" style="min-height:110px"><div class="wf-bar w60"></div><div class="wf-bar w80"></div><div class="wf-bar"></div><em>§2 c2–c6 · h1 name · mono spec · description · finishes</em></div>
+            <div class="wf-box wf-dark c1" style="min-height:110px"><em></em></div>
+            <div class="wf-box wf-dark wf-accent c4" style="min-height:110px"><div class="wf-bar w40"></div><span class="wf-btn">Request a viewing</span><em>c8–c11 · STICKY "The block" panel</em></div>
+            <div class="wf-box wf-dark c1" style="min-height:110px"><em></em></div>
+          </div>
+          <div class="wf-grid"><div class="wf-box wf-dark wf-img c12 h150"><em>§3 BOOKMATCH VIEWER · full bleed · draggable divider · cursor reads DRAG</em></div></div>
+          <div class="wf-grid"><div class="wf-box wf-dark c12 h110"><div class="wf-bar w80"></div><div class="wf-bar w80"></div><div class="wf-bar w60"></div><em>§4 THE SLAB INDEX · mono table · every individual slab from this block</em></div></div>
+          <div class="wf-grid">
+            <div class="wf-box wf-dark wf-img c7 h110"><em>§5 IN SITU · 4:5</em></div>
+            <div class="wf-box wf-dark c1 h110"><em></em></div>
+            <div class="wf-box wf-dark c4 h110"><div class="wf-bar w60"></div><em>Works using this stone</em></div>
+          </div>
+          <div class="wf-grid">
+            <div class="wf-box wf-dark wf-img c4 h80"><em>§6 Adjacent stone</em></div>
+            <div class="wf-box wf-dark wf-img c4 h80"><em>Adjacent stone</em></div>
+            <div class="wf-box wf-dark wf-img c4 h80"><em>Adjacent stone</em></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cols cols-2">
+        <div class="stack g16">
+          <p class="label">Section by section</p>
+          <div class="rows">
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">§1 Hero</div><div class="row-v" style="color:#A5AA9E"><b style="color:#E9EBE4">Purpose:</b> show the whole slab, honestly, at the ratio it really is. <b style="color:#E9EBE4">Appearance:</b> the typology photograph full bleed at 1.684:1 on Viewing Room, no text over it, a mono caption bottom-left. <b style="color:#E9EBE4">Animation:</b> curtain from the left, 1200 ms, immediately after the route transition clears. <b style="color:#E9EBE4">Emotion:</b> the slab yard, without the forklift.</div></div>
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">§2 Identity</div><div class="row-v" style="color:#A5AA9E"><b style="color:#E9EBE4">Content:</b> h1 <em>Makrana Albeta</em> · <span class="mono">MARBLE · CALCITE · MAKRANA, RAJASTHAN · 3200 × 1900 MM · 16 / 18 / 20 / 30 MM</span> · two paragraphs of description in the trade's own vocabulary · finishes as a mono row: <span class="mono">POLISHED · HONED · LEATHERED · SANDBLASTED</span>, each hoverable to swap a 1:1 macro. <b style="color:#E9EBE4">Spacing:</b> 96 px above, 128 px below.</div></div>
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">§2b The block</div><div class="row-v" style="color:#A5AA9E">Sticky panel at c8–c11, Serpentine surface, 1 px Hairline, sticking from 120 px until §4 pushes it. Contents: <span class="mono">BLOCK NZ-0412 · BENCH 7 · QUARRIED 02.03.26 · CUT 18.03.26 · 12 OF 18 SLABS REMAIN · SIBLINGS: NZ-0413, NZ-0414</span>, then the Ink button <em>Request a viewing</em> and a Rule link <em>Add to selection</em>. This panel is the single most important object on the site.</div></div>
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">§3 Bookmatch</div><div class="row-v" style="color:#A5AA9E"><b style="color:#E9EBE4">Purpose:</b> answer the question every specifier asks and no website answers — what does it look like mirrored? <b style="color:#E9EBE4">Appearance:</b> full bleed, two slabs, a 1 px vertical divider with a 44 px circular grip at mid-height. <b style="color:#E9EBE4">Interaction:</b> drag the divider and the right slab mirrors in real time; release and it settles with ease-stone. The cursor reads DRAG. <b style="color:#E9EBE4">Emotion:</b> delight, then usefulness — in that order, which is the correct order.</div></div>
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">§4 Slab index</div><div class="row-v" style="color:#A5AA9E">A mono table, one row per physical slab: <span class="mono">SLAB ID · DIMENSIONS · THICKNESS · FINISH · STATUS · THUMBNAIL</span>. Status is <span style="color:#86A98D">AVAILABLE</span>, <span style="color:#C79B45">ON HOLD</span> or <span style="color:#D98878">RESERVED</span> — colour <em>and</em> word, per Volume One's accessibility floor. Row hover raises the ground to Guatemala. Clicking a row opens that slab in the lightbox at 100%.</div></div>
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">§5 In situ</div><div class="row-v" style="color:#A5AA9E">One 4:5 Register II photograph at c1–c7 with a caption at c9–c12 listing every Work that used this stone, as Rule links. If the stone has never been installed, the section is omitted entirely — never replaced with a render or a stock room.</div></div>
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">§6 Adjacent</div><div class="row-v" style="color:#A5AA9E">Three stones headed <em>Behaves similarly</em> — never "You may also like". The recommendation is technical: comparable porosity, comparable vein scale, comparable price band, stated in mono beneath each card.</div></div>
+          </div>
+        </div>
+        <div class="stack g16">
+          <p class="label">Micro-interactions</p>
+          <ul class="vlist" style="--line:#2A322C">
+            <li style="color:#A5AA9E"><b style="color:#E9EBE4">Finish swap</b> — hovering POLISHED / HONED / LEATHERED / SANDBLASTED cross-wipes a 1:1 macro over 400 ms, no fade. The active finish carries a Backlight rule.</li>
+            <li style="color:#A5AA9E"><b style="color:#E9EBE4">Hero click</b> — opens the lightbox at 100% zoom on the click point, so the vein can be inspected at true scale. Cursor over the hero reads INSPECT.</li>
+            <li style="color:#A5AA9E"><b style="color:#E9EBE4">Sticky panel handoff</b> — when §4 arrives, the panel releases and scrolls away rather than pinning to the bottom. Nothing in this system floats permanently except the header.</li>
+            <li style="color:#A5AA9E"><b style="color:#E9EBE4">Add to selection</b> — label swaps to IN SELECTION in Quarried, header count crossfades, the Selection tray does <em>not</em> auto-open. Interrupting someone to confirm what they just did is a supermarket behaviour.</li>
+            <li style="color:#A5AA9E"><b style="color:#E9EBE4">Copy the spec</b> — a mono <em>Copy specification</em> link beside the block panel puts a paste-ready schedule line on the clipboard. Label swaps to COPIED for 2 s. Architects will use this more than any button on the site.</li>
+            <li style="color:#A5AA9E"><b style="color:#E9EBE4">Reserved slab</b> — the row desaturates, status reads RESERVED, and a mono line offers the sibling block. Never hide sold stock; history is part of the library.</li>
+          </ul>
+          <p class="label" style="margin-top:8px">Mobile</p>
+          <p class="body-s" style="color:#A5AA9E">The block panel un-sticks and becomes the second section, directly under the name — on a phone it is the first thing that should be read, not the last. A sticky bottom bar appears at 60% scroll carrying two controls: <em>Add to selection</em> (Line) and <em>Request a viewing</em> (Ink), 52 px, full width, split 50/50. The bookmatch viewer becomes a tap toggle: SINGLE / MIRRORED, because dragging a divider on a 375 px screen is a worse experience than a switch. The slab index table scrolls horizontally inside its own container.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ================= 05 WORKS ================= -->
+<section id="s05" class="wrap sec">
+  <div class="grid-rail">
+    <div class="rail"><span class="rail-num">05</span><p class="rail-title">Projects<br>Works</p><p class="rail-note">/works · a list, not a grid. Six entries, and that is the point.</p></div>
+    <div class="stack g40">
+
+      <div class="stack g24">
+        <h2 class="h1">The index is a list, because a grid of thumbnails is how a portfolio admits it has too many.</h2>
+        <p class="body mut">Six works, presented as six full-width rows. The row carries the year, the location, the project name and the stone; the photograph appears only on hover, floating near the cursor at 4:5. It is faster to read than a grid, it holds a name rather than an image in memory — which is how architects actually refer to projects — and it makes the arrival of each photograph feel like a curtain being lifted rather than a page of wallpaper.</p>
+      </div>
+
+      <div class="wf">
+        <span class="wf-lab">Works index · desktop</span>
+        <div class="wf-stack">
+          <div class="wf-grid"><div class="wf-box c6" style="min-height:auto"><div class="wf-bar w40"></div><em>Eyebrow WORKS · h1 "Six rooms" · mono count</em></div><div class="wf-box c6" style="min-height:auto"><em>air</em></div></div>
+          <div class="wf-grid"><div class="wf-box c2" style="min-height:44px"><em>2025 · JODHPUR</em></div><div class="wf-box c6" style="min-height:44px"><div class="wf-bar w60"></div><em>Private Residence · Bodoni h3</em></div><div class="wf-box c3" style="min-height:44px"><em>MAKRANA ALBETA, VEIN-CUT</em></div><div class="wf-box c1" style="min-height:44px"><em>→</em></div></div>
+          <div class="wf-grid"><div class="wf-box c2" style="min-height:44px"><em>2025 · UDAIPUR</em></div><div class="wf-box c6" style="min-height:44px"><div class="wf-bar w80"></div><em>Hotel, 42 keys</em></div><div class="wf-box c3" style="min-height:44px"><em>VERDE GUATEMALA</em></div><div class="wf-box c1" style="min-height:44px"><em>→</em></div></div>
+          <div class="wf-grid"><div class="wf-box c2" style="min-height:44px"><em>2024 · MUMBAI</em></div><div class="wf-box c6" style="min-height:44px"><div class="wf-bar w60"></div><em>Apartment, Malabar Hill</em></div><div class="wf-box c3" style="min-height:44px"><em>ONICE MIELE, BACKLIT</em></div><div class="wf-box c1" style="min-height:44px"><em>→</em></div></div>
+          <div class="wf-grid"><div class="wf-box wf-img c3" style="min-height:70px;margin-left:40%"><em>hover panel · 4:5 · follows cursor with 120 ms lag</em></div><div class="wf-box c9" style="min-height:70px"><em>rows 4–6 continue</em></div></div>
+        </div>
+      </div>
+
+      <div class="cols cols-2">
+        <div class="stack g16">
+          <p class="label">Index — behaviour</p>
+          <div class="rows">
+            <div class="row row-2"><div class="row-k">Row</div><div class="row-v">88 px tall, separated by 1 px Hairline. Year and location in mono at c1–c2; project name in Bodoni h3 at c3–c8; stone in mono at c9–c11; a 1.25 px arrow icon at c12.</div></div>
+            <div class="row row-2"><div class="row-k">Hover</div><div class="row-v">The row's own rule ignites Backlight over 400 ms. The project name shifts right by 12 px over 240 ms ease-cut. The arrow translates 3 px. A 4:5 photograph fades and scales 0.96 → 1.00 into view near the cursor, following it with 120 ms of lag and a 6° maximum tilt held by damping — the only tilt permitted anywhere in the system, and it is on a floating panel, never on a card.</div></div>
+            <div class="row row-2"><div class="row-k">Ordering</div><div class="row-v">Reverse chronological, always. No filters, no categories, no search — six items do not need to be searched, and adding a filter bar to six items advertises that you wish there were sixty.</div></div>
+            <div class="row row-2"><div class="row-k">Reveal</div><div class="row-v">Rows enter on the mason's line, 60 ms stagger, on load. All six are visible in one viewport at 1440 px, which is the entire argument for the list format.</div></div>
+            <div class="row row-2"><div class="row-k">Mobile</div><div class="row-v">No hover exists, so the list becomes a stack of 4:5 cards: photograph, then name in Bodoni 28, then the mono credit line. One per screen. The list format is a desktop idea and is not forced onto a phone.</div></div>
+          </div>
+        </div>
+        <div class="stack g16">
+          <p class="label">Work detail — /works/[project]</p>
+          <div class="rows">
+            <div class="row row-2"><div class="row-k">§1 Hero</div><div class="row-v">Full-bleed 21:9, blue hour, no text over it. Curtain from the bottom, 1200 ms. Beneath, at c2–c7: h1 project name, then the mono credit line — <span class="mono">2025 · JODHPUR · 610 M² · MAKRANA ALBETA, VEIN-CUT · ARCHITECT · PHOTOGRAPHER</span>. The photographer is always credited. Always.</div></div>
+            <div class="row row-2"><div class="row-k">§2 The brief</div><div class="row-v">Two paragraphs at c2–c7, body token, maximum 62 characters measure. Describes the problem the stone solved, not the glamour of the client. Never names a private client; hospitality clients only by permission.</div></div>
+            <div class="row row-2"><div class="row-k">§3 Sequence</div><div class="row-v">Five to nine photographs in an asymmetric rhythm: full bleed 21:9 → 7+4 pair → 1:1 detail at c8–c11 alone → 4:5 at c1–c7 → full bleed. Never two images the same size in a row. Each curtains in on intersection, 120 ms apart when two share a viewport.</div></div>
+            <div class="row row-2"><div class="row-k">§4 Stones used</div><div class="row-v">A Viewing Room band holding the slab cards for every stone specified, with the exact block numbers used. This closes the loop: a visitor can go from a finished room to the specific block it came out of, which nobody else on earth offers.</div></div>
+            <div class="row row-2"><div class="row-k">§5 Next</div><div class="row-v">One Rule link: <em>Hotel, 42 keys · Udaipur →</em>. One next work, never a grid of three. Then the footer.</div></div>
+            <div class="row row-2"><div class="row-k">Emotion</div><div class="row-v">Envy, held quietly. The reader should finish the page thinking about their own project, not about Nazara.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 06 PROVENANCE ================= -->
+<div class="band">
+<section id="s06" class="wrap sec" style="border-top:0">
+  <div class="grid-rail">
+    <div class="rail"><span class="rail-num">06</span><p class="rail-title">About<br>Provenance</p><p class="rail-note">/provenance · the page that has to survive being read by a sceptic.</p></div>
+    <div class="stack g40">
+
+      <div class="stack g24">
+        <h2 class="h1">Seven sections, and not one of them is a timeline with a founder's photograph.</h2>
+        <p class="lead">This page opens dark and stays dark. It is the Viewing Room in document form: the word, the manifesto, the quarries, Makrana, the atelier, the hands, and the refusal.</p>
+      </div>
+
+      <div class="plate plate-dark">
+        <span class="plate-lab">Scroll map · ~560 vh · dark throughout</span>
+        <div class="smap">
+          <div class="smap-row"><span class="smap-n">01</span><div class="smap-bar dk" style="min-height:78px"><span class="smap-name">The word</span><span class="smap-meta">90 VH · नज़ारा · TYPE ONLY</span></div></div>
+          <div class="smap-row"><span class="smap-n">02</span><div class="smap-bar dk" style="min-height:66px"><span class="smap-name">The manifesto</span><span class="smap-meta">80 VH · FOUNDING TEXT, VERBATIM</span></div></div>
+          <div class="smap-row"><span class="smap-n">03</span><div class="smap-bar dk" style="min-height:100px"><span class="smap-name">Six quarries</span><span class="smap-meta">120 VH · DRAWN MAP + MONO COORDINATES</span></div></div>
+          <div class="smap-row"><span class="smap-n">04</span><div class="smap-bar dk" style="min-height:70px"><span class="smap-name">Makrana</span><span class="smap-meta">80 VH · FULL BLEED 21:9 · ONE PARAGRAPH</span></div></div>
+          <div class="smap-row"><span class="smap-n">05</span><div class="smap-bar dk" style="min-height:80px"><span class="smap-name">The atelier</span><span class="smap-meta">90 VH · FOUR FINISHES, MACRO</span></div></div>
+          <div class="smap-row"><span class="smap-n">06</span><div class="smap-bar dk" style="min-height:62px"><span class="smap-name">The hands</span><span class="smap-meta">60 VH · THREE PORTRAITS, NO FACES</span></div></div>
+          <div class="smap-row"><span class="smap-n">07</span><div class="smap-bar dk" style="min-height:58px"><span class="smap-name">The refusal</span><span class="smap-meta">50 VH · THE TABLE · 2021–2025</span></div></div>
+        </div>
+      </div>
+
+      <div class="cols cols-2">
+        <div class="stack g16">
+          <p class="label">Sections</p>
+          <div class="rows">
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">01 The word</div><div class="row-v" style="color:#A5AA9E"><b style="color:#E9EBE4">Content:</b> <span style="font-family:var(--f-display);font-size:24px;color:#E9EBE4">नज़ारा · نظارہ</span> set at display-l, then beneath at lead: "Hindi and Urdu, from the Arabic <em>naẓar</em>, the gaze. A nazara is a view — not scenery, but the specific thing you stop walking to look at." <b style="color:#E9EBE4">Animation:</b> the Devanagari and Nasta'liq arrive first on the mason's line; the Latin gloss follows 400 ms later. Two scripts, one meaning — the only place the brand shows its own name in its own languages.</div></div>
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">02 Manifesto</div><div class="row-v" style="color:#A5AA9E">The founding text from Volume One §01, reproduced verbatim and never shortened. Set at h2 across c2–c8, with the closing paragraph at body in Chalk. No image. 80 vh of type and air.</div></div>
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">03 Quarries</div><div class="row-v" style="color:#A5AA9E"><b style="color:#E9EBE4">Appearance:</b> a <em>drawn</em> map — a 1 px hairline outline of Rajasthan with six 4 px Backlight dots, no fill, no satellite tile, no Google embed, drawn to the same rules as the icon set. Beside it a mono list: name, coordinates, stone, and years worked. <b style="color:#E9EBE4">Interaction:</b> hovering a list row raises its dot to 8 px and ignites a hairline connecting the two. <b style="color:#E9EBE4">Emotion:</b> traceability made visual without a single word of "supply chain".</div></div>
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">04 Makrana</div><div class="row-v" style="color:#A5AA9E">One full-bleed 21:9 of the Makrana bench at blue hour, then a single paragraph: the quarry is ninety kilometres from the studio and supplied the Taj Mahal. Stated once, plainly, with no adjective and no photograph of the monument. The restraint is the whole point — anyone else would have used it as a hero.</div></div>
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">05 Atelier</div><div class="row-v" style="color:#A5AA9E">Four 1:1 macros at c1–c12 in a 4-up row: polished, honed, leathered, sandblasted, each captioned in mono with its Ra roughness value. Below, the dry-lay: one photograph of a bookmatch laid out on the atelier floor with chalk marks, captioned <span class="mono">EVERY BOOKMATCH IS DRY-LAID AND PHOTOGRAPHED BEFORE IT IS CRATED</span>.</div></div>
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">06 The hands</div><div class="row-v" style="color:#A5AA9E">Three Register III photographs at 4:5 — the quarry selector, the gangsaw operator, the finisher. Captions give first name, role and years, in mono. No faces to camera, no smiling, no titles like "Founder &amp; Visionary".</div></div>
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">07 The refusal</div><div class="row-v" style="color:#A5AA9E">A mono table, five rows: <span class="mono">2021 · 288 SEEN · 14 KEPT</span> through <span class="mono">2025 · 406 SEEN · 19 KEPT</span>. No chart. The numbers are small enough to read and damning enough to remember. Closing Rule link: <em>The library →</em>.</div></div>
+          </div>
+        </div>
+        <div class="stack g16">
+          <p class="label">Page mechanics</p>
+          <ul class="vlist" style="--line:#2A322C">
+            <li style="color:#A5AA9E"><b style="color:#E9EBE4">No hero image.</b> The page opens on type on black. After a homepage that was almost entirely photography, an opening of pure language reads as confidence.</li>
+            <li style="color:#A5AA9E"><b style="color:#E9EBE4">One scroll behaviour:</b> 10% parallax on the two full-bleed photographs only. Everything else is static. Type never parallaxes.</li>
+            <li style="color:#A5AA9E"><b style="color:#E9EBE4">No CTA until the end.</b> The only action on this page is the closing Rule link and the permanent header action. A conversion button interrupting a manifesto destroys the manifesto.</li>
+            <li style="color:#A5AA9E"><b style="color:#E9EBE4">Reading time is not shown.</b> Neither is a progress bar. Both tell the reader the page is a task.</li>
+            <li style="color:#A5AA9E"><b style="color:#E9EBE4">Mobile:</b> the drawn map rotates to portrait and the coordinate list moves beneath it; the four finish macros go 2-up; everything else stacks unchanged. The page loses nothing on a phone, which is the test of whether it was ever really a layout or just a set of pictures.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ================= 07 ARCHITECTS ================= -->
+<section id="s07" class="wrap sec">
+  <div class="grid-rail">
+    <div class="rail"><span class="rail-num">07</span><p class="rail-title">Architects</p><p class="rail-note">/architects · a door, not a brochure. Everything they need above the fold.</p></div>
+    <div class="stack g40">
+
+      <div class="stack g24">
+        <h2 class="h1">This is the one page in the system permitted to open with a list of links.</h2>
+        <p class="body mut">The trade visitor did not come to be moved. They came to find a thickness, download a DWG, order a sample, or check a lead time, usually with a client waiting. The page respects that by putting four Rule buttons in the first viewport and saving the atmosphere for everywhere else. It still looks like Nazara — it simply behaves like a counter rather than a gallery.</p>
+      </div>
+
+      <div class="wf">
+        <span class="wf-lab">Desktop · first viewport is entirely utility</span>
+        <div class="wf-stack">
+          <div class="wf-grid">
+            <div class="wf-box c1" style="min-height:auto"><em></em></div>
+            <div class="wf-box c6" style="min-height:70px"><div class="wf-bar w60"></div><div class="wf-bar w80"></div><em>c2–c7 · eyebrow FOR ARCHITECTS · h1 · one line of copy</em></div>
+            <div class="wf-box c5" style="min-height:70px"><em>air</em></div>
+          </div>
+          <div class="wf-grid">
+            <div class="wf-box c1" style="min-height:auto"><em></em></div>
+            <div class="wf-box c2" style="min-height:auto"><span class="wf-btn">Downloads</span></div>
+            <div class="wf-box c2" style="min-height:auto"><span class="wf-btn">Specifications</span></div>
+            <div class="wf-box c2" style="min-height:auto"><span class="wf-btn">Order samples</span></div>
+            <div class="wf-box c2" style="min-height:auto"><span class="wf-btn">Book a viewing</span></div>
+            <div class="wf-box c3" style="min-height:auto"><em>Four Rule buttons, equal weight</em></div>
+          </div>
+          <div class="wf-grid">
+            <div class="wf-box c7 h110"><div class="wf-bar w80"></div><div class="wf-bar w60"></div><em>§2 HOW TO SPECIFY · paste-ready mono block + Copy</em></div>
+            <div class="wf-box c1 h110"><em></em></div>
+            <div class="wf-box c4 h110"><em>§2b · schedule note, RIBA/CSI reference</em></div>
+          </div>
+          <div class="wf-grid">
+            <div class="wf-box wf-img c3 h80"><em>Polished</em></div><div class="wf-box wf-img c3 h80"><em>Honed</em></div>
+            <div class="wf-box wf-img c3 h80"><em>Leathered</em></div><div class="wf-box wf-img c3 h80"><em>Sandblasted</em></div>
+          </div>
+          <div class="wf-grid"><div class="wf-box c12 h80"><div class="wf-bar w80"></div><div class="wf-bar w60"></div><em>§4 EDGE PROFILES · line drawings at icon rules · 6 across</em></div></div>
+          <div class="wf-grid"><div class="wf-box c12 h80"><div class="wf-bar"></div><div class="wf-bar w80"></div><em>§5 LEAD TIMES · mono table by origin</em></div></div>
+        </div>
+      </div>
+
+      <div class="cols cols-2">
+        <div class="stack g16">
+          <p class="label">Sections</p>
+          <div class="rows">
+            <div class="row row-2"><div class="row-k">§1 The door</div><div class="row-v">Eyebrow <span class="mono">FOR ARCHITECTS</span>, h1 <em>Everything you need to specify us.</em>, one line of body: "Files, tolerances, finishes, lead times and samples. No account required for anything except BIM." Then four Rule buttons of equal weight — never one primary among them, because the page does not know which of the four this visitor came for.</div></div>
+            <div class="row row-2"><div class="row-k">§2 How to specify</div><div class="row-v">A paste-ready schedule line in a Serpentine block: <span class="mono">MARBLE: NAZARA 'MAKRANA ALBETA', VEIN-CUT, HONED, 20 MM, BOOKMATCHED PAIRS, BLOCK NZ-0412. SUPPLIER: NAZARA, KISHANGARH.</span> with a <em>Copy specification</em> control. This will be the most-used element on the whole site and it costs nothing to build.</div></div>
+            <div class="row row-2"><div class="row-k">§3 Finishes</div><div class="row-v">Four 1:1 macros with mono captions carrying real values: finish name, Ra roughness, slip resistance where relevant, and recommended application. Hovering cross-wipes to a raking-light version of the same macro so the texture reads — the doctrine from Volume One §08 turned into a control.</div></div>
+            <div class="row row-2"><div class="row-k">§4 Formats &amp; edges</div><div class="row-v">Thicknesses 16 / 18 / 20 / 30 mm with maximum unsupported spans. Six edge profiles — square, chamfered, mitred, bullnose, shadow-gap, waterfall — drawn as 1.25 px line diagrams to the icon rules, never photographed. Tolerances stated in mm.</div></div>
+            <div class="row row-2"><div class="row-k">§5 Lead times</div><div class="row-v">A mono table by origin: <span class="mono">MAKRANA 3–4 WEEKS · KISHANGARH 2 WEEKS · CARRARA 9–11 WEEKS · GUATEMALA 12–14 WEEKS</span>, with a note on crating and inland freight. Honest numbers, updated monthly, dated in mono. A stale lead time destroys more trust than a long one.</div></div>
+            <div class="row row-2"><div class="row-k">§6 Samples</div><div class="row-v">Up to five 100 × 100 mm samples, free, anywhere in India; charged at cost internationally. A three-field inline form — practice, address, the five stones from the Selection — not a separate page. Confirmation states the dispatch date, not "thank you".</div></div>
+            <div class="row row-2"><div class="row-k">§7 Trade account</div><div class="row-v">A single Rule link, <em>Trade sign-in</em>, at the foot. Behind it: reserved stock, allocation holds, and pricing. Pricing is never public and never appears on any page of the public site.</div></div>
+          </div>
+        </div>
+        <div class="stack g16">
+          <p class="label">Behaviour &amp; tone</p>
+          <ul class="vlist">
+            <li><b>Density is permitted here and nowhere else.</b> Section rhythm drops from 160 px to 96 px. The trade visitor is scanning, not strolling, and generous air reads as evasion when someone needs a number.</li>
+            <li><b>No photography in the first viewport.</b> The first image on this page is a finish macro in §3.</li>
+            <li><b>Every table is real.</b> No "contact us for details" in any cell. If a value is unknown it says so with a date: <span class="mono">TBC · UPDATED 04.09.26</span>.</li>
+            <li><b>Copy micro-interaction</b> — label swaps to COPIED in Quarried for 2 s, and the block's baseline rule ignites Backlight once. No toast.</li>
+            <li><b>Anchor navigation</b> — a sticky mono sub-nav appears below the header at 400 px scroll, listing the seven sections with the current one carrying a Backlight rule. This is the only page with a sub-nav.</li>
+            <li><b>Mobile</b> — the four door buttons stack full width at 52 px in the first screen. Tables scroll horizontally in their own containers. The sub-nav becomes a horizontally scrolling mono strip.</li>
+            <li><b>Emotion</b> — being taken seriously. The architect should think: someone here has filled in a schedule before.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 08 DOWNLOADS ================= -->
+<section id="s08" class="wrap sec">
+  <div class="grid-rail">
+    <div class="rail"><span class="rail-num">08</span><p class="rail-title">Downloads<br>The Index</p><p class="rail-note">/architects/downloads · a table, made beautiful by restraint rather than decoration.</p></div>
+    <div class="stack g40">
+
+      <div class="stack g24">
+        <h2 class="h2">A download page is a table. The design problem is resisting the urge to make it anything else.</h2>
+        <p class="body mut">No cards, no file-type icons, no coloured badges, no illustrations of documents. Six groups, mono rows, and a single genuinely delightful micro-interaction: the progress of a download drawn as a Backlight rule filling the row's own baseline — the one place in the system where a rule's length carries data.</p>
+      </div>
+
+      <div class="wf">
+        <span class="wf-lab">Desktop</span>
+        <div class="wf-stack">
+          <div class="wf-grid"><div class="wf-box c1" style="min-height:auto"><em></em></div><div class="wf-box c6" style="min-height:auto"><div class="wf-bar w40"></div><em>h1 "The Index" · mono: 34 FILES · UPDATED 04.09.26</em></div><div class="wf-box c5" style="min-height:auto"><em>Select all technical →</em></div></div>
+          <div class="wf-grid">
+            <div class="wf-box c2 h150"><div class="wf-bar w60"></div><div class="wf-bar w40"></div><em>STICKY · Library · Technical · CAD &amp; BIM · 3D · Care · Certificates</em></div>
+            <div class="wf-box c9 h150">
+              <div class="wf-bar"></div><div class="wf-bar w80"></div><div class="wf-bar"></div><div class="wf-bar w60"></div>
+              <em>Rows: ☐ · NAME · FORMAT · SIZE · UPDATED · DOWNLOAD →</em>
+            </div>
+            <div class="wf-box c1 h150"><em>air</em></div>
+          </div>
+          <div class="wf-grid"><div class="wf-box wf-dark wf-accent c12" style="min-height:auto"><span class="wf-btn">Download 6 files · 84 MB</span><em>TRAY · slides up from bottom edge when anything is selected</em></div></div>
+        </div>
+      </div>
+
+      <div class="cols cols-2">
+        <div class="stack g16">
+          <p class="label">Contents — six groups</p>
+          <div class="tw">
+            <table>
+              <thead><tr><th>Group</th><th>Files</th><th>Gate</th></tr></thead>
+              <tbody>
+                <tr><td class="k">The Library</td><td>Full stone index PDF · individual stone sheets · the current Selection as PDF</td><td class="n">OPEN</td></tr>
+                <tr><td class="k">Technical</td><td>Datasheets per stone: density, porosity, flexural strength, Ra values, slip resistance, frost resistance</td><td class="n">OPEN</td></tr>
+                <tr><td class="k">CAD &amp; BIM</td><td>.dwg edge profiles and fixing details · .rvt and .ifc material families</td><td class="n">EMAIL</td></tr>
+                <tr><td class="k">3D &amp; visualisation</td><td>8K scanned textures · .sbsar substances · V-Ray and Corona material presets</td><td class="n">EMAIL</td></tr>
+                <tr><td class="k">Care</td><td>Sealing, cleaning and repair guidance per finish · site protection during build</td><td class="n">OPEN</td></tr>
+                <tr><td class="k">Certificates</td><td>Origin declarations · test reports · packing and freight specifications</td><td class="n">OPEN</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="body-s mut-3">Gating is one inline field, not a modal and not an account: "A work email, so we can tell you when the family is updated." One field, one button, and the download begins immediately in the same row. Nobody is sent to a confirmation page.</p>
+        </div>
+        <div class="stack g16">
+          <p class="label">Row anatomy &amp; interactions</p>
+          <ul class="vlist">
+            <li><b>Row</b> — 56 px, 1 px Hairline between. A 16 px square checkbox at c1, filename in Archivo 500 at c2–c6, then mono: format, size, updated date. A Rule <em>Download</em> at the right edge.</li>
+            <li><b>Hover</b> — the row's ground lifts to Makrana; the Download rule ignites Backlight over 400 ms; the cursor stays the plain dot, because this is not a picture.</li>
+            <li><b>Downloading</b> — the row's <em>baseline</em> rule fills with Backlight from left to right at true progress. On completion the label crossfades to <span style="color:var(--good)">SAVED</span> for 2 s, then back. This is the system's only data-bearing rule and it is worth the exception.</li>
+            <li><b>Multi-select</b> — ticking any checkbox slides a Viewing Room tray up from the bottom edge over 480 ms ease-lift, holding a mono count and one Ink button: <em>Download 6 files · 84 MB</em>. The tray states the total size, because a 400 MB download over hotel wi-fi is a real thing that happens to architects.</li>
+            <li><b>Group filter</b> — sticky rail at c1–c2, same pattern as the Library. Selecting a group re-flows rows with FLIP over 480 ms.</li>
+            <li><b>Freshness</b> — every row shows its updated date; anything older than twelve months carries a mono <span style="color:var(--warn)">REVIEW DUE</span> flag visible to the team only in staging.</li>
+            <li><b>Mobile</b> — rows become two lines: name above, mono meta below, download arrow at the right. The tray becomes a fixed bottom bar. No table scroll.</li>
+            <li><b>Emotion</b> — efficiency, then a small unexpected pleasure at the filling rule. Delight is permitted here precisely because nothing else on the page is trying for it.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 09 CONTACT ================= -->
+<div class="band">
+<section id="s09" class="wrap sec" style="border-top:0">
+  <div class="grid-rail">
+    <div class="rail"><span class="rail-num">09</span><p class="rail-title">Contact<br>Request a viewing</p><p class="rail-note">/viewing · seven fields, two plates, and directions that assume you are coming.</p></div>
+    <div class="stack g40">
+
+      <div class="stack g24">
+        <h2 class="h1">The form asks about the project, not about the person's interest level.</h2>
+        <p class="lead">No "How did you hear about us?", no budget dropdown, no "Subject" field, no message box that starts empty and intimidating. Seven fields in two groups, all visible at once, answerable in ninety seconds.</p>
+      </div>
+
+      <div class="wf" style="background:#171E19;border-color:#2A322C">
+        <span class="wf-lab">Desktop · c2–c7 form, c9–c12 the studio</span>
+        <div class="wf-stack">
+          <div class="wf-grid">
+            <div class="wf-box wf-dark c1" style="min-height:auto"><em></em></div>
+            <div class="wf-box wf-dark c6" style="min-height:60px"><div class="wf-bar w60"></div><em>h1 "The library is open by appointment."</em></div>
+            <div class="wf-box wf-dark c5" style="min-height:60px"><em>air</em></div>
+          </div>
+          <div class="wf-grid">
+            <div class="wf-box wf-dark c1" style="min-height:170px"><em></em></div>
+            <div class="wf-box wf-dark c6" style="min-height:170px">
+              <div class="wf-bar w40"></div><div class="wf-bar"></div><div class="wf-bar w80"></div><div class="wf-bar"></div>
+              <span class="wf-btn">Request a viewing</span>
+              <em>PLATE 1 "You" · 3 fields &nbsp;/&nbsp; PLATE 2 "The project" · 4 fields</em>
+            </div>
+            <div class="wf-box wf-dark c1" style="min-height:170px"><em></em></div>
+            <div class="wf-box wf-dark c4" style="min-height:170px"><div class="wf-bar w60"></div><div class="wf-bar w40"></div><em>THE STUDIO · address · coordinates · hours · how to arrive</em></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cols cols-2">
+        <div class="stack g16">
+          <p class="label">The form — exact fields</p>
+          <div class="rows">
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">You</div><div class="row-v" style="color:#A5AA9E">Name · Email · Practice or studio <span class="mono">(optional)</span>. Three underlined fields, 56 px, in one plate headed <span class="mono">YOU</span>.</div></div>
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">The project</div><div class="row-v" style="color:#A5AA9E">Location <span class="mono">(city, country)</span> · Type <span class="mono">(Residence / Hospitality / Retail / Yacht / Aviation / Institutional)</span> · Approximate area in m² · Anything you already know <span class="mono">(optional, 3 lines)</span>. Second plate headed <span class="mono">THE PROJECT</span>.</div></div>
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">Pre-fill</div><div class="row-v" style="color:#A5AA9E">Arriving from the Selection tray, the message field pre-fills with the chosen stones in mono: <span class="mono">MAKRANA ALBETA · VERDE GUATEMALA · ONICE MIELE</span>, and a line above the form reads <em>"Three stones from your selection are attached to this request."</em></div></div>
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">Consent</div><div class="row-v" style="color:#A5AA9E">One 16 × 16 square checkbox, one sentence, no legalese wall: "You may write to me about this project." Marketing consent is a separate, unticked box, or it is absent — never bundled.</div></div>
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">Validation</div><div class="row-v" style="color:#A5AA9E">On blur, never on keystroke. Rule turns Fissure; the message says what to do: "Enter the area in square metres, as a number." Errors are never counted or summarised at the top.</div></div>
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">Submit</div><div class="row-v" style="color:#A5AA9E">Ink button, label <em>Request a viewing</em>. Sending: label crossfades to SENDING, the Backlight rule loops across its bottom edge at 900 ms. Never disabled-until-valid — a greyed button that will not say why is the rudest control in interface design.</div></div>
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">Success</div><div class="row-v" style="color:#A5AA9E">The form area wipes to Viewing Room over 600 ms; one line arrives on the mason's line at h3: <em>"Your viewing is being arranged. We will write within one working day."</em> Beneath it, in mono, the reference and the date. No modal, no tick, no confetti, no redirect.</div></div>
+          </div>
+        </div>
+        <div class="stack g16">
+          <p class="label">The studio panel &amp; below</p>
+          <ul class="vlist" style="--line:#2A322C">
+            <li style="color:#A5AA9E"><b style="color:#E9EBE4">What a viewing is.</b> Three sentences, set before the address: "You will be shown between six and twelve blocks, wet, under raking light. Allow two hours. There is no obligation and nothing is sold in the room."</li>
+            <li style="color:#A5AA9E"><b style="color:#E9EBE4">Address &amp; hours</b> — Madanganj–Kishangarh, Ajmer, Rajasthan 305801 · <span class="mono">26.5877° N 74.8560° E</span> · Mon–Sat 10.00–18.00 IST.</li>
+            <li style="color:#A5AA9E"><b style="color:#E9EBE4">How to arrive</b> — real logistics in mono: 30 minutes from Ajmer, 1 h 45 from Jaipur airport, 7 h from Delhi by road. A car can be sent. This paragraph is what signals the studio genuinely expects visitors.</li>
+            <li style="color:#A5AA9E"><b style="color:#E9EBE4">The drawn map returns</b> — the same hairline Rajasthan outline from Provenance, with one dot. Never an embedded satellite map: a Google tile would be the only piece of another company's design language on the entire site.</li>
+            <li style="color:#A5AA9E"><b style="color:#E9EBE4">Other doors</b> — a mono block: trade enquiries, press, careers, each a single email address. No phone number in the header, no WhatsApp float, no live chat widget, ever.</li>
+            <li style="color:#A5AA9E"><b style="color:#E9EBE4">Emotion</b> — being expected. The page should read as though a time has already been set aside and the visitor is simply choosing when.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ================= 10 INTERACTION CATALOGUE ================= -->
+<section id="s10" class="wrap sec">
+  <div class="grid-rail">
+    <div class="rail"><span class="rail-num">10</span><p class="rail-title">Interaction catalogue</p><p class="rail-note">Every hover, transition, reveal and scroll behaviour in the site, in one place.</p></div>
+    <div class="stack g32">
+
+      <div class="stack g16">
+        <p class="label">Hover — every hoverable element in the system</p>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Element</th><th>What changes</th><th>Duration / curve</th><th>Cursor</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Ink button</td><td>Ground → #1D241E, tracking 0.12 → 0.145 em, Backlight rule sweeps bottom edge</td><td class="n">240 / 400 · cut, stone</td><td class="n">DOT</td></tr>
+              <tr><td class="k">Line button</td><td>Border → Nero, 5% ink wash appears</td><td class="n">240 · cut</td><td class="n">DOT</td></tr>
+              <tr><td class="k">Rule button / text link</td><td>Baseline rule ignites Backlight, grows left → right</td><td class="n">400 · stone</td><td class="n">DOT</td></tr>
+              <tr><td class="k">Nav link</td><td>Backlight rule grows beneath</td><td class="n">320 · stone</td><td class="n">DOT</td></tr>
+              <tr><td class="k">Slab card</td><td>Image 1.00 → 1.03 inside a fixed frame; Backlight rule grows above caption</td><td class="n">700 / 500 · stone</td><td class="n">VIEW ring</td></tr>
+              <tr><td class="k">Typology tile</td><td>Tile holds 100%, siblings drop to 55%; stone name appears in mono</td><td class="n">400 · cut</td><td class="n">VIEW ring</td></tr>
+              <tr><td class="k">Work row</td><td>Rule ignites; name shifts +12 px; arrow +3 px; 4:5 panel fades in near cursor with 120 ms lag, max 6° damped tilt</td><td class="n">400 / 240 · stone, cut</td><td class="n">VIEW ring</td></tr>
+              <tr><td class="k">Work card (mobile/grid)</td><td>Viewing Room scrim wipes up 0 → 55%, caption arrives on the mason's line</td><td class="n">480 · lift</td><td class="n">VIEW ring</td></tr>
+              <tr><td class="k">Finish chip</td><td>Macro cross-wipes to the raking-light version; chip's rule ignites</td><td class="n">400 · stone</td><td class="n">DOT</td></tr>
+              <tr><td class="k">Table row (slab index, downloads)</td><td>Ground lifts one surface step; action rule ignites</td><td class="n">240 · cut</td><td class="n">DOT</td></tr>
+              <tr><td class="k">Filter option</td><td>Rule ignites at the left edge; count crossfades if it changes</td><td class="n">400 / 120 · stone</td><td class="n">DOT</td></tr>
+              <tr><td class="k">Quarry list row</td><td>Its map dot grows 4 → 8 px; a hairline connects row to dot</td><td class="n">400 · stone</td><td class="n">DOT</td></tr>
+              <tr><td class="k">Icon button</td><td>Border → Nero, glyph → Nero</td><td class="n">240 · cut</td><td class="n">DOT</td></tr>
+              <tr><td class="k">Bookmatch grip</td><td>Grip circle's stroke → Backlight</td><td class="n">240 · cut</td><td class="n">DRAG</td></tr>
+              <tr><td class="k">Hero / lightbox image</td><td>No visual change on the image itself</td><td class="n">—</td><td class="n">INSPECT / CLOSE</td></tr>
+              <tr><td class="k">Disabled anything</td><td>Nothing. No hover state exists at 32% opacity.</td><td class="n">—</td><td class="n">DOT</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="stack g16">
+        <p class="label">Reveals, transitions and scroll behaviours</p>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Event</th><th>Behaviour</th><th>Duration / curve</th><th>Trigger</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Headline reveal</td><td>Mason's line — per-line mask, translateY 0.6em → 0, clip from baseline up; opacity resolves in the first 40%</td><td class="n">800 · stone, 60 stagger</td><td class="n">15% of viewport</td></tr>
+              <tr><td class="k">Body reveal</td><td>Whole block fades and rises 12 px. Never line by line.</td><td class="n">600 · stone</td><td class="n">15% of viewport</td></tr>
+              <tr><td class="k">Label / mono reveal</td><td>None. Present on arrival, like a caption on a wall.</td><td class="n">—</td><td class="n">—</td></tr>
+              <tr><td class="k">Image reveal</td><td>Curtain — clip-path inset opens from one edge, image counter-scales 1.06 → 1.00. Never a fade.</td><td class="n">1200 · stone</td><td class="n">15% of viewport</td></tr>
+              <tr><td class="k">Two images, one viewport</td><td>Second image's curtain is offset</td><td class="n">+120 delay</td><td class="n">—</td></tr>
+              <tr><td class="k">Full-bleed hero</td><td>Curtain from the bottom edge upward</td><td class="n">1200 · stone</td><td class="n">on load</td></tr>
+              <tr><td class="k">Cross-wipe (triptych, finishes)</td><td>Incoming frame's clip opens over the outgoing. No dissolve between photographs, ever.</td><td class="n">900 / 400 · stone</td><td class="n">caption at 50% vh</td></tr>
+              <tr><td class="k">Card grid entrance</td><td>Curtain, reading order, stagger capped at eight items</td><td class="n">1200 · stone, 60 stagger</td><td class="n">15% of viewport</td></tr>
+              <tr><td class="k">Grid re-flow (filter, sort, view)</td><td>FLIP — survivors move, departures fade first so nothing jumps under the cursor</td><td class="n">480 · stone</td><td class="n">on click</td></tr>
+              <tr><td class="k">Page transition</td><td>Viewing Room panel wipes up (600, lift), 200 ms black hold, wipes off top (700, stone)</td><td class="n">1300 total</td><td class="n">route change</td></tr>
+              <tr><td class="k">Mega menu</td><td>Wipes down from header edge; families stagger; featured slab curtains from the left</td><td class="n">480 lift / 800 stone</td><td class="n">120 ms hover intent</td></tr>
+              <tr><td class="k">Mobile drawer</td><td>Full-screen Viewing Room; items in Bodoni 34 stagger in; reverses on close</td><td class="n">480 · lift, 60 stagger</td><td class="n">tap</td></tr>
+              <tr><td class="k">Selection tray</td><td>Slides from the right edge, 440 px</td><td class="n">480 · lift</td><td class="n">tap on count</td></tr>
+              <tr><td class="k">Download tray</td><td>Slides up from the bottom edge</td><td class="n">480 · lift</td><td class="n">first checkbox</td></tr>
+              <tr><td class="k">Lightbox</td><td>Viewing Room scrim to 82%, image curtains from the centre outward; Escape or CLOSE cursor to dismiss</td><td class="n">480 / 800 · stone</td><td class="n">click image</td></tr>
+              <tr><td class="k">Header collapse</td><td>88 → 72 px, ground to 72% with 20 px backdrop blur, hairline appears</td><td class="n">240 · cut</td><td class="n">400 px scroll</td></tr>
+              <tr><td class="k">Header hide / return</td><td>Translates out on scroll down, returns on any upward scroll</td><td class="n">240 · cut</td><td class="n">&gt; 400 px</td></tr>
+              <tr><td class="k">Smooth scroll</td><td>Inertial, damping 0.08, multiplier 1.0 — never faster than native, never bouncy</td><td class="n">—</td><td class="n">global</td></tr>
+              <tr><td class="k">Parallax</td><td>Images only, 8–12% ceiling. Type never. Home §04 wall uses a 4% row differential.</td><td class="n">—</td><td class="n">global</td></tr>
+              <tr><td class="k">Sticky elements</td><td>Home §03 triptych image · Library filter rail (120 px) · Stone block panel (120 px, releases at §4) · Architects sub-nav</td><td class="n">—</td><td class="n">CSS sticky</td></tr>
+              <tr><td class="k">Ambient</td><td>Home hero only: light drift 18 s loop, image scale 1.00 → 1.04 over 20 s alternating</td><td class="n">18 s / 20 s · linear</td><td class="n">hero in view</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="cols cols-2">
+        <div class="plate">
+          <span class="plate-lab">Forbidden, site-wide — inherited from Volume One §07</span>
+          <p class="body-s mut">Scroll-jacking. Section snapping. Horizontal scroll hijacks. Counters that tick up. Marquees. 3D tilt on cards. Particle effects. Autoplaying video with sound. Blur-up image loading. Skeleton shimmer. Spinners. Toasts. Modals for anything except the lightbox. Cookie banners that block content. Live chat widgets. Exit-intent popups. Newsletter interstitials. Back-to-top buttons. Reading-progress bars. Any easing curve that overshoots.</p>
+        </div>
+        <div class="plate">
+          <span class="plate-lab">Reduced motion — the complete substitution</span>
+          <p class="body-s mut">Every curtain, mason's line, cross-wipe and FLIP becomes a 200 ms opacity fade. Parallax is 0. Ambient drift and scale are off. The custom cursor is off and the native cursor returns. Page transitions become instant route changes. Sticky positioning is retained — it is layout, not motion. The wet line holds filled for 600 ms rather than animating. Nothing becomes unreachable and no content is lost; the site simply stops moving, which is a state it can carry with dignity because it was never carried by motion in the first place.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 11 MOBILE ================= -->
+<section id="s11" class="wrap sec">
+  <div class="grid-rail">
+    <div class="rail"><span class="rail-num">11</span><p class="rail-title">Mobile doctrine</p><p class="rail-note">4 columns, 20 px margin, 64 px header, and three things that simply do not exist.</p></div>
+    <div class="stack g32">
+      <div class="cols cols-2">
+        <div class="stack g16">
+          <p class="label">Global rules</p>
+          <ul class="vlist">
+            <li><b>No custom cursor, no parallax, no ambient scale.</b> All three are desktop ideas. Mobile keeps the curtain and the mason's line, which is enough.</li>
+            <li><b>Section rhythm drops to 64 px</b> and type follows the mobile column of the scale in Volume One §04. Display-l is 48 px, not a scaled-down 120.</li>
+            <li><b>Buttons go full width at 52 px</b> — the single documented exception to the desktop rule.</li>
+            <li><b>Sticky bottom bars exist on exactly two pages:</b> Stone detail (Add to selection / Request a viewing) and Downloads (the tray). Nowhere else.</li>
+            <li><b>Every table scrolls horizontally inside its own container.</b> The page body never scrolls sideways.</li>
+            <li><b>Tap targets are 44 px minimum</b> regardless of the visual size of the control.</li>
+            <li><b>Drawer, not dropdown.</b> Full-screen Viewing Room, Bodoni 34 items, 60 ms stagger, closing reverses it.</li>
+            <li><b>Sheets, not modals.</b> Filters and sorting arrive as bottom sheets on ease-lift with a fixed action button at the base stating the result: <em>Show 17 stones</em>.</li>
+          </ul>
+        </div>
+        <div class="stack g16">
+          <p class="label">Per-page adaptations, in full</p>
+          <div class="tw">
+            <table style="min-width:0">
+              <thead><tr><th>Page</th><th>What changes</th></tr></thead>
+              <tbody>
+                <tr><td class="k">Home</td><td>Sticky triptych becomes an alternating stack · typology wall 2-up at 8 tiles · the Work photograph switches 21:9 → 4:5 · ambient scale off, light drift retained</td></tr>
+                <tr><td class="k">Library</td><td>Filter rail becomes a sticky bar and a bottom sheet · cards 1-up · typology 3-up · pagination unchanged</td></tr>
+                <tr><td class="k">Stone</td><td>Block panel un-sticks and rises to second position · bookmatch becomes a SINGLE / MIRRORED toggle · sticky bottom bar at 60% scroll · slab index scrolls horizontally</td></tr>
+                <tr><td class="k">Works</td><td>List becomes 4:5 cards, one per screen — the hover-panel format is abandoned rather than faked with a tap</td></tr>
+                <tr><td class="k">Provenance</td><td>Drawn map rotates to portrait with the coordinate list beneath · finish macros 2-up · everything else stacks unchanged</td></tr>
+                <tr><td class="k">Architects</td><td>Four door buttons stack full width in the first screen · sub-nav becomes a horizontally scrolling mono strip · tables scroll in place</td></tr>
+                <tr><td class="k">Downloads</td><td>Rows become two lines, name over mono meta · tray becomes a fixed bottom bar</td></tr>
+                <tr><td class="k">Viewing</td><td>Form plates stack, studio panel moves below the form · the drawn map sits last · submit button is sticky at the base of the viewport once the first field has content</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="plate">
+        <span class="plate-lab">Build sequence — the order that de-risks the project</span>
+        <ul class="seq">
+          <li><b>Tokens and type first.</b> Ship Volume One's token file and the three-face loading before a single page exists. Every later argument about spacing dies here.</li>
+          <li><b>The slab card and the typology photograph.</b> Both the Library and the homepage collapse without them, and the typology shoot must begin before any code — it is the longest-lead item in the entire project.</li>
+          <li><b>Library index and Stone detail.</b> The commercial core. Launchable on their own if the timeline slips.</li>
+          <li><b>Architects and Downloads.</b> Cheap to build, immediately useful, and they generate the trade emails that fund everything else.</li>
+          <li><b>Home.</b> Built last, once the photography exists. A homepage designed before the imagery it frames is a homepage that will be rebuilt.</li>
+          <li><b>Works, Provenance, Viewing.</b> Straightforward templates by this point.</li>
+          <li><b>Motion pass, then the reduced-motion pass.</b> Both as a single sweep across the finished site, never per-component — that is how a system ends up with four easing curves instead of three.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="band">
+  <footer class="wrap" style="padding:64px 24px 80px">
+    <div class="stack g24">
+      <div class="mark" style="font-size:clamp(32px,6vw,58px)">Nazara</div>
+      <hr class="hr">
+      <div style="display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between">
+        <span class="mono-s mut-3">SITE BLUEPRINT · VOLUME TWO · 2026</span>
+        <span class="mono-s mut-3">EIGHT PAGES · DESKTOP &amp; MOBILE · BUILT ON VOLUME ONE, EXTENDING NOTHING</span>
+      </div>
+    </div>
+  </footer>
+</div>

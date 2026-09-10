@@ -1,0 +1,1230 @@
+<title>Nazara Copy Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap">
+
+<style>
+/* ============================================================
+   NAZARA — COPY DECK, VOLUME THREE
+   Tokens inherited verbatim from Volume One. Layouts unchanged
+   from Volume Two. This volume supplies words only.
+   ============================================================ */
+:root{
+  --ground:#EAEBE4;--surface:#F4F5F0;--surface-2:#FBFBF8;
+  --ink:#141814;--ink-2:#565B52;--ink-3:#878C81;
+  --line:#D2D4C9;--line-2:#B4B8AA;
+  --backlight:#B5822F;--backlight-ink:#7A5620;
+  --good:#4C6B52;--bad:#9A3B2E;--warn:#8A6B22;
+  --f-display:"Bodoni Moda",Didot,"Bodoni MT",Georgia,"Times New Roman",serif;
+  --f-ui:Archivo,"Helvetica Neue",Helvetica,Arial,"Segoe UI",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --ease-cut:cubic-bezier(0.65,0,0.35,1);
+  --rail:168px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#0F1411;--surface:#171E19;--surface-2:#1F2821;
+  --ink:#E9EBE4;--ink-2:#A5AA9E;--ink-3:#737969;
+  --line:#2A322C;--line-2:#3D473F;
+  --backlight:#E0B278;--backlight-ink:#E0B278;
+  --good:#86A98D;--bad:#D98878;--warn:#C79B45;}}
+:root[data-theme="dark"]{
+  --ground:#0F1411;--surface:#171E19;--surface-2:#1F2821;
+  --ink:#E9EBE4;--ink-2:#A5AA9E;--ink-3:#737969;
+  --line:#2A322C;--line-2:#3D473F;
+  --backlight:#E0B278;--backlight-ink:#E0B278;
+  --good:#86A98D;--bad:#D98878;--warn:#C79B45;}
+.band{
+  --ground:#0F1411;--surface:#171E19;--surface-2:#1F2821;
+  --ink:#E9EBE4;--ink-2:#A5AA9E;--ink-3:#737969;
+  --line:#2A322C;--line-2:#3D473F;
+  --backlight:#E0B278;--backlight-ink:#E0B278;
+  --good:#86A98D;--bad:#D98878;--warn:#C79B45;
+  background:var(--ground);color:var(--ink);}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--f-ui);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+p{margin:0}h1,h2,h3,h4{margin:0;font-weight:400;text-wrap:balance}
+ul,ol{margin:0;padding:0;list-style:none}a{color:inherit}
+:focus-visible{outline:1px solid var(--backlight);outline-offset:3px}
+
+.h1{font-family:var(--f-display);font-size:clamp(32px,5vw,54px);line-height:1.04;letter-spacing:-0.02em}
+.h2{font-family:var(--f-display);font-size:clamp(26px,3.4vw,38px);line-height:1.1;letter-spacing:-0.015em}
+.h3{font-family:var(--f-display);font-size:clamp(21px,2.3vw,28px);line-height:1.2;letter-spacing:-0.01em}
+.lead{font-size:clamp(19px,2vw,22px);line-height:1.55;color:var(--ink-2);max-width:32em;font-weight:300}
+.body{max-width:64ch}
+.body-s{font-size:15px;line-height:1.6}
+.mut{color:var(--ink-2)}.mut-3{color:var(--ink-3)}
+.label{font-size:11px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;line-height:1.2;color:var(--ink-3)}
+.mono{font-family:var(--f-mono);font-size:13px;letter-spacing:0.02em;font-variant-numeric:tabular-nums}
+.mono-s{font-family:var(--f-mono);font-size:11.5px;letter-spacing:0.045em;font-variant-numeric:tabular-nums}
+
+.wrap{max-width:1280px;margin:0 auto;padding:0 24px}
+.sec{padding:84px 0;border-top:1px solid var(--line)}
+.grid-rail{display:grid;grid-template-columns:1fr;gap:38px}
+@media (min-width:1000px){.grid-rail{grid-template-columns:var(--rail) 1fr;gap:56px}.rail{position:sticky;top:40px;align-self:start}}
+.rail-num{font-family:var(--f-mono);font-size:11.5px;letter-spacing:0.16em;color:var(--backlight-ink);display:block;margin-bottom:10px}
+.rail-title{font-size:13px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;line-height:1.4}
+.rail-note{margin-top:14px;font-size:12.5px;line-height:1.5;color:var(--ink-3);max-width:22ch}
+
+.stack{display:flex;flex-direction:column}
+.g8{gap:8px}.g12{gap:12px}.g16{gap:16px}.g24{gap:24px}.g32{gap:32px}.g40{gap:40px}.g56{gap:56px}
+.cols{display:grid;gap:28px;grid-template-columns:1fr}
+@media (min-width:720px){.cols-2{grid-template-columns:1fr 1fr}.cols-3{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1000px){.cols-3{grid-template-columns:repeat(3,1fr)}}
+.hr{height:1px;background:var(--line);border:0;margin:0}
+
+.plate{border:1px solid var(--line);background:var(--surface);padding:26px;position:relative}
+.plate-lab{font-family:var(--f-mono);font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:18px}
+.plate-dark{background:#0F1411;border-color:#2A322C;color:#E9EBE4;--line:#2A322C;--line-2:#3D473F;--ink:#E9EBE4;--ink-2:#A5AA9E;--ink-3:#737969;--backlight:#E0B278;--backlight-ink:#E0B278;--surface:#171E19}
+
+.rows{display:flex;flex-direction:column}
+.row{display:grid;gap:4px 22px;padding:15px 0;border-top:1px solid var(--line);align-items:baseline}
+.row:last-child{border-bottom:1px solid var(--line)}
+@media (min-width:760px){.row-2{grid-template-columns:190px 1fr}}
+.row-k{font-size:13px;font-weight:500;letter-spacing:0.09em;text-transform:uppercase;color:var(--ink)}
+.row-v{font-size:14.5px;line-height:1.55;color:var(--ink-2)}
+
+.tw{overflow-x:auto;border:1px solid var(--line);background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:680px}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);font-size:13px;vertical-align:top}
+th{font-size:10.5px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap}
+td{color:var(--ink-2)}
+td.k{color:var(--ink);font-weight:500;white-space:nowrap}
+td.n{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:12px;color:var(--ink);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+
+.vlist li{padding:9px 0;border-top:1px solid var(--line);font-size:14.5px;color:var(--ink-2);line-height:1.55}
+.vlist li:first-child{border-top:0}
+.vlist b{color:var(--ink);font-weight:500}
+.dont{color:var(--bad)}.do{color:var(--good)}
+
+/* ---- the copy-slot vocabulary ----
+   Anything carrying a Backlight left rule is VERBATIM SITE COPY.
+   Anything without it is direction to the build team.            */
+.slot{display:grid;grid-template-columns:1fr;gap:12px;padding:20px 0;border-top:1px solid var(--line)}
+.slot:last-child{border-bottom:1px solid var(--line)}
+@media (min-width:860px){.slot{grid-template-columns:186px 1fr;gap:26px}}
+.slot-id{font-family:var(--f-mono);font-size:10.5px;letter-spacing:0.13em;text-transform:uppercase;color:var(--backlight-ink);line-height:1.6;padding-top:3px}
+.slot-id i{display:block;font-style:normal;color:var(--ink-3);letter-spacing:0.08em;font-size:9.5px;margin-top:3px}
+.v{border-left:1px solid var(--backlight);padding-left:18px;display:flex;flex-direction:column;gap:10px}
+.v-eyebrow{font-family:var(--f-mono);font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-3)}
+.v-display{font-family:var(--f-display);font-size:clamp(24px,3vw,34px);line-height:1.1;letter-spacing:-0.015em;color:var(--ink)}
+.v-h{font-family:var(--f-display);font-size:clamp(20px,2.2vw,26px);line-height:1.2;color:var(--ink)}
+.v-body{font-size:15.5px;line-height:1.62;color:var(--ink-2);max-width:60ch}
+.v-body strong{color:var(--ink);font-weight:400}
+.v-mono{font-family:var(--f-mono);font-size:12px;letter-spacing:0.045em;color:var(--ink-3);font-variant-numeric:tabular-nums;text-transform:uppercase;line-height:1.8}
+.v-btn{font-size:11.5px;font-weight:500;letter-spacing:0.13em;text-transform:uppercase;color:var(--ink);border:1px solid var(--line-2);padding:8px 16px;align-self:flex-start}
+.v-note{font-size:12.5px;color:var(--ink-3);line-height:1.5;max-width:56ch}
+
+.seq{counter-reset:s;display:flex;flex-direction:column}
+.seq li{counter-increment:s;display:grid;grid-template-columns:34px 1fr;gap:14px;padding:12px 0;border-top:1px solid var(--line);font-size:14.5px;color:var(--ink-2);line-height:1.55}
+.seq li:first-child{border-top:0}
+.seq li::before{content:counter(s,decimal-leading-zero);font-family:var(--f-mono);font-size:11px;color:var(--backlight-ink);letter-spacing:0.08em}
+.seq b{color:var(--ink);font-weight:500}
+
+.mark{font-family:var(--f-display);letter-spacing:0.32em;text-transform:uppercase;padding-left:0.32em}
+.mast{padding:64px 0 76px}
+.mast-word{font-family:var(--f-display);font-size:clamp(48px,11vw,142px);line-height:0.9;letter-spacing:0.06em;text-transform:uppercase;padding-left:0.06em}
+.toc{display:grid;grid-template-columns:1fr}
+@media (min-width:640px){.toc{grid-template-columns:1fr 1fr;column-gap:44px}}
+.toc a{display:flex;align-items:baseline;gap:14px;padding:11px 0;border-top:1px solid var(--line);text-decoration:none;color:var(--ink);transition:color 200ms var(--ease-cut)}
+.toc a:hover{color:var(--backlight-ink)}
+.toc a span{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);letter-spacing:0.1em}
+.toc a b{font-weight:400;font-size:15px}
+
+.flag{border:1px solid var(--warn);padding:20px 22px;background:var(--surface)}
+.flag-lab{font-family:var(--f-mono);font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--warn);display:block;margin-bottom:12px}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.001ms!important}}
+</style>
+
+<!-- ================= MASTHEAD ================= -->
+<header class="wrap mast">
+  <div class="stack g32">
+    <div class="stack g16">
+      <p class="mono" style="color:var(--backlight-ink)">COPY DECK · VOLUME THREE · 2026 · FINAL FOR BUILD</p>
+      <h1 class="mast-word">Nazara</h1>
+      <p class="label" style="letter-spacing:0.3em">Every string on the site · Slots as approved in Volume Two</p>
+    </div>
+    <hr class="hr">
+    <div class="cols cols-2" style="gap:44px">
+      <div class="stack g24">
+        <p class="lead" style="color:var(--ink);max-width:26em">Marble does not need to be sold. It needs to be described accurately by someone who has seen it.</p>
+        <p class="body mut">This volume changes no layout. Every piece of copy below is written into a slot that Volume Two already defined, and is marked with the slot's identifier so it can be pasted without interpretation. Copy carrying a <span style="border-left:1px solid var(--backlight);padding-left:8px">Backlight rule</span> is verbatim — set it exactly as written, including the full stops. Everything else is direction.</p>
+      </div>
+      <div>
+        <p class="label" style="margin-bottom:16px">Contents</p>
+        <nav class="toc">
+          <a href="#s00"><span>00</span><b>The voice, in one page</b></a>
+          <a href="#s01"><span>01</span><b>Global strings</b></a>
+          <a href="#s02"><span>02</span><b>Home</b></a>
+          <a href="#s03"><span>03</span><b>The Library</b></a>
+          <a href="#s04"><span>04</span><b>Stone descriptions</b></a>
+          <a href="#s05"><span>05</span><b>Works</b></a>
+          <a href="#s06"><span>06</span><b>Provenance</b></a>
+          <a href="#s07"><span>07</span><b>Architects &amp; questions</b></a>
+          <a href="#s08"><span>08</span><b>The Index</b></a>
+          <a href="#s09"><span>09</span><b>Request a viewing</b></a>
+          <a href="#s10"><span>10</span><b>Testimony</b></a>
+          <a href="#s11"><span>11</span><b>SEO &amp; metadata</b></a>
+          <a href="#s12"><span>12</span><b>Alt text</b></a>
+          <a href="#s13"><span>13</span><b>House style</b></a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= 00 VOICE ================= -->
+<section id="s00" class="wrap sec">
+  <div class="grid-rail">
+    <div class="rail"><span class="rail-num">00</span><p class="rail-title">The voice</p><p class="rail-note">Six rules. Everything in this deck obeys them.</p></div>
+    <div class="stack g32">
+      <h2 class="h1">Write it as a wall label. Then take out the adjectives.</h2>
+      <ul class="seq">
+        <li><b>State, do not persuade.</b> The reader is an architect with a deadline or a principal with a house. Neither has ever been convinced by an adjective. Name the stone, the block, the dimension, the date.</li>
+        <li><b>Nouns carry the weight.</b> <em>Calcite. Bench. Gangsaw. Bookmatch. Fissure.</em> A sentence built from the trade's own nouns needs almost no modifiers, and reads as expertise rather than as marketing.</li>
+        <li><b>Short sentences. Then one longer one.</b> The rhythm is a full stop, a full stop, and then a sentence that opens out. Never three long sentences in a row — that is how brochures sound.</li>
+        <li><b>Say the difficult thing.</b> "We buy perhaps two blocks a year, because most of what is offered as Statuario is not." Candour is the only luxury signal that cannot be counterfeited.</li>
+        <li><b>Never explain the brand to the reader.</b> No sentence begins "At Nazara, we believe." The website is not a place where the company talks about itself; it is a place where stone is shown properly.</li>
+        <li><b>Every word earns its place or leaves.</b> If a sentence survives having its adjectives struck out, the adjectives were never load-bearing. Strike them.</li>
+      </ul>
+
+      <div class="cols cols-2">
+        <div class="plate">
+          <span class="plate-lab">Banned outright — inherited from Volume One §01, extended</span>
+          <p class="body-s" style="color:var(--bad);line-height:2">exquisite · epitome · unparalleled · world-class · one-stop · elevate · curated <span class="mut-3">(as adjective)</span> · timeless · luxurious · opulent · bespoke · journey · unleash · seamless · iconic · legacy · passion · commitment · excellence · state-of-the-art · trusted name · wide range · discover · explore · indulge · transform your space · a touch of · the perfect · nothing short of · we are proud to</p>
+          <p class="body-s mut-3" style="margin-top:14px">Also banned: exclamation marks, rhetorical questions, sentences beginning "Whether you…", any use of "solutions", and the word "premium" in any position.</p>
+        </div>
+        <div class="plate">
+          <span class="plate-lab">Preferred, and why</span>
+          <ul class="vlist">
+            <li><b>seen / kept / left on the bench</b> — the vocabulary of selection, which is the whole business.</li>
+            <li><b>the library · a viewing · the viewing room · the atelier · the bench</b> — the lexicon fixed in Volume One. Never substituted.</li>
+            <li><b>block, not batch. slab, not piece. face, not side. drift, not pattern.</b></li>
+            <li><b>"We"</b> for the studio, sparingly. <b>"You"</b> almost never — it is the register of a sales page.</li>
+            <li><b>Numerals written as words in display type</b> ("Forty-one stones"), as figures in every technical context ("41 stones · 6 families").</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 01 GLOBAL ================= -->
+<section id="s01" class="wrap sec">
+  <div class="grid-rail">
+    <div class="rail"><span class="rail-num">01</span><p class="rail-title">Global strings</p><p class="rail-note">Navigation, buttons, footer, system messages. Every string that appears on more than one page.</p></div>
+    <div class="stack g32">
+
+      <div class="stack g16">
+        <p class="label">Navigation &amp; header</p>
+        <div class="rows">
+          <div class="row row-2"><div class="row-k">Primary nav</div><div class="row-v"><span class="mono" style="color:var(--ink)">Library &nbsp;·&nbsp; Works &nbsp;·&nbsp; Provenance &nbsp;·&nbsp; Atelier &nbsp;·&nbsp; Journal</span> — sentence case, never uppercase in the markup; the label token applies the capitals.</div></div>
+          <div class="row row-2"><div class="row-k">Header action</div><div class="row-v"><span class="mono" style="color:var(--ink)">Request a viewing</span> — never "Contact", "Get in touch", "Enquire", "Book now".</div></div>
+          <div class="row row-2"><div class="row-k">Selection counter</div><div class="row-v"><span class="mono" style="color:var(--ink)">Selection 4</span> — singular and plural identical. Never "cart", "basket", "wishlist", "saved items".</div></div>
+          <div class="row row-2"><div class="row-k">Mega menu families</div><div class="row-v"><span class="mono" style="color:var(--ink)">Marble 22 · Granite 9 · Onyx 4 · Quartzite 3 · Limestone 2 · Semi-precious 1</span></div></div>
+          <div class="row row-2"><div class="row-k">Mega menu links</div><div class="row-v"><span class="mono" style="color:var(--ink)">All forty-one stones</span> &nbsp;/&nbsp; <span class="mono" style="color:var(--ink)">For architects</span></div></div>
+          <div class="row row-2"><div class="row-k">Mobile drawer</div><div class="row-v">Same five items, then <span class="mono" style="color:var(--ink)">Request a viewing</span>. Below them, in mono: <span class="mono">MADANGANJ–KISHANGARH · BY APPOINTMENT</span></div></div>
+        </div>
+      </div>
+
+      <div class="stack g16">
+        <p class="label">Buttons and links — the complete set. No other button label exists on the site.</p>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Label</th><th>Type</th><th>Where</th><th>Never</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Request a viewing</td><td class="n">INK</td><td>Header · Home §07 · Stone block panel · Viewing form</td><td class="dont">Book now · Enquire · Contact us</td></tr>
+              <tr><td class="k">Enter the library</td><td class="n">RULE</td><td>Home §01</td><td class="dont">Explore · View collection · Shop stone</td></tr>
+              <tr><td class="k">All forty-one</td><td class="n">RULE</td><td>Home §04 · mega menu</td><td class="dont">View all · See more · Browse</td></tr>
+              <tr><td class="k">Six works</td><td class="n">RULE</td><td>Home §05</td><td class="dont">Our projects · Portfolio</td></tr>
+              <tr><td class="k">Provenance</td><td class="n">RULE</td><td>Home §06</td><td class="dont">About us · Learn more · Our story</td></tr>
+              <tr><td class="k">The next seventeen</td><td class="n">RULE</td><td>Library pagination — the figure is live</td><td class="dont">Load more · Show more · Next page</td></tr>
+              <tr><td class="k">Add to selection</td><td class="n">RULE</td><td>Slab card · Stone page</td><td class="dont">Add to cart · Save · Favourite</td></tr>
+              <tr><td class="k">In selection</td><td class="n">STATE</td><td>The above, after clicking. Quarried green.</td><td class="dont">Added! · ✓ Saved</td></tr>
+              <tr><td class="k">Copy specification</td><td class="n">RULE</td><td>Stone page · Architects §2</td><td class="dont">Copy to clipboard</td></tr>
+              <tr><td class="k">Copied</td><td class="n">STATE</td><td>The above, for two seconds</td><td class="dont">Copied to clipboard!</td></tr>
+              <tr><td class="k">Download</td><td class="n">RULE</td><td>Index rows</td><td class="dont">Get file · Download now</td></tr>
+              <tr><td class="k">Saved</td><td class="n">STATE</td><td>After a download completes</td><td class="dont">Success! · Done</td></tr>
+              <tr><td class="k">Download 6 files · 84 MB</td><td class="n">INK</td><td>Index tray — both figures live</td><td class="dont">Download selected</td></tr>
+              <tr><td class="k">Download as PDF</td><td class="n">RULE</td><td>Selection tray</td><td class="dont">Export · Generate PDF</td></tr>
+              <tr><td class="k">Share by link</td><td class="n">RULE</td><td>Selection tray</td><td class="dont">Share this · Send to a friend</td></tr>
+              <tr><td class="k">Show 17 stones</td><td class="n">INK</td><td>Mobile filter sheet — figure is live</td><td class="dont">Apply filters · Done</td></tr>
+              <tr><td class="k">Clear six filters</td><td class="n">RULE</td><td>Library rail — figure is live</td><td class="dont">Reset · Clear all</td></tr>
+              <tr><td class="k">Order samples</td><td class="n">RULE</td><td>Architects §1 and §6</td><td class="dont">Request free samples!</td></tr>
+              <tr><td class="k">Trade sign-in</td><td class="n">RULE</td><td>Architects §7 · footer</td><td class="dont">Login · Client portal</td></tr>
+              <tr><td class="k">Try again</td><td class="n">RULE</td><td>Any failed state</td><td class="dont">Retry · Refresh</td></tr>
+              <tr><td class="k">For architects</td><td class="n">RULE</td><td>Library foot · Stone foot · footer</td><td class="dont">Trade enquiries · B2B</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="stack g16">
+        <p class="label">Footer — identical on every page</p>
+        <div class="slot">
+          <div class="slot-id">FOOT-01<i>Statement, under the wordmark</i></div>
+          <div class="v"><p class="v-body">The library is open by appointment. Kishangarh, Rajasthan — the largest marble market in Asia, ninety kilometres from Makrana.</p></div>
+        </div>
+        <div class="slot">
+          <div class="slot-id">FOOT-02<i>Journal sign-up</i></div>
+          <div class="v">
+            <p class="v-eyebrow">Receive the Journal</p>
+            <p class="v-body">Four or five letters a year. New blocks, finished rooms, and the occasional argument about stone.</p>
+            <p class="v-mono">Field placeholder: Email &nbsp;·&nbsp; Confirmation: You are on the list.</p>
+          </div>
+        </div>
+        <div class="slot">
+          <div class="slot-id">FOOT-03<i>Studio column</i></div>
+          <div class="v">
+            <p class="v-mono">Madanganj–Kishangarh<br>Ajmer, Rajasthan 305801<br><br>By appointment<br>Monday to Saturday, 10.00–18.00 IST<br><br>Instagram · Pinterest · LinkedIn</p>
+          </div>
+        </div>
+        <div class="slot">
+          <div class="slot-id">FOOT-04<i>Colophon, every page</i></div>
+          <div class="v"><p class="v-mono">26.5877° N &nbsp;74.8560° E · EST. KISHANGARH &nbsp;&nbsp;|&nbsp;&nbsp; © 2026 Nazara · Terms · Privacy</p></div>
+        </div>
+        <div class="slot">
+          <div class="slot-id">FOOT-05<i>Contextual link, one per template</i></div>
+          <div class="v"><p class="v-mono">Stone page → For architects &nbsp;·&nbsp; Work page → Stones used in this project &nbsp;·&nbsp; Library → For architects &nbsp;·&nbsp; Provenance → The library</p></div>
+        </div>
+      </div>
+
+      <div class="stack g16">
+        <p class="label">System messages — every string the site can produce</p>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Condition</th><th>Copy</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Library, no results</td><td>No stone matches those filters. The nearest is Makrana Albeta.</td></tr>
+              <tr><td class="k">Selection, empty</td><td>Nothing selected yet. Add a stone from the library and it will wait here.</td></tr>
+              <tr><td class="k">Selection, shared link expired</td><td>This selection has been replaced. Ask for the current one, or begin your own.</td></tr>
+              <tr><td class="k">Stone, all slabs reserved</td><td>Every slab from this block is reserved. Two sibling blocks remain: NZ-0413 and NZ-0414.</td></tr>
+              <tr><td class="k">Stone, no longer stocked</td><td>This stone is no longer in the library. It is kept here because the rooms it is in still exist.</td></tr>
+              <tr><td class="k">Form, required field</td><td>We need this one.</td></tr>
+              <tr><td class="k">Form, bad email</td><td>Check the address — there is no @ in it.</td></tr>
+              <tr><td class="k">Form, area not a number</td><td>Enter the area in square metres, as a number.</td></tr>
+              <tr><td class="k">Form, submitting</td><td>Sending</td></tr>
+              <tr><td class="k">Form, sent</td><td>Your viewing is being arranged. We will write within one working day.</td></tr>
+              <tr><td class="k">Form, failed</td><td>That did not send. Try again, or write to viewings@nazara.in.</td></tr>
+              <tr><td class="k">Download, gated</td><td>A work email, so we can tell you when the family is updated.</td></tr>
+              <tr><td class="k">Download, failed</td><td>The file did not arrive. Try again.</td></tr>
+              <tr><td class="k">Page not found (404)</td><td>Nothing here. The library is this way.</td></tr>
+              <tr><td class="k">Server error (500)</td><td>Something is wrong at our end. The library will be back shortly.</td></tr>
+              <tr><td class="k">Offline</td><td>No connection. The page you were reading is still here.</td></tr>
+              <tr><td class="k">Cookie notice</td><td>We use two cookies: one remembers your selection, one counts visits. Neither follows you.</td></tr>
+              <tr><td class="k">Cookie buttons</td><td>Accept &nbsp;·&nbsp; Only the necessary one</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 02 HOME ================= -->
+<div class="band">
+<section id="s02" class="wrap sec" style="border-top:0">
+  <div class="grid-rail">
+    <div class="rail"><span class="rail-num">02</span><p class="rail-title">Home</p><p class="rail-note">Seven sections. Roughly one hundred and forty words in total.</p></div>
+    <div class="stack g32">
+
+      <h2 class="h1">The homepage is one hundred and forty words. That is the discipline the whole site is judged by.</h2>
+
+      <div class="rows" style="--line:#2A322C">
+        <div class="slot" style="border-top-color:#2A322C">
+          <div class="slot-id">HOME-01a<i>Hero eyebrow · data-s</i></div>
+          <div class="v"><p class="v-mono">Makrana Albeta · Block NZ-0412 · Bench 7 · Cut 18.03.26</p></div>
+        </div>
+        <div class="slot" style="border-top-color:#2A322C">
+          <div class="slot-id">HOME-01b<i>Hero headline · display-l · two lines, break as set</i></div>
+          <div class="v"><p class="v-display">A hundred million years,<br>and then a decision.</p></div>
+        </div>
+        <div class="slot" style="border-top-color:#2A322C">
+          <div class="slot-id">HOME-01c<i>Hero action · rule button</i></div>
+          <div class="v"><span class="v-btn">Enter the library</span></div>
+        </div>
+
+        <div class="slot" style="border-top-color:#2A322C">
+          <div class="slot-id">HOME-02<i>The threshold · display-m · the only text in the viewport</i></div>
+          <div class="v"><p class="v-display">Nothing here was designed.<br>Everything here was chosen.</p></div>
+        </div>
+
+        <div class="slot" style="border-top-color:#2A322C">
+          <div class="slot-id">HOME-03<i>The long look · eyebrow, three captions, close</i></div>
+          <div class="v">
+            <p class="v-eyebrow">The long look</p>
+            <p class="v-h">We wet it.</p>
+            <p class="v-body">Water returns a slab to the colour it will be in a finished room. Dry, every stone flatters itself.</p>
+            <p class="v-h" style="margin-top:12px">We rake it.</p>
+            <p class="v-body">A light held almost flat against the face. It is the only way the crystal, the saw marks and the true depth of a vein will show.</p>
+            <p class="v-h" style="margin-top:12px">We turn it.</p>
+            <p class="v-body">One block gives a different drawing on every axis. Vein-cut is a landscape. Cross-cut is a bloom. The block does not care which one you wanted.</p>
+            <p class="v-body" style="margin-top:12px"><strong>Then we take it, or we leave it on the bench. There is no third answer.</strong></p>
+          </div>
+        </div>
+
+        <div class="slot" style="border-top-color:#2A322C">
+          <div class="slot-id">HOME-04<i>Typology wall · eyebrow, h2, sub, action</i></div>
+          <div class="v">
+            <p class="v-eyebrow">The library</p>
+            <p class="v-display">Forty-one stones, photographed in one frame, so that comparison is honest.</p>
+            <p class="v-body">Same wall. Same light. Same distance. Every slab we have kept, since the first.</p>
+            <span class="v-btn">All forty-one</span>
+          </div>
+        </div>
+
+        <div class="slot" style="border-top-color:#2A322C">
+          <div class="slot-id">HOME-05<i>One work · h, credit line, action</i></div>
+          <div class="v">
+            <p class="v-display">Private Residence, Jodhpur</p>
+            <p class="v-body">Eleven slabs from one block, laid in sequence through four rooms. The vein continues across every threshold.</p>
+            <p class="v-mono">2025 · Makrana Albeta, vein-cut · 610 m² · Photographed by [name]</p>
+            <span class="v-btn">Six works</span>
+          </div>
+        </div>
+
+        <div class="slot" style="border-top-color:#2A322C">
+          <div class="slot-id">HOME-06<i>The refusal · eyebrow, two figures, one line, action</i></div>
+          <div class="v">
+            <p class="v-eyebrow">Provenance</p>
+            <p class="v-display">406 blocks were seen in 2025.<br>19 were kept.</p>
+            <p class="v-body">We are paid for the ones we walk away from.</p>
+            <p class="v-mono">Six quarries · Makrana 26.0553° N · Kishangarh 26.5877° N · and four more</p>
+            <span class="v-btn">Provenance</span>
+          </div>
+        </div>
+
+        <div class="slot" style="border-top-color:#2A322C;border-bottom-color:#2A322C">
+          <div class="slot-id">HOME-07<i>The viewing · h3, sub, ink button, mono</i></div>
+          <div class="v">
+            <p class="v-display">The library is open by appointment.</p>
+            <p class="v-body">Two hours. Six to twelve blocks, wet, under raking light. Nothing is sold in the room.</p>
+            <span class="v-btn">Request a viewing</span>
+            <p class="v-mono">Madanganj–Kishangarh · 26.5877° N &nbsp;74.8560° E · Mon–Sat 10.00–18.00 IST</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="plate plate-dark">
+        <span class="plate-lab">Note on HOME-06</span>
+        <p class="body-s" style="color:#A5AA9E">"We are paid for the ones we walk away from" is the single most important sentence on the site and should not be softened in review. It converts a rejection rate into a fee justification in nine words, and it is the only line on the homepage that answers the question a principal is actually asking: why this studio rather than the cheaper one. If legal or commercial want it removed, the fallback is <em>"The nineteen are the business."</em> — weaker, but it survives.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ================= 03 LIBRARY ================= -->
+<section id="s03" class="wrap sec">
+  <div class="grid-rail">
+    <div class="rail"><span class="rail-num">03</span><p class="rail-title">The Library</p><p class="rail-note">/library · index page. Every label, filter and control.</p></div>
+    <div class="stack g24">
+      <div class="rows">
+        <div class="slot">
+          <div class="slot-id">LIB-01<i>Head · eyebrow, h1, count line. No standfirst.</i></div>
+          <div class="v">
+            <p class="v-eyebrow">The library</p>
+            <p class="v-display">Forty-one stones.</p>
+            <p class="v-mono">6 families · 12 origins · 19 kept from 406 blocks seen in 2025</p>
+          </div>
+        </div>
+        <div class="slot">
+          <div class="slot-id">LIB-02<i>Filter group headings</i></div>
+          <div class="v"><p class="v-mono">Family &nbsp;·&nbsp; Colour &nbsp;·&nbsp; Origin &nbsp;·&nbsp; Finish &nbsp;·&nbsp; Format &nbsp;·&nbsp; Availability</p>
+          <p class="v-note">Options under Availability read: <em>In the library · On hold · Reserved · One slab left</em>. Never "In stock" or "Sold out" — this is a library, not a warehouse.</p></div>
+        </div>
+        <div class="slot">
+          <div class="slot-id">LIB-03<i>Controls</i></div>
+          <div class="v"><p class="v-mono">View: Cards / Typology &nbsp;&nbsp;&nbsp; Sort: Newest / A–Z / Slabs remaining</p></div>
+        </div>
+        <div class="slot">
+          <div class="slot-id">LIB-04<i>Typology mode, one-line explainer above the wall</i></div>
+          <div class="v"><p class="v-body">Every stone at the same distance, in the same light, on the same wall. Names appear when you point at one.</p></div>
+        </div>
+        <div class="slot">
+          <div class="slot-id">LIB-05<i>Card spec line · mandatory, never abbreviated</i></div>
+          <div class="v"><p class="v-mono">Marble · 3200 × 1900 × 20 mm · Block NZ-0412 · 12 slabs</p></div>
+        </div>
+        <div class="slot">
+          <div class="slot-id">LIB-06<i>Pagination · figures live</i></div>
+          <div class="v"><p class="v-mono">1–24 of 41</p><span class="v-btn">The next seventeen</span></div>
+        </div>
+        <div class="slot">
+          <div class="slot-id">LIB-07<i>Foot link</i></div>
+          <div class="v"><span class="v-btn">For architects</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 04 STONE DESCRIPTIONS ================= -->
+<div class="band">
+<section id="s04" class="wrap sec" style="border-top:0">
+  <div class="grid-rail">
+    <div class="rail"><span class="rail-num">04</span><p class="rail-title">Stone descriptions</p><p class="rail-note">Ten written in full. The eleventh onward follows the template exactly.</p></div>
+    <div class="stack g32">
+
+      <h2 class="h1">A catalogue says what a stone is. A publication says what it does in a room, and what it will not do.</h2>
+      <p class="body" style="color:#A5AA9E">Every entry carries the same five parts: a one-line character, two paragraphs, the technical line, a finish note, and the adjacency rationale. Where a stone has a weakness, the entry says so. That is the entire difference between this library and every competitor's product page.</p>
+
+      <!-- 1 -->
+      <div class="plate plate-dark">
+        <span class="plate-lab">STONE-01 · /library/makrana-albeta</span>
+        <div class="v">
+          <p class="v-display">Makrana Albeta</p>
+          <p class="v-body"><strong>The house white. Dense, cold to the hand, almost without pattern.</strong></p>
+          <p class="v-body">Albeta is the plainest grade Makrana still gives. The field is a warm off-white; the veining, where it appears at all, is a fine grey drift rather than a line. It is a calcite marble, unusually dense and low in porosity, and it takes a honed finish better than a polish — polished, it can look like a photograph of itself.</p>
+          <p class="v-body">The quarries are ninety kilometres from this studio, worked on the same bench system since the seventeenth century. The inlay ground of the Taj Mahal came out of them. We state that once and do not repeat it.</p>
+          <p class="v-mono">Marble · Calcite · Makrana, Nagaur, Rajasthan · 3200 × 1900 mm · 16 / 18 / 20 / 30 mm</p>
+          <p class="v-body"><strong>Finish.</strong> Honed for floors and walls. Leathered where hands will touch it daily. Polished only in low light, and never in a bathroom that gets morning sun.</p>
+          <p class="v-body"><strong>Behaves similarly.</strong> Makrana Kumari, for the same body with movement. Statuario Venato, if the vein must be graphic. Neither is cheaper.</p>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="plate plate-dark">
+        <span class="plate-lab">STONE-02 · /library/makrana-kumari</span>
+        <div class="v">
+          <p class="v-display">Makrana Kumari</p>
+          <p class="v-body"><strong>Warmer than Albeta, and it moves.</strong></p>
+          <p class="v-body">Kumari carries a soft grey vein that runs in long, unhurried diagonals across the face. Vein-cut it reads as weather. Cross-cut it closes into a still field with the grey pooled rather than drawn. It is the grade to choose when a room needs a white that is not silent.</p>
+          <p class="v-body">It is also the grade most often misrepresented, because the name travels further than the bench does. Every slab in this library carries the block it came from and the day it was cut.</p>
+          <p class="v-mono">Marble · Calcite · Makrana, Nagaur, Rajasthan · 3200 × 1900 mm · 18 / 20 / 30 mm</p>
+          <p class="v-body"><strong>Finish.</strong> Honed. The vein loses its softness under a polish and starts to look printed.</p>
+          <p class="v-body"><strong>Behaves similarly.</strong> Makrana Albeta, for quiet. Calacatta Viola, if the movement should be an event rather than a texture.</p>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="plate plate-dark">
+        <span class="plate-lab">STONE-03 · /library/statuario-venato</span>
+        <div class="v">
+          <p class="v-display">Statuario Venato</p>
+          <p class="v-body"><strong>The one everyone asks for, and the one we buy least.</strong></p>
+          <p class="v-body">A cold white with a grey vein that is graphic rather than atmospheric — it draws a line across a room and the room follows it. Quarried in the Apuan Alps above Carrara, in a seam that has been worked out and re-entered for two thousand years.</p>
+          <p class="v-body">We buy perhaps two blocks a year, because most of what is offered as Statuario is not. If a slab is sold to you without a block number, it is not Statuario. If the vein is identical on every slab in the bundle, it has been printed.</p>
+          <p class="v-mono">Marble · Calcite · Carrara, Tuscany, Italy · 3200 × 1900 mm · 20 / 30 mm</p>
+          <p class="v-body"><strong>Finish.</strong> Polished, if anywhere. This is the one stone in the library that was made for it.</p>
+          <p class="v-body"><strong>Behaves similarly.</strong> Nothing does, honestly. Makrana Albeta is the closest in body and is a warmer, quieter room.</p>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="plate plate-dark">
+        <span class="plate-lab">STONE-04 · /library/calacatta-viola</span>
+        <div class="v">
+          <p class="v-display">Calacatta Viola</p>
+          <p class="v-body"><strong>Oxblood and violet on a white ground. Not a quiet stone.</strong></p>
+          <p class="v-body">The veining is brecciated — the marble was broken and healed, and the violet is what filled the fractures. No two slabs agree with each other, which is why it is bought in bookmatched pairs or not at all.</p>
+          <p class="v-body">It should be used once in a building and never twice. A second Viola surface in the same house does not double the effect; it halves it.</p>
+          <p class="v-mono">Marble · Brecciated calcite · Apuan Alps, Italy · 3000 × 1800 mm · 20 mm</p>
+          <p class="v-body"><strong>Finish.</strong> Polished for a vertical plane. Honed for anything horizontal, or the violet goes purple under artificial light.</p>
+          <p class="v-body"><strong>Behaves similarly.</strong> Rosso Levanto, for the same weight in a darker register. Rain Forest Brown, if the drama should come from pattern rather than colour.</p>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="plate plate-dark">
+        <span class="plate-lab">STONE-05 · /library/verde-guatemala</span>
+        <div class="v">
+          <p class="v-display">Verde Guatemala</p>
+          <p class="v-body"><strong>Named for a country it does not come from.</strong></p>
+          <p class="v-body">A serpentinite: near-black green, threaded with white calcite that runs like a crack pattern rather than a vein. The blocks in this library are quarried in Rajasthan, four hours south of the studio. The name is a nineteenth-century trade convention the industry has never bothered to correct, and we use it because that is what a specification will say.</p>
+          <p class="v-body">It is a serpentine, not a true marble, and it does not want water. Specified dry, it is one of the most permanent surfaces we sell. Specified in a wet room, it will disappoint you within two years.</p>
+          <p class="v-mono">Marble (serpentinite) · Udaipur district, Rajasthan · 2900 × 1750 mm · 18 / 20 mm</p>
+          <p class="v-body"><strong>Finish.</strong> Honed or leathered. Polished serpentine looks like plastic under any light warmer than 3500 K.</p>
+          <p class="v-body"><strong>Behaves similarly.</strong> Nero Marquina, for the same darkness with a cleaner line. Absolute Black, if the green is the problem.</p>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="plate plate-dark">
+        <span class="plate-lab">STONE-06 · /library/onice-miele</span>
+        <div class="v">
+          <p class="v-display">Onice Miele</p>
+          <p class="v-body"><strong>The only stone in the library meant to be lit from behind.</strong></p>
+          <p class="v-body">Honey onyx is banded calcite laid down by water, layer over layer, in caves. At twenty millimetres it transmits. Backlit, the banding becomes a section drawing of the water that made it, and the wall stops being a wall.</p>
+          <p class="v-body">It is not a floor. It is not a worktop. It is soft, it scratches, and it will not survive a kitchen. Used correctly it is the most extraordinary material we hold; used as a surface it is an expensive mistake, and we will say so before you make it.</p>
+          <p class="v-mono">Onyx · Banded calcite · Sistan, Iran · 2600 × 1600 mm · 20 mm, resin-backed</p>
+          <p class="v-body"><strong>Finish.</strong> Polished. Always backlit at 2700–3000 K, at a minimum of 80 mm from the face, or the fittings will read through.</p>
+          <p class="v-body"><strong>Behaves similarly.</strong> Nothing in the library does. The nearest effect without translucency is Rain Forest Brown, bookmatched.</p>
+        </div>
+      </div>
+
+      <!-- 7 -->
+      <div class="plate plate-dark">
+        <span class="plate-lab">STONE-07 · /library/nero-marquina</span>
+        <div class="v">
+          <p class="v-display">Nero Marquina</p>
+          <p class="v-body"><strong>Black, with white running through it like chalk on a board.</strong></p>
+          <p class="v-body">From Markina in the Basque Country. The ground is a true black limestone-marble and the white is calcite, arriving in irregular fissures that never repeat. A block that promises even veining is a block that has been resined and filled, and we do not buy those.</p>
+          <p class="v-body">It marks. Lemon, wine and limescale will all leave a signature on a polished Nero Marquina within a year. That is either unacceptable or it is the point, and the answer is the client's, not ours.</p>
+          <p class="v-mono">Marble · Bituminous limestone · Markina, Bizkaia, Spain · 3000 × 1800 mm · 20 / 30 mm</p>
+          <p class="v-body"><strong>Finish.</strong> Honed, and sealed twice. Polished only where nothing will be set down.</p>
+          <p class="v-body"><strong>Behaves similarly.</strong> Absolute Black, if the marking is unacceptable. Verde Guatemala, for the same weight with warmth.</p>
+        </div>
+      </div>
+
+      <!-- 8 -->
+      <div class="plate plate-dark">
+        <span class="plate-lab">STONE-08 · /library/rosso-levanto</span>
+        <div class="v">
+          <p class="v-display">Rosso Levanto</p>
+          <p class="v-body"><strong>Deep oxide red, broken by white, from a coast that no longer exports much of it.</strong></p>
+          <p class="v-body">A brecciated serpentinite from Liguria: the red is iron, the white is calcite that filled the breaks. It reads almost black at a distance and opens into colour as you approach, which makes it a stone for corridors and small rooms rather than for large planes.</p>
+          <p class="v-body">The good benches are largely worked out. What remains is bought a block at a time and rarely repeats, so a project that needs Rosso Levanto should buy the whole block at the outset. There will not be a matching second order.</p>
+          <p class="v-mono">Marble (serpentinite) · Levanto, Liguria, Italy · 2800 × 1700 mm · 20 mm</p>
+          <p class="v-body"><strong>Finish.</strong> Polished. Honed, the red goes brown.</p>
+          <p class="v-body"><strong>Behaves similarly.</strong> Calacatta Viola, for the same violence on a light ground. Verde Guatemala, for the same geology in green.</p>
+        </div>
+      </div>
+
+      <!-- 9 -->
+      <div class="plate plate-dark">
+        <span class="plate-lab">STONE-09 · /library/rain-forest-brown</span>
+        <div class="v">
+          <p class="v-display">Rain Forest Brown</p>
+          <p class="v-body"><strong>Quarried an hour from here. Sold everywhere else as something else.</strong></p>
+          <p class="v-body">A dolomitic marble from the Bhainslana belt in Rajasthan. The pattern is dendritic — iron and manganese that migrated through fractures and dried where they stopped. Every slab is a different weather map, and no two blocks from the same bench agree.</p>
+          <p class="v-body">It is the stone that first made this region's name and the one most often sold under an invented Italian one. We use the local name because the provenance is the value.</p>
+          <p class="v-mono">Marble · Dolomitic · Bhainslana, Jaipur district, Rajasthan · 3200 × 1900 mm · 18 / 20 mm</p>
+          <p class="v-body"><strong>Finish.</strong> Honed for floors, leathered for anything vertical that catches light across it.</p>
+          <p class="v-body"><strong>Behaves similarly.</strong> Rain Forest Green, the same bench in a colder register. Calacatta Viola, if the pattern should be violent rather than atmospheric.</p>
+        </div>
+      </div>
+
+      <!-- 10 -->
+      <div class="plate plate-dark">
+        <span class="plate-lab">STONE-10 · /library/absolute-black</span>
+        <div class="v">
+          <p class="v-display">Absolute Black</p>
+          <p class="v-body"><strong>No pattern at all. That is the specification.</strong></p>
+          <p class="v-body">A gabbro from the Deccan, sold as granite, and the only stone in this library bought for its uniformity rather than its drawing. It is hard, it does not mark, and it will outlive the building.</p>
+          <p class="v-body">The correct question about Absolute Black is never which quarry but which finish. Polished it is a mirror and shows every fingerprint. Leathered it is a textile. Flamed it is a pavement. The same slab, three different buildings.</p>
+          <p class="v-mono">Granite (gabbro) · Chimakurthy, Andhra Pradesh · 3200 × 1900 mm · 18 / 20 / 30 mm</p>
+          <p class="v-body"><strong>Finish.</strong> Leathered, in almost every case. Polished only where reflection is the intention.</p>
+          <p class="v-body"><strong>Behaves similarly.</strong> Nero Marquina, if a line through the black is wanted. Nothing else, if it is not.</p>
+        </div>
+      </div>
+
+      <div class="flag">
+        <span class="flag-lab">Before publication</span>
+        <p class="body-s mut">Every technical value above — origins, dimensions, thicknesses, geological classifications and finish behaviour — is written to be accurate and idiomatic, but must be checked line by line against the studio's own test reports, current block inventory and supplier declarations before it goes live. Two claims in particular carry legal and reputational weight and need documentary backing on file: the Makrana provenance statement in STONE-01, and any origin declaration for Iranian onyx in STONE-06, which is subject to sanctions screening in several export markets. Where a value cannot be evidenced, cut the sentence rather than soften it.</p>
+      </div>
+
+      <div class="plate plate-dark">
+        <span class="plate-lab">Template for stones 11–41</span>
+        <ul class="seq" style="--line:#2A322C">
+          <li style="color:#A5AA9E"><b style="color:#E9EBE4">Character line</b> — one sentence, maximum fourteen words, set in bold body. It must contain either a physical fact or an admission. Never an adjective alone.</li>
+          <li style="color:#A5AA9E"><b style="color:#E9EBE4">Paragraph one — what it is.</b> Geology, colour, how the vein behaves under vein-cut and cross-cut. Two to four sentences.</li>
+          <li style="color:#A5AA9E"><b style="color:#E9EBE4">Paragraph two — the difficult thing.</b> The weakness, the scarcity, the misrepresentation in the market, or the room it must not go in. Every entry has one. An entry without one has not been written by someone who has handled the stone.</li>
+          <li style="color:#A5AA9E"><b style="color:#E9EBE4">Technical line</b> — family · geology · origin to district level · slab size · thicknesses. Mono, title case, separated by middots.</li>
+          <li style="color:#A5AA9E"><b style="color:#E9EBE4">Finish</b> — one or two sentences of instruction, not options. The studio has a view; the page states it.</li>
+          <li style="color:#A5AA9E"><b style="color:#E9EBE4">Behaves similarly</b> — two stones and the reason, in technical terms. Never "you may also like". If nothing behaves similarly, say so.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ================= 05 WORKS ================= -->
+<section id="s05" class="wrap sec">
+  <div class="grid-rail">
+    <div class="rail"><span class="rail-num">05</span><p class="rail-title">Works</p><p class="rail-note">Index rows, one project written in full, and the credit convention.</p></div>
+    <div class="stack g32">
+
+      <div class="rows">
+        <div class="slot">
+          <div class="slot-id">WORK-00<i>Index head</i></div>
+          <div class="v">
+            <p class="v-eyebrow">Works</p>
+            <p class="v-display">Six rooms.</p>
+            <p class="v-body">Every project here used stone we selected at the bench. There are more; these are the six the clients allowed us to show.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="stack g16">
+        <p class="label">Index rows — year · place · name · stone</p>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Year · Place</th><th>Name</th><th>Stone</th></tr></thead>
+            <tbody>
+              <tr><td class="n">2025 · JODHPUR</td><td class="k">Private Residence</td><td class="n">MAKRANA ALBETA, VEIN-CUT</td></tr>
+              <tr><td class="n">2025 · UDAIPUR</td><td class="k">Hotel, 42 keys</td><td class="n">VERDE GUATEMALA</td></tr>
+              <tr><td class="n">2024 · MUMBAI</td><td class="k">Apartment, Malabar Hill</td><td class="n">ONICE MIELE, BACKLIT</td></tr>
+              <tr><td class="n">2024 · ALIBAUG</td><td class="k">House by the water</td><td class="n">RAIN FOREST BROWN</td></tr>
+              <tr><td class="n">2023 · COLABA</td><td class="k">Flagship, 380 m²</td><td class="n">NERO MARQUINA, HONED</td></tr>
+              <tr><td class="n">2023 · ZÜRICH</td><td class="k">Private Residence</td><td class="n">MAKRANA KUMARI</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="body-s mut-3">Private clients are never named, in any market, under any circumstances. Hospitality and retail clients are named only with written permission, and the permission is held on file with the photographs. Where permission is absent the entry reads by type and city, as above — which is also how the architectural press refers to them, so nothing is lost.</p>
+      </div>
+
+      <div class="plate">
+        <span class="plate-lab">WORK-01 · /works/private-residence-jodhpur · written in full</span>
+        <div class="v">
+          <p class="v-display">Private Residence, Jodhpur</p>
+          <p class="v-mono">2025 · Jodhpur, Rajasthan · 610 m² · Makrana Albeta, vein-cut · Architect [practice] · Photographs [name]</p>
+          <p class="v-body"><strong>The brief.</strong> A courtyard house on the edge of the old city, built to be closed against forty-six degrees for four months of the year. The architect wanted one stone through the whole ground floor, and wanted the vein to continue across every threshold — so the material had to be resolved before the plan was.</p>
+          <p class="v-body">We took a single block. NZ-0412 gave eighteen slabs at 3200 × 1900, of which eleven went to this house. They were cut vein-cut, numbered in the order they came off the gangsaw, and dry-laid on the atelier floor in the sequence they would sit in the building. That layout was photographed and sent before anything was crated, and it is the reason the vein runs unbroken from the entrance court through to the stair.</p>
+          <p class="v-body">The remaining seven slabs stayed in the library. They are still here, and they still match.</p>
+          <p class="v-body"><strong>Stones used.</strong> Makrana Albeta, vein-cut, honed, 20 mm, block NZ-0412, slabs 1–11.</p>
+          <p class="v-mono">Next: Hotel, 42 keys · Udaipur</p>
+        </div>
+      </div>
+
+      <div class="cols cols-2">
+        <div class="plate">
+          <span class="plate-lab">The five remaining briefs, in one paragraph each</span>
+          <div class="v">
+            <p class="v-body"><strong>Hotel, 42 keys · Udaipur, 2025.</strong> Verde Guatemala through the arrival sequence and nowhere else — dark stone at the moment of entry so that the lake, when the corridor opens, arrives as light. Four blocks, held for eleven months while the building caught up.</p>
+            <p class="v-body" style="margin-top:14px"><strong>Apartment, Malabar Hill · Mumbai, 2024.</strong> A single backlit Onice Miele plane, 4.2 metres by 2.6, in a room with no window. The banding was chosen for the way it runs horizontally, so that the wall reads as a horizon rather than as a light box.</p>
+            <p class="v-body" style="margin-top:14px"><strong>House by the water · Alibaug, 2024.</strong> Rain Forest Brown, leathered, on every vertical surface a hand touches, and nothing on the floors. Salt air rules out most of what a coastal house wants; this stone was quarried ninety minutes inland from a similar climate and has been tested by it.</p>
+            <p class="v-body" style="margin-top:14px"><strong>Flagship, 380 m² · Colaba, 2023.</strong> Honed Nero Marquina on the floor, sealed twice, with the acceptance written into the brief that it would mark. Four years on it has, and the client considers the marking the best thing in the room.</p>
+            <p class="v-body" style="margin-top:14px"><strong>Private Residence · Zürich, 2023.</strong> Makrana Kumari, shipped nine thousand kilometres to a country with its own quarries, because the client had seen the vein in Jaipur and wanted that bench and no other. Two blocks, one container, eleven weeks.</p>
+          </div>
+        </div>
+        <div class="stack g16">
+          <p class="label">Rules for every project entry</p>
+          <ul class="vlist">
+            <li><b>Lead with the constraint, not the glamour.</b> Heat, salt, a windowless room, a client who had already seen the bench. The constraint is what makes it architecture rather than decoration.</li>
+            <li><b>Name the block.</b> Every project entry cites at least one block number. It is the proof that the manifesto is operational and not a slogan.</li>
+            <li><b>Credit the photographer, always.</b> On every image and in the credit line. No exceptions, including for images the studio commissioned outright.</li>
+            <li><b>Never state a budget, a value, or a price per square metre.</b> Not in any market, not on request.</li>
+            <li><b>No superlatives about the client.</b> "A collector", "a family", "an operator". Never "a leading industrialist" or "one of India's foremost".</li>
+            <li><b>End on a fact, not a flourish.</b> "The remaining seven slabs stayed in the library. They are still here, and they still match." — the last sentence should be checkable.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 06 PROVENANCE ================= -->
+<div class="band">
+<section id="s06" class="wrap sec" style="border-top:0">
+  <div class="grid-rail">
+    <div class="rail"><span class="rail-num">06</span><p class="rail-title">Provenance</p><p class="rail-note">The About page. Seven sections, written in full.</p></div>
+    <div class="stack g24">
+      <div class="rows" style="--line:#2A322C">
+
+        <div class="slot" style="border-top-color:#2A322C">
+          <div class="slot-id">PROV-01<i>The word</i></div>
+          <div class="v">
+            <p class="v-display">नज़ारा &nbsp;·&nbsp; نظارہ</p>
+            <p class="v-body">Hindi and Urdu, from the Arabic <em>naẓar</em> — the gaze. A nazara is a view. Not scenery: the specific thing you stop walking to look at.</p>
+            <p class="v-body">It is a word about the person looking as much as the thing seen. We took it because marble is the only building material whose entire case is optical, and because the work of this studio is not manufacture. It is looking, for long enough, at the right things.</p>
+          </div>
+        </div>
+
+        <div class="slot" style="border-top-color:#2A322C">
+          <div class="slot-id">PROV-02<i>The manifesto · verbatim from Volume One, never shortened</i></div>
+          <div class="v">
+            <p class="v-display">Nothing here was designed.<br>Everything here was chosen.</p>
+            <p class="v-body">A block comes out of the hill in the dark. We wet it, rake a light across it, turn it, and look for a long time. Then we take it, or we leave it on the bench. There is no third option, and no amount of money changes the answer.</p>
+          </div>
+        </div>
+
+        <div class="slot" style="border-top-color:#2A322C">
+          <div class="slot-id">PROV-03<i>Six quarries · intro, then the mono list beside the drawn map</i></div>
+          <div class="v">
+            <p class="v-eyebrow">Six quarries</p>
+            <p class="v-display">We buy from six benches, and we have walked all of them.</p>
+            <p class="v-body">Not six countries, not fifty. Six specific faces of rock, four of them within a day's drive, each with a foreman we have known for years and a history of what that bench gives in a wet year and a dry one. The library is small because the sourcing is narrow, and the sourcing is narrow on purpose.</p>
+            <p class="v-mono">Makrana, Nagaur · 27.0453° N 74.7218° E · calcite marble · since 1994<br>Bhainslana, Jaipur · 27.1200° N 75.6800° E · dolomitic marble · since 1998<br>Rajnagar, Rajsamand · 25.0800° N 73.8800° E · serpentinite · since 2004<br>Chimakurthy, Andhra Pradesh · 15.6100° N 79.8900° E · gabbro · since 2009<br>Carrara, Tuscany · 44.0793° N 10.0977° E · calcite marble · since 2012<br>Markina, Bizkaia · 43.2670° N 2.4930° E · bituminous limestone · since 2016</p>
+            <p class="v-note">Coordinates are indicative to the quarry district, not to a working face, and must be confirmed against the studio's own records before publication.</p>
+          </div>
+        </div>
+
+        <div class="slot" style="border-top-color:#2A322C">
+          <div class="slot-id">PROV-04<i>Makrana · one paragraph beneath a full-bleed image. Nothing more.</i></div>
+          <div class="v">
+            <p class="v-display">Makrana</p>
+            <p class="v-body">Ninety kilometres north of this studio, in Nagaur district, there is a marble bench that has been worked since before the Mughals and has never been fully exhausted. The stone from it built the Taj Mahal. It also builds a great many bathrooms in Gurugram, which is the honest and less flattering half of the sentence. What separates one from the other is not the quarry. It is who is standing at the bench on the day the block comes out.</p>
+          </div>
+        </div>
+
+        <div class="slot" style="border-top-color:#2A322C">
+          <div class="slot-id">PROV-05<i>The atelier · intro, four finish captions, the dry-lay caption</i></div>
+          <div class="v">
+            <p class="v-eyebrow">The atelier</p>
+            <p class="v-display">A block becomes a room in four decisions, and none of them are made by a machine.</p>
+            <p class="v-body">Orientation. Sequence. Finish. Edge. The gangsaw does the cutting; everything that matters happens before it starts and after it stops.</p>
+            <p class="v-mono">Polished — Ra 0.2 µm · specular, cold, unforgiving of a bad joint<br>Honed — Ra 0.8 µm · the studio default; light sits in it rather than on it<br>Leathered — Ra 3.5 µm · texture without pattern; for hands and for wet feet<br>Sandblasted — Ra 6.0 µm · exterior and threshold; the only finish with grip</p>
+            <p class="v-body">Every bookmatch is dry-laid on the atelier floor, chalked, and photographed before it is crated. If the sequence is wrong, it is wrong here, where it costs a morning — not on site, where it costs a season.</p>
+            <p class="v-note">Ra values are house figures for the finishes as produced in this atelier and must be confirmed against current test reports before publication.</p>
+          </div>
+        </div>
+
+        <div class="slot" style="border-top-color:#2A322C">
+          <div class="slot-id">PROV-06<i>The hands · three captions, mono</i></div>
+          <div class="v">
+            <p class="v-eyebrow">The hands</p>
+            <p class="v-body">Three people decide what this library contains. None of them has a title on a business card that describes what they actually do.</p>
+            <p class="v-mono">[First name] — selection, at the bench · 22 years<br>[First name] — gangsaw and sequence · 17 years<br>[First name] — finishing and edges · 11 years</p>
+            <p class="v-note">First names only, with the individual's written consent, and photographed to Register III — hands and tool, never a face to camera. No titles, no founder portrait, no biography. If a name cannot be used, the caption carries the role and the years alone.</p>
+          </div>
+        </div>
+
+        <div class="slot" style="border-top-color:#2A322C;border-bottom-color:#2A322C">
+          <div class="slot-id">PROV-07<i>The refusal · intro line, table, closing link</i></div>
+          <div class="v">
+            <p class="v-display">What we did not buy.</p>
+            <p class="v-body">A supplier publishes what it sold. This is the other number, and it is the more useful one.</p>
+            <p class="v-mono">2021 · 288 blocks seen · 14 kept<br>2022 · 317 blocks seen · 16 kept<br>2023 · 341 blocks seen · 12 kept<br>2024 · 379 blocks seen · 21 kept<br>2025 · 406 blocks seen · 19 kept</p>
+            <p class="v-body">Four and a half per cent, across five years. The rest went to somebody else, and is very probably excellent. It simply was not what we were standing there for.</p>
+            <span class="v-btn">The library</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ================= 07 ARCHITECTS ================= -->
+<section id="s07" class="wrap sec">
+  <div class="grid-rail">
+    <div class="rail"><span class="rail-num">07</span><p class="rail-title">Architects</p><p class="rail-note">The trade door. Utility first, atmosphere nowhere. Includes the FAQ set.</p></div>
+    <div class="stack g24">
+      <div class="rows">
+
+        <div class="slot">
+          <div class="slot-id">ARCH-01<i>The door · eyebrow, h1, one line, four buttons</i></div>
+          <div class="v">
+            <p class="v-eyebrow">For architects</p>
+            <p class="v-display">Everything you need to specify us.</p>
+            <p class="v-body">Files, tolerances, finishes, lead times and samples. Nothing here needs an account except BIM.</p>
+            <p class="v-mono">Downloads &nbsp;·&nbsp; Specifications &nbsp;·&nbsp; Order samples &nbsp;·&nbsp; Book a viewing</p>
+          </div>
+        </div>
+
+        <div class="slot">
+          <div class="slot-id">ARCH-02<i>How to specify · intro and the paste-ready block</i></div>
+          <div class="v">
+            <p class="v-display">How to write us into a schedule.</p>
+            <p class="v-body">Specify the block, not just the stone. It is the only way to guarantee that what arrives on site is what you stood in front of.</p>
+            <p class="v-mono">MARBLE: NAZARA 'MAKRANA ALBETA', VEIN-CUT, HONED,<br>20 MM, BOOKMATCHED PAIRS, BLOCK NZ-0412.<br>SUPPLIER: NAZARA, KISHANGARH, RAJASTHAN.</p>
+            <p class="v-body">Every stone page carries its own version of this line, with the current block, ready to copy.</p>
+          </div>
+        </div>
+
+        <div class="slot">
+          <div class="slot-id">ARCH-03<i>Finishes · four captions</i></div>
+          <div class="v">
+            <p class="v-display">Four finishes. We have a view on which one you want.</p>
+            <p class="v-mono">Polished · Ra 0.2 µm · Reflective. Shows every joint and every fingerprint. Vertical planes and low light.<br>Honed · Ra 0.8 µm · The default. Light sits in the surface rather than on it. Floors, walls, most worktops.<br>Leathered · Ra 3.5 µm · Texture without pattern. Wet rooms, handled edges, anywhere bare feet go.<br>Sandblasted · Ra 6.0 µm · The only finish with real grip. Thresholds, terraces, pool surrounds.</p>
+            <p class="v-body">Brushed and split-face are available on request and are not stocked. Flamed is available on granite only.</p>
+          </div>
+        </div>
+
+        <div class="slot">
+          <div class="slot-id">ARCH-04<i>Formats and edges</i></div>
+          <div class="v">
+            <p class="v-display">Formats, thicknesses and edges.</p>
+            <p class="v-mono">Slab · 3200 × 1900 mm nominal · varies by block, stated per stone<br>Thickness · 16 / 18 / 20 / 30 mm · 20 mm unless otherwise specified<br>Tolerance · ± 1.5 mm on thickness, ± 5 mm on length and width<br>Edges · square · chamfered 2 mm · mitred 45° · bullnose · shadow gap 12 mm · waterfall</p>
+            <p class="v-body">Unsupported spans, fixing details and substrate requirements are in the technical datasheet for each stone. Where a detail is unusual, write to us before the drawing is issued rather than after.</p>
+          </div>
+        </div>
+
+        <div class="slot">
+          <div class="slot-id">ARCH-05<i>Lead times · intro and table</i></div>
+          <div class="v">
+            <p class="v-display">Lead times, stated honestly and dated.</p>
+            <p class="v-body">From order to arrival at an Indian site, including fabrication and inland freight. International freight is quoted separately.</p>
+            <p class="v-mono">Kishangarh · 2 weeks<br>Makrana · 3–4 weeks<br>Bhainslana · 3 weeks<br>Rajnagar · 4 weeks<br>Chimakurthy · 5–6 weeks<br>Carrara · 9–11 weeks<br>Markina · 10–12 weeks<br><br>Updated 04.09.26</p>
+            <p class="v-body">These are the times we actually achieve, not the times we would like to. If a project cannot accommodate eleven weeks for Carrara, say so at the outset and we will show you what is already here.</p>
+          </div>
+        </div>
+
+        <div class="slot">
+          <div class="slot-id">ARCH-06<i>Samples</i></div>
+          <div class="v">
+            <p class="v-display">Samples.</p>
+            <p class="v-body">Up to five, 100 × 100 mm, cut from the actual block in the library and not from a reference set. Free anywhere in India. Charged at cost elsewhere.</p>
+            <p class="v-body">A sample tells you the colour and the finish. It cannot tell you the drawing, because the drawing is three metres wide. For that you need the viewing.</p>
+            <p class="v-mono">Fields: Practice · Delivery address · Stones (from your selection) &nbsp;·&nbsp; Confirmation: Cut and dispatched on [date].</p>
+          </div>
+        </div>
+
+        <div class="slot">
+          <div class="slot-id">ARCH-07<i>Questions we are asked · the FAQ set. Sits in the page's existing utility rhythm, above the trade sign-in.</i></div>
+          <div class="v">
+            <p class="v-display">Questions we are asked.</p>
+            <p class="v-body"><strong>Can I reserve a block before the client has approved it?</strong><br>Yes, for twenty-eight days, without payment. After that we will either take a deposit or release it, and we will tell you which before the date rather than after.</p>
+            <p class="v-body" style="margin-top:14px"><strong>Will the second order match the first?</strong><br>Only if it comes from the same block. Ask us for the whole block at the outset — it is almost always cheaper than a matched re-order, and usually impossible to obtain later at any price.</p>
+            <p class="v-body" style="margin-top:14px"><strong>Do you resin or reinforce?</strong><br>Onyx and any slab with a structural fissure is resin-backed, and it is stated on the datasheet. We do not fill or dye colour into a stone to make it look like a better grade, and we do not buy blocks that have had it done to them.</p>
+            <p class="v-body" style="margin-top:14px"><strong>Can we see the actual slabs before shipping?</strong><br>You will see them whether you ask or not. Every bookmatch is dry-laid, chalked and photographed on the atelier floor, and that photograph is sent for approval before anything is crated.</p>
+            <p class="v-body" style="margin-top:14px"><strong>Do you fabricate, or only supply?</strong><br>Both. Cutting, finishing, edge profiles and dry-lay happen here. Installation is by your contractor, to our detail drawings, and we will attend the first day on site anywhere in India at no charge.</p>
+            <p class="v-body" style="margin-top:14px"><strong>What happens if a slab breaks in transit?</strong><br>We replace it from the same block if a slab remains, and from the same bench if one does not. If neither is possible we will tell you immediately, because a fortnight's silence is worse than bad news.</p>
+            <p class="v-body" style="margin-top:14px"><strong>Do you work outside India?</strong><br>Yes. Roughly a fifth of the library leaves the country each year. Freight, crating and documentation are handled here; customs clearance is yours or your agent's.</p>
+            <p class="v-body" style="margin-top:14px"><strong>Is there a minimum order?</strong><br>No. The smallest thing we have supplied was a single 900 mm threshold. The client came to the viewing for it.</p>
+          </div>
+        </div>
+
+        <div class="slot">
+          <div class="slot-id">ARCH-08<i>Trade sign-in</i></div>
+          <div class="v">
+            <p class="v-body">Practices we work with regularly hold an account here: reserved stock, allocation holds and pricing. Pricing does not appear anywhere on the public site and never will.</p>
+            <span class="v-btn">Trade sign-in</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flag">
+        <span class="flag-lab">One addition to Volume Two, needing sign-off</span>
+        <p class="body-s mut">ARCH-07 is a block that Volume Two did not specify. The brief asked for FAQs, and this page is the only one whose layout can carry them without damage — it is explicitly the page permitted density, and the questions sit in the same list rhythm as §4 and §5 with no new component required. It occupies the slot between Samples and Trade sign-in. If you would rather the layout stayed exactly as approved, the eight answers can be distributed into the existing sections instead, at some cost to scannability. The second FAQ set, on the Viewing page, needs no addition — it fits the studio panel already drawn.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 08 DOWNLOADS ================= -->
+<section id="s08" class="wrap sec">
+  <div class="grid-rail">
+    <div class="rail"><span class="rail-num">08</span><p class="rail-title">The Index</p><p class="rail-note">/architects/downloads · headings, group lines, gate copy, row labels.</p></div>
+    <div class="stack g24">
+      <div class="rows">
+        <div class="slot">
+          <div class="slot-id">IDX-01<i>Head</i></div>
+          <div class="v">
+            <p class="v-eyebrow">For architects</p>
+            <p class="v-display">The Index.</p>
+            <p class="v-mono">34 files · Updated 04.09.26</p>
+          </div>
+        </div>
+        <div class="slot">
+          <div class="slot-id">IDX-02<i>Group names and one line each</i></div>
+          <div class="v">
+            <p class="v-body"><strong>The Library.</strong> The full index as a printed document, single stone sheets, and your own selection as a PDF.</p>
+            <p class="v-body"><strong>Technical.</strong> Density, porosity, flexural strength, Ra values, slip resistance and frost resistance, per stone.</p>
+            <p class="v-body"><strong>CAD &amp; BIM.</strong> Edge profiles and fixing details in DWG. Material families for Revit and IFC.</p>
+            <p class="v-body"><strong>3D.</strong> Scanned 8K textures from the actual slabs, Substance files, and presets for V-Ray and Corona.</p>
+            <p class="v-body"><strong>Care.</strong> Sealing, cleaning and repair by finish. Site protection during build, which is where most damage happens.</p>
+            <p class="v-body"><strong>Certificates.</strong> Origin declarations, test reports, packing and freight specifications.</p>
+          </div>
+        </div>
+        <div class="slot">
+          <div class="slot-id">IDX-03<i>Gate · CAD, BIM and 3D only. One field, inline.</i></div>
+          <div class="v">
+            <p class="v-body">A work email, so we can tell you when the family is updated.</p>
+            <p class="v-note">Placeholder: <em>you@practice.com</em> · Button: <em>Download</em> · The file begins immediately in the same row. No confirmation page, no verification email, no account.</p>
+          </div>
+        </div>
+        <div class="slot">
+          <div class="slot-id">IDX-04<i>Row and tray strings</i></div>
+          <div class="v">
+            <p class="v-mono">Column heads: File · Format · Size · Updated<br>Row action: Download &nbsp;→&nbsp; Saved<br>Tray: Download 6 files · 84 MB<br>Group control: Select all technical<br>Freshness flag: Review due</p>
+          </div>
+        </div>
+        <div class="slot">
+          <div class="slot-id">IDX-05<i>File naming convention · applies to every asset produced</i></div>
+          <div class="v">
+            <p class="v-mono">nazara_makrana-albeta_datasheet_v3_2026-09.pdf<br>nazara_edge-profiles_dwg_v2_2026-06.zip<br>nazara_library-index_2026-09.pdf</p>
+            <p class="v-body">Lower case, underscores between parts, hyphens inside a part, version, then year and month. A file that has left the studio should still identify itself two years later on somebody else's desktop.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 09 VIEWING ================= -->
+<div class="band">
+<section id="s09" class="wrap sec" style="border-top:0">
+  <div class="grid-rail">
+    <div class="rail"><span class="rail-num">09</span><p class="rail-title">Request a viewing</p><p class="rail-note">The contact page. Every label, placeholder, error and confirmation.</p></div>
+    <div class="stack g24">
+      <div class="rows" style="--line:#2A322C">
+
+        <div class="slot" style="border-top-color:#2A322C">
+          <div class="slot-id">VIEW-01<i>Head</i></div>
+          <div class="v">
+            <p class="v-display">The library is open by appointment.</p>
+            <p class="v-body">Tell us about the project. We will write within one working day, and we will not put you on a list.</p>
+          </div>
+        </div>
+
+        <div class="slot" style="border-top-color:#2A322C">
+          <div class="slot-id">VIEW-02<i>Form · plate one</i></div>
+          <div class="v">
+            <p class="v-eyebrow">You</p>
+            <p class="v-mono">Name · placeholder: Full name<br>Email · placeholder: Where we should write<br>Practice or studio · placeholder: Optional</p>
+          </div>
+        </div>
+
+        <div class="slot" style="border-top-color:#2A322C">
+          <div class="slot-id">VIEW-03<i>Form · plate two</i></div>
+          <div class="v">
+            <p class="v-eyebrow">The project</p>
+            <p class="v-mono">Location · placeholder: City, country<br>Type · Residence / Hospitality / Retail / Yacht / Aviation / Institutional<br>Approximate area · placeholder: In square metres<br>Anything you already know · placeholder: A stone, a room, a date. Optional.</p>
+          </div>
+        </div>
+
+        <div class="slot" style="border-top-color:#2A322C">
+          <div class="slot-id">VIEW-04<i>Selection pre-fill, consent, submit, states</i></div>
+          <div class="v">
+            <p class="v-body">Three stones from your selection are attached to this request.</p>
+            <p class="v-mono">Consent: You may write to me about this project.<br>Submit: Request a viewing &nbsp;→&nbsp; Sending<br>Success: Your viewing is being arranged. We will write within one working day.<br>Reference line: NZ-V-2026-0184 · 09.09.26</p>
+          </div>
+        </div>
+
+        <div class="slot" style="border-top-color:#2A322C">
+          <div class="slot-id">VIEW-05<i>What a viewing is · the studio panel, above the address</i></div>
+          <div class="v">
+            <p class="v-eyebrow">What happens</p>
+            <p class="v-body">You will be shown between six and twelve blocks, wet, under raking light. Allow two hours. There is no obligation, and nothing is sold in the room.</p>
+            <p class="v-body">If you are travelling far, tell us and we will hold the morning. Most people who come from outside Rajasthan stay in Jaipur the night before.</p>
+          </div>
+        </div>
+
+        <div class="slot" style="border-top-color:#2A322C">
+          <div class="slot-id">VIEW-06<i>How to arrive</i></div>
+          <div class="v">
+            <p class="v-eyebrow">Arriving</p>
+            <p class="v-mono">Madanganj–Kishangarh, Ajmer, Rajasthan 305801<br>26.5877° N &nbsp;74.8560° E<br><br>Ajmer · 30 minutes<br>Kishangarh airport · 15 minutes<br>Jaipur airport · 1 hour 45<br>Delhi · 7 hours by road</p>
+            <p class="v-body">A car can be sent to any of the four. Say so when you write and it will be waiting.</p>
+          </div>
+        </div>
+
+        <div class="slot" style="border-top-color:#2A322C">
+          <div class="slot-id">VIEW-07<i>Questions · the second FAQ set. Fits the studio panel as drawn; no new component.</i></div>
+          <div class="v">
+            <p class="v-body"><strong>Do I need to bring anything?</strong><br>Plans, if they exist. A photograph of the room in its own light is more useful than a moodboard.</p>
+            <p class="v-body" style="margin-top:14px"><strong>Can I come without a project?</strong><br>Yes. Architects come to look at benches they are not buying from, and it is how most of our long relationships started.</p>
+            <p class="v-body" style="margin-top:14px"><strong>Will I be shown everything?</strong><br>No. You will be shown what suits the room you described. Being shown forty-one stones is not a service; it is an abdication.</p>
+            <p class="v-body" style="margin-top:14px"><strong>Can I buy on the day?</strong><br>You can reserve on the day. Nothing is invoiced in the viewing room, by policy, and we will not discuss price while you are standing in front of the stone.</p>
+          </div>
+        </div>
+
+        <div class="slot" style="border-top-color:#2A322C;border-bottom-color:#2A322C">
+          <div class="slot-id">VIEW-08<i>Other doors</i></div>
+          <div class="v">
+            <p class="v-mono">Trade · trade@nazara.in<br>Press · press@nazara.in<br>Work with us · atelier@nazara.in</p>
+            <p class="v-note">No telephone number in the header. No WhatsApp float, no live chat, no callback request. A phone number appears in the confirmation email only, once a viewing is arranged.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ================= 10 TESTIMONY ================= -->
+<section id="s10" class="wrap sec">
+  <div class="grid-rail">
+    <div class="rail"><span class="rail-num">10</span><p class="rail-title">Testimony</p><p class="rail-note">Three quotations, placed as pull quotes. Never a carousel.</p></div>
+    <div class="stack g32">
+
+      <div class="stack g24">
+        <h2 class="h2">A brand at this altitude does not run testimonials. It gets quoted.</h2>
+        <p class="body mut">The format is a single editorial pull quote set in Bodoni at h3, placed inside a Work page between two photographs, attributed to the architect of that project. One per Work page, maximum. No slider, no star rating, no logo wall, no "what our clients say", and nothing on the homepage — a homepage that has to tell you it is trusted is not.</p>
+      </div>
+
+      <div class="flag">
+        <span class="flag-lab">These are specimens, not quotations</span>
+        <p class="body-s mut">The three below are written to establish length, register and subject matter. They are <strong style="color:var(--ink);font-weight:500">not real quotations and the attributions are invented</strong>. Nothing here may be published in any form. Before launch, each must be replaced with words a named person actually said or wrote, with signed permission held on file alongside the project photographs. If real quotations of this quality cannot be obtained, ship the Work pages without the module — an absent pull quote costs nothing, and a fabricated one costs the brand.</p>
+      </div>
+
+      <div class="cols cols-3">
+        <div class="plate">
+          <span class="plate-lab">Specimen · what a good one does</span>
+          <div class="v">
+            <p class="v-h">"They talked us out of the stone we came for, and were right. I have not had that conversation with a supplier before or since."</p>
+            <p class="v-mono">[Architect] · [Practice] · Private Residence, Jodhpur</p>
+          </div>
+          <p class="body-s mut-3" style="margin-top:16px">Praises a refusal, not a product. The most persuasive thing a client can say about this brand is that it said no.</p>
+        </div>
+        <div class="plate">
+          <span class="plate-lab">Specimen · the operational one</span>
+          <div class="v">
+            <p class="v-h">"The dry-lay photograph arrived on a Tuesday. We moved two slabs on the drawing and the wall was right on site four weeks later."</p>
+            <p class="v-mono">[Architect] · [Practice] · Hotel, 42 keys, Udaipur</p>
+          </div>
+          <p class="body-s mut-3" style="margin-top:16px">Specific, procedural, checkable. Reads as a colleague's account rather than an endorsement.</p>
+        </div>
+        <div class="plate">
+          <span class="plate-lab">Specimen · the long view</span>
+          <div class="v">
+            <p class="v-h">"Four years of marks on the floor. The client thinks it is the best thing in the room. So do I."</p>
+            <p class="v-mono">[Architect] · [Practice] · Flagship, Colaba</p>
+          </div>
+          <p class="body-s mut-3" style="margin-top:16px">Twenty-two words. Takes the material's supposed weakness and makes it the point.</p>
+        </div>
+      </div>
+
+      <div class="cols cols-2">
+        <div class="stack g16">
+          <p class="label">Rules for obtaining and setting them</p>
+          <ul class="vlist">
+            <li><b>Ask a question, not for a testimonial.</b> "What surprised you about working with us?" produces usable sentences. "Would you recommend us?" produces a brochure.</li>
+            <li><b>Twenty-five words or fewer.</b> Longer, and it stops being a quotation and becomes a case study.</li>
+            <li><b>Never edit for flattery.</b> Trimming for length is permitted; adding an adjective is not.</li>
+            <li><b>Attribute fully or not at all</b> — name, practice, project. An unattributed quotation is worth less than no quotation.</li>
+            <li><b>Never quote a private client.</b> Architects and operators only. A principal's words about their own house do not belong on a website.</li>
+            <li><b>One per page. Never two.</b></li>
+          </ul>
+        </div>
+        <div class="stack g16">
+          <p class="label">Press, if and when it exists</p>
+          <p class="body-s mut">Where a publication has written about a project, the citation replaces the pull quote and is set identically: the sentence, then the masthead and date in mono. No logo, no "as featured in", no press page. Preferred outlets, in order of usefulness to this audience: Domus, Casabella, Architectural Digest India, Wallpaper*, The Architectural Review, Dezeen. A single sentence in Domus is worth more here than a hundred in the trade press, and should be treated accordingly — one line, set large, and no announcement of the fact.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 11 SEO ================= -->
+<section id="s11" class="wrap sec">
+  <div class="grid-rail">
+    <div class="rail"><span class="rail-num">11</span><p class="rail-title">SEO &amp; metadata</p><p class="rail-note">Titles, descriptions, OG cards. Written to be read, not to rank on volume.</p></div>
+    <div class="stack g32">
+
+      <p class="body mut">The search strategy is narrow and deliberate: this brand does not compete for "marble supplier India", a term owned by people selling on price. It competes for the stone names, the block-level language, and the architect's own vocabulary — <em>bookmatched Makrana</em>, <em>vein-cut vs cross-cut</em>, <em>backlit onyx thickness</em>. Titles read as though written by a person, because the click-through comes from the specialist who recognises the phrasing.</p>
+
+      <div class="stack g16">
+        <p class="label">Page titles &amp; meta descriptions</p>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Page</th><th>Title <span class="mut-3">(≤ 60)</span></th><th>Meta description <span class="mut-3">(≤ 155)</span></th></tr></thead>
+            <tbody>
+              <tr><td class="k">Home</td><td>Nazara — Marble &amp; Granite, Kishangarh</td><td>A library of forty-one stones, selected block by block in Rajasthan. Open by appointment. Nothing here was designed; everything here was chosen.</td></tr>
+              <tr><td class="k">Library</td><td>The Library — Forty-one Stones | Nazara</td><td>Every stone photographed in one frame, at the same distance, in the same light. Marble, granite, onyx and quartzite with block numbers and slab counts.</td></tr>
+              <tr><td class="k">Stone <span class="mut-3">(template)</span></td><td>[Stone] — [Family] from [Origin] | Nazara</td><td>[Character line, trimmed to 120 characters]. Block [number], [n] slabs in the library. Dimensions, finishes and provenance.</td></tr>
+              <tr><td class="k">Stone <span class="mut-3">(example)</span></td><td>Makrana Albeta — Marble from Nagaur | Nazara</td><td>The house white: dense, cold to the hand, almost without pattern. Block NZ-0412, twelve slabs in the library. Honed, leathered or polished.</td></tr>
+              <tr><td class="k">Works</td><td>Works — Six Rooms | Nazara</td><td>Six projects in which every stone was selected at the bench. Block numbers, sequences and dry-lay photographs, from Jodhpur to Zürich.</td></tr>
+              <tr><td class="k">Work <span class="mut-3">(template)</span></td><td>[Project], [City] — [Year] | Nazara</td><td>[Stone], [cut], [area] m². [One sentence from the brief paragraph, trimmed].</td></tr>
+              <tr><td class="k">Provenance</td><td>Provenance — Six Quarries | Nazara</td><td>Six benches, four of them within a day's drive. In 2025 we saw 406 blocks and kept nineteen. This page explains the other 387.</td></tr>
+              <tr><td class="k">Architects</td><td>For Architects — Specifications &amp; Files | Nazara</td><td>Datasheets, DWG and Revit families, finishes with Ra values, tolerances, honest lead times and samples cut from the actual block.</td></tr>
+              <tr><td class="k">Downloads</td><td>The Index — Downloads | Nazara</td><td>Thirty-four files: technical datasheets, CAD and BIM, 8K scanned textures, care guidance and origin certificates. Most need no account.</td></tr>
+              <tr><td class="k">Viewing</td><td>Request a Viewing | Nazara, Kishangarh</td><td>Six to twelve blocks, wet, under raking light. Two hours, by appointment, in Kishangarh. Nothing is sold in the room.</td></tr>
+              <tr><td class="k">Selection</td><td>Your Selection | Nazara</td><td>The stones you have set aside. Download as a PDF, share the link, or bring the list to a viewing.</td></tr>
+              <tr><td class="k">404</td><td>Nothing here | Nazara</td><td>This page does not exist. The library does.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="cols cols-2">
+        <div class="stack g16">
+          <p class="label">Open Graph &amp; social cards</p>
+          <div class="rows">
+            <div class="row row-2"><div class="row-k">og:image</div><div class="row-v">The typology photograph of the page's own stone, cropped to 1.91:1 from the centre — never a logo, never a composed card with text burned in. On Home, the hero slab.</div></div>
+            <div class="row row-2"><div class="row-k">og:title</div><div class="row-v">The page's h1, not the SEO title. On a shared link a person should see what is on the page.</div></div>
+            <div class="row row-2"><div class="row-k">og:description</div><div class="row-v">The character line for a stone; the first sentence of the brief for a work; the meta description elsewhere.</div></div>
+            <div class="row row-2"><div class="row-k">og:site_name</div><div class="row-v">Nazara</div></div>
+            <div class="row row-2"><div class="row-k">Twitter card</div><div class="row-v">summary_large_image, same assets. No handle in the copy.</div></div>
+          </div>
+        </div>
+        <div class="stack g16">
+          <p class="label">Structured data &amp; discipline</p>
+          <ul class="vlist">
+            <li><b>Schema:</b> Organization on Home, Product on each stone (with <span class="mono">material</span>, <span class="mono">depth</span>, <span class="mono">width</span>), CreativeWork on each Work, FAQPage on Architects, LocalBusiness on Viewing with the real coordinates and hours.</li>
+            <li><b>Never mark up a price.</b> Omit <span class="mono">offers</span> entirely rather than publish a range.</li>
+            <li><b>No keyword repetition in body copy.</b> If a sentence contains a stone name twice, one of them is for a machine and the copy is worse for it.</li>
+            <li><b>URLs are lower case, hyphenated, and never dated:</b> <span class="mono">/library/makrana-albeta</span>, <span class="mono">/works/private-residence-jodhpur</span>.</li>
+            <li><b>One H1 per page,</b> and it is always the display line already written in this deck.</li>
+            <li><b>hreflang</b> only if a second language ships. English (India) is the default and the source of truth.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 12 ALT TEXT ================= -->
+<section id="s12" class="wrap sec">
+  <div class="grid-rail">
+    <div class="rail"><span class="rail-num">12</span><p class="rail-title">Alt text</p><p class="rail-note">Written for a person who cannot see the photograph, not for a crawler.</p></div>
+    <div class="stack g32">
+
+      <div class="cols cols-2">
+        <div class="stack g16">
+          <p class="label">Doctrine</p>
+          <ul class="vlist">
+            <li><b>Describe what is in the frame, in the order the eye would take it.</b> Subject, light, then context.</li>
+            <li><b>Fifteen words or fewer.</b> Longer alt text is read aloud in full and becomes an obstacle.</li>
+            <li><b>Never begin "Image of" or "Photo of".</b> The screen reader has already said so.</li>
+            <li><b>Never repeat the caption.</b> If a mono spec line already states the block number, the alt text does not.</li>
+            <li><b>Purely decorative images take <span class="mono">alt=""</span></b> — but there are none in this site, because the site has no decoration.</li>
+            <li><b>No stone name stuffing.</b> The stone is named once, where it is the subject.</li>
+          </ul>
+        </div>
+        <div class="stack g16">
+          <p class="label">Written examples, by slot</p>
+          <div class="rows">
+            <div class="row row-2"><div class="row-k">Home hero</div><div class="row-v">"A white marble slab standing upright in a dark room, lit from the left at a low angle."</div></div>
+            <div class="row row-2"><div class="row-k">Long look 1</div><div class="row-v">"Water running down a dry slab, the wet edge advancing as a dark line."</div></div>
+            <div class="row row-2"><div class="row-k">Long look 2</div><div class="row-v">"A hand-held lamp held almost flat against a slab face, dust visible in the beam."</div></div>
+            <div class="row row-2"><div class="row-k">Long look 3</div><div class="row-v">"Two workers rotating a slab on a steel A-frame in a saw shed."</div></div>
+            <div class="row row-2"><div class="row-k">Typology tile</div><div class="row-v">"Makrana Albeta: a near-white slab with fine grey drift, shot square against a black wall."</div></div>
+            <div class="row row-2"><div class="row-k">Work hero</div><div class="row-v">"A courtyard house at dusk, its ground floor lined in pale marble, lit from within."</div></div>
+            <div class="row row-2"><div class="row-k">Work detail</div><div class="row-v">"A mitred marble corner meeting a plaster wall across a twelve-millimetre shadow gap."</div></div>
+            <div class="row row-2"><div class="row-k">Quarry</div><div class="row-v">"Stepped white terraces cut into a hillside, a truck at the base for scale."</div></div>
+            <div class="row row-2"><div class="row-k">Craft portrait</div><div class="row-v">"A selector's hands chalking a block number onto wet stone at the quarry bench."</div></div>
+            <div class="row row-2"><div class="row-k">Finish macro</div><div class="row-v">"Leathered black granite in raking light, its texture reading as woven cloth."</div></div>
+            <div class="row row-2"><div class="row-k">Backlit onyx</div><div class="row-v">"A honey onyx wall lit from behind, its banding running horizontally like a horizon."</div></div>
+            <div class="row row-2"><div class="row-k">Dry-lay</div><div class="row-v">"Eleven numbered slabs laid in sequence on a workshop floor, chalk marks between them."</div></div>
+            <div class="row row-2"><div class="row-k">Bookmatch viewer</div><div class="row-v">"Two mirrored slabs meeting at a centre line, the vein opening symmetrically."</div></div>
+            <div class="row row-2"><div class="row-k">Drawn map</div><div class="row-v">"An outline map of Rajasthan with six marked quarry locations."</div></div>
+            <div class="row row-2"><div class="row-k">Wordmark</div><div class="row-v"><span class="mono">alt="Nazara"</span> — the name alone. Never "Nazara logo".</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 13 HOUSE STYLE ================= -->
+<section id="s13" class="wrap sec">
+  <div class="grid-rail">
+    <div class="rail"><span class="rail-num">13</span><p class="rail-title">House style</p><p class="rail-note">Numbers, dates, units, capitals. Settle these once and the site stays coherent for a decade.</p></div>
+    <div class="stack g24">
+      <div class="tw">
+        <table>
+          <thead><tr><th>Case</th><th>House style</th><th>Never</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Numerals in display type</td><td>Words — "Forty-one stones", "Six rooms". Except where the number is the point: "406 blocks were seen."</td><td class="dont">41 Stones</td></tr>
+            <tr><td class="k">Numerals in technical copy</td><td>Figures, always, with tabular lining: 41 · 3200 × 1900 · 20 mm</td><td class="dont">twenty millimetres</td></tr>
+            <tr><td class="k">Dimensions</td><td>Length × width × thickness, thin space around ×, unit once at the end: 3200 × 1900 × 20 mm</td><td class="dont">3200mm x 1900mm</td></tr>
+            <tr><td class="k">Units</td><td>Thin space before: 20 mm · 610 m² · 0.2 µm. Millimetres for stone, square metres for area.</td><td class="dont">20mm · 610sqm · 610 sq. ft.</td></tr>
+            <tr><td class="k">Dates</td><td>DD.MM.YY in mono contexts: 18.03.26. In prose: 18 March 2026.</td><td class="dont">03/18/26 · 18th March</td></tr>
+            <tr><td class="k">Coordinates</td><td>Four decimals, degree symbol, cardinal letter: 26.5877° N 74.8560° E</td><td class="dont">26.5877N, 74.856E</td></tr>
+            <tr><td class="k">Block numbers</td><td>NZ- prefix, four digits, hyphen, never spaced: NZ-0412</td><td class="dont">NZ 412 · #NZ0412</td></tr>
+            <tr><td class="k">Stone names</td><td>Title case, no quotation marks in prose, single quotes in a specification line only: 'MAKRANA ALBETA'</td><td class="dont">makrana albeta · "Makrana Albeta"</td></tr>
+            <tr><td class="k">Capitals</td><td>Sentence case in all display and body copy. Capitals come from the label and button tokens, never typed.</td><td class="dont">Typing IN CAPS in the CMS</td></tr>
+            <tr><td class="k">The brand name</td><td>Nazara. Roman, no accent, no italic, never all-caps in prose.</td><td class="dont">NAZARA · Nazara™ · nazara</td></tr>
+            <tr><td class="k">Spelling</td><td>British English throughout: colour, metre, catalogue, specialised. Indian English conventions for place names.</td><td class="dont">color · meter</td></tr>
+            <tr><td class="k">Punctuation</td><td>Serial comma only where it removes ambiguity. Em dashes spaced en dashes — like this. No semicolons in display type.</td><td class="dont">Ellipses for drama…</td></tr>
+            <tr><td class="k">Quotations</td><td>Double curly quotes. Attribution in mono beneath, never inline.</td><td class="dont">'single' · straight quotes</td></tr>
+            <tr><td class="k">Lists in prose</td><td>Middot-separated in mono: Polished · Honed · Leathered · Sandblasted</td><td class="dont">Bulleted lists in body copy</td></tr>
+            <tr><td class="k">Currency</td><td>Never appears on the public site, in any currency, in any context.</td><td class="dont">From ₹ · POA · Price on request</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="plate">
+        <span class="plate-lab">Word count, whole site</span>
+        <p class="body-s mut">Home 140 · Library 60 · a stone entry 180 × 41 · Works index 70 · a work entry 260 × 6 · Provenance 640 · Architects 900 · Index 220 · Viewing 380. Roughly <strong style="color:var(--ink);font-weight:500">eleven thousand words</strong> across the whole site, of which more than two-thirds are stone descriptions. That distribution is correct and should be defended: the stone entries are the product, and every word taken out of them to make room for a paragraph about the company is a word spent badly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="band">
+  <footer class="wrap" style="padding:64px 24px 80px">
+    <div class="stack g24">
+      <div class="mark" style="font-size:clamp(32px,6vw,58px)">Nazara</div>
+      <hr class="hr">
+      <div style="display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between">
+        <span class="mono-s mut-3">COPY DECK · VOLUME THREE · 2026</span>
+        <span class="mono-s mut-3">LAYOUTS UNCHANGED FROM VOLUME TWO · VOICE UNCHANGED FROM VOLUME ONE</span>
+      </div>
+    </div>
+  </footer>
+</div>

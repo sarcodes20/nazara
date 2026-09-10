@@ -1,0 +1,2036 @@
+<title>Nazara Brand Manual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap">
+
+<style>
+/* ============================================================
+   NAZARA — BRAND & INTERFACE SYSTEM, VOLUME ONE
+   Tokens first. Every colour in this document resolves from
+   the block below, in all three theme states.
+   ============================================================ */
+
+:root {
+  /* --- Grounds (light: "Daylight") --- */
+  --ground:        #EAEBE4;
+  --surface:       #F4F5F0;
+  --surface-2:     #FBFBF8;
+
+  /* --- Ink --- */
+  --ink:           #141814;
+  --ink-2:         #565B52;
+  --ink-3:         #878C81;
+
+  /* --- Line --- */
+  --line:          #D2D4C9;
+  --line-2:        #B4B8AA;
+
+  /* --- Accent: Backlight (light-ground variant) --- */
+  --backlight:     #B5822F;
+  --backlight-ink: #7A5620;
+
+  /* --- Semantic --- */
+  --good:          #4C6B52;
+  --bad:           #9A3B2E;
+  --warn:          #8A6B22;
+
+  /* --- Inversion pair --- */
+  --inverse-ground: #0F1411;
+  --inverse-ink:    #EDEEE8;
+
+  /* --- Type --- */
+  --f-display: "Bodoni Moda", Didot, "Bodoni MT", Georgia, "Times New Roman", serif;
+  --f-ui:      Archivo, "Helvetica Neue", Helvetica, Arial, "Segoe UI", system-ui, sans-serif;
+  --f-mono:    "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* --- Motion --- */
+  --ease-stone: cubic-bezier(0.16, 1, 0.30, 1);
+  --ease-cut:   cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-lift:  cubic-bezier(0.33, 0, 0.00, 1);
+
+  /* --- Rhythm --- */
+  --gutter: 32px;
+  --margin: 80px;
+  --rail: 168px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground:        #0F1411;
+    --surface:       #171E19;
+    --surface-2:     #1F2821;
+    --ink:           #E9EBE4;
+    --ink-2:         #A5AA9E;
+    --ink-3:         #737969;
+    --line:          #2A322C;
+    --line-2:        #3D473F;
+    --backlight:     #E0B278;
+    --backlight-ink: #E0B278;
+    --good:          #86A98D;
+    --bad:           #D98878;
+    --warn:          #C79B45;
+    --inverse-ground: #EAEBE4;
+    --inverse-ink:    #141814;
+  }
+}
+
+:root[data-theme="dark"] {
+  --ground:        #0F1411;
+  --surface:       #171E19;
+  --surface-2:     #1F2821;
+  --ink:           #E9EBE4;
+  --ink-2:         #A5AA9E;
+  --ink-3:         #737969;
+  --line:          #2A322C;
+  --line-2:        #3D473F;
+  --backlight:     #E0B278;
+  --backlight-ink: #E0B278;
+  --good:          #86A98D;
+  --bad:           #D98878;
+  --warn:          #C79B45;
+  --inverse-ground: #EAEBE4;
+  --inverse-ink:    #141814;
+}
+
+/* The Viewing Room is dark by brand rule, in either theme.
+   It re-declares the same token names for its subtree. */
+.band {
+  --ground:        #0F1411;
+  --surface:       #171E19;
+  --surface-2:     #1F2821;
+  --ink:           #E9EBE4;
+  --ink-2:         #A5AA9E;
+  --ink-3:         #737969;
+  --line:          #2A322C;
+  --line-2:        #3D473F;
+  --backlight:     #E0B278;
+  --backlight-ink: #E0B278;
+  --good:          #86A98D;
+  --bad:           #D98878;
+  --warn:          #C79B45;
+  background: var(--ground);
+  color: var(--ink);
+}
+
+/* ------------------------------------------------------------ base */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--f-ui);
+  font-size: 17px;
+  line-height: 1.65;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+p { margin: 0; }
+h1, h2, h3, h4 { margin: 0; font-weight: 400; text-wrap: balance; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+a { color: inherit; }
+:focus-visible {
+  outline: 1px solid var(--backlight);
+  outline-offset: 3px;
+}
+
+/* ------------------------------------------------------------ type */
+.display { font-family: var(--f-display); font-weight: 400; letter-spacing: -0.025em; line-height: 0.94; }
+.h1 { font-family: var(--f-display); font-size: clamp(38px, 6vw, 64px); line-height: 1.02; letter-spacing: -0.02em; }
+.h2 { font-family: var(--f-display); font-size: clamp(30px, 4.2vw, 46px); line-height: 1.08; letter-spacing: -0.015em; }
+.h3 { font-family: var(--f-display); font-size: clamp(24px, 2.6vw, 32px); line-height: 1.18; letter-spacing: -0.01em; }
+.h4 { font-family: var(--f-ui); font-size: 20px; font-weight: 500; line-height: 1.3; letter-spacing: -0.005em; }
+
+.lead { font-size: clamp(19px, 2vw, 22px); line-height: 1.55; color: var(--ink-2); max-width: 30em; font-weight: 300; }
+.body { max-width: 62ch; }
+.body-s { font-size: 15px; line-height: 1.6; }
+.mut { color: var(--ink-2); }
+.mut-3 { color: var(--ink-3); }
+
+.label {
+  font-family: var(--f-ui);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: var(--ink-3);
+}
+.mono {
+  font-family: var(--f-mono);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  font-weight: 400;
+}
+.mono-s { font-family: var(--f-mono); font-size: 11.5px; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; }
+
+/* ------------------------------------------------------------ layout */
+.wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.sec { padding: 96px 0; border-top: 1px solid var(--line); }
+.sec:first-of-type { border-top: 0; }
+.band .sec { border-top-color: var(--line); }
+
+.grid-rail {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+@media (min-width: 1000px) {
+  .grid-rail { grid-template-columns: var(--rail) 1fr; gap: 56px; }
+  .rail { position: sticky; top: 40px; align-self: start; }
+}
+.rail-num {
+  font-family: var(--f-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.16em;
+  color: var(--backlight-ink);
+  display: block;
+  margin-bottom: 10px;
+}
+.rail-title {
+  font-family: var(--f-ui);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1.4;
+}
+.rail-note { margin-top: 14px; font-size: 12.5px; line-height: 1.5; color: var(--ink-3); max-width: 22ch; }
+
+.stack { display: flex; flex-direction: column; }
+.g8  { gap: 8px; }  .g12 { gap: 12px; } .g16 { gap: 16px; }
+.g24 { gap: 24px; } .g32 { gap: 32px; } .g40 { gap: 40px; }
+.g56 { gap: 56px; } .g72 { gap: 72px; }
+
+.cols { display: grid; gap: 32px; grid-template-columns: 1fr; }
+@media (min-width: 720px) { .cols-2 { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 720px) { .cols-3 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .cols-3 { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 860px) { .cols-4 { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 520px) and (max-width: 859px) { .cols-4 { grid-template-columns: repeat(2, 1fr); } }
+
+.hr { height: 1px; background: var(--line); border: 0; margin: 0; }
+
+/* ------------------------------------------------------------ specimen plate (a drawing sheet) */
+.plate {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  padding: 28px;
+  position: relative;
+}
+.plate-lab {
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  display: block;
+  margin-bottom: 20px;
+}
+.plate-dark { background: #0F1411; border-color: #2A322C; color: #E9EBE4; }
+
+/* ------------------------------------------------------------ spec rows */
+.rows { display: flex; flex-direction: column; }
+.row {
+  display: grid;
+  gap: 4px 24px;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+  align-items: baseline;
+}
+.row:last-child { border-bottom: 1px solid var(--line); }
+@media (min-width: 760px) {
+  .row-2 { grid-template-columns: 200px 1fr; }
+  .row-3 { grid-template-columns: 190px 150px 1fr; }
+}
+.row-k { font-family: var(--f-ui); font-size: 13px; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink); }
+.row-v { font-size: 15px; line-height: 1.55; color: var(--ink-2); }
+
+/* ------------------------------------------------------------ tables */
+.tw { overflow-x: auto; border: 1px solid var(--line); background: var(--surface); }
+table { border-collapse: collapse; width: 100%; min-width: 640px; }
+th, td {
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+  font-size: 13.5px;
+  vertical-align: top;
+}
+th {
+  font-family: var(--f-ui);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+td { color: var(--ink-2); }
+td.k { color: var(--ink); font-weight: 500; white-space: nowrap; }
+td.n { font-family: var(--f-mono); font-variant-numeric: tabular-nums; font-size: 12.5px; color: var(--ink); white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+
+/* ------------------------------------------------------------ colour swatches */
+.sw { display: grid; grid-template-columns: 56px 1fr; gap: 20px; align-items: start; padding: 18px 0; border-top: 1px solid var(--line); }
+.sw:last-child { border-bottom: 1px solid var(--line); }
+.sw-chip { width: 56px; height: 56px; border: 1px solid rgba(20,24,20,0.14); }
+.band .sw-chip { border-color: rgba(233,235,228,0.16); }
+.sw-name { font-size: 15px; font-weight: 500; color: var(--ink); }
+.sw-hex { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.06em; color: var(--backlight-ink); }
+.sw-role { font-size: 12.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); margin-top: 2px; }
+.sw-why { font-size: 14.5px; line-height: 1.55; color: var(--ink-2); margin-top: 8px; max-width: 58ch; }
+
+/* ------------------------------------------------------------ component specimens */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  padding: 0 32px;
+  border-radius: 0;
+  border: 1px solid transparent;
+  font-family: var(--f-ui);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 240ms var(--ease-cut), color 240ms var(--ease-cut), border-color 240ms var(--ease-cut), letter-spacing 240ms var(--ease-cut);
+  position: relative;
+  background: none;
+}
+.btn-ink { background: var(--ink); color: var(--ground); }
+.btn-ink:hover { letter-spacing: 0.145em; }
+.btn-ink::after {
+  content: ""; position: absolute; left: 0; bottom: 0; height: 1px; width: 0;
+  background: var(--backlight); transition: width 400ms var(--ease-stone);
+}
+.btn-ink:hover::after { width: 100%; }
+.btn-line { border-color: var(--line-2); color: var(--ink); }
+.btn-line:hover { border-color: var(--ink); background: color-mix(in srgb, var(--ink) 5%, transparent); }
+.btn-text {
+  height: auto; padding: 0 0 6px; border: 0; letter-spacing: 0.1em;
+  color: var(--ink); position: relative;
+}
+.btn-text::before { content: ""; position: absolute; left: 0; bottom: 0; height: 1px; width: 100%; background: var(--line-2); }
+.btn-text::after { content: ""; position: absolute; left: 0; bottom: 0; height: 1px; width: 0; background: var(--backlight); transition: width 400ms var(--ease-stone); }
+.btn-text:hover::after { width: 100%; }
+.btn-dis { background: var(--ink); color: var(--ground); opacity: 0.32; cursor: not-allowed; }
+.btn-icon {
+  width: 44px; height: 44px; padding: 0; border-radius: 50%;
+  border: 1px solid var(--line-2); color: var(--ink);
+}
+.btn-icon:hover { border-color: var(--ink); }
+
+.card-demo { display: flex; flex-direction: column; gap: 0; text-decoration: none; }
+.card-img {
+  aspect-ratio: 1.684 / 1;
+  overflow: hidden;
+  background:
+    linear-gradient(112deg, transparent 42%, rgba(255,255,255,0.5) 43.2%, transparent 44%),
+    linear-gradient(104deg, transparent 60%, rgba(255,255,255,0.32) 60.8%, transparent 62%),
+    linear-gradient(120deg, transparent 22%, rgba(255,255,255,0.22) 23%, transparent 24.5%),
+    linear-gradient(150deg, #8E9187 0%, #B7B9AE 38%, #6E7268 72%, #9A9D92 100%);
+}
+.card-img > i {
+  display: block; width: 100%; height: 100%;
+  transition: transform 700ms var(--ease-stone);
+  background: inherit;
+}
+.card-demo:hover .card-img > i { transform: scale(1.03); }
+.card-cap { padding-top: 20px; position: relative; }
+.card-cap::after {
+  content: ""; position: absolute; left: 0; top: 0; height: 1px; width: 0;
+  background: var(--backlight); transition: width 500ms var(--ease-stone);
+}
+.card-demo:hover .card-cap::after { width: 100%; }
+.card-name { font-family: var(--f-display); font-size: 24px; line-height: 1.2; color: var(--ink); }
+.card-spec { font-family: var(--f-mono); font-size: 11.5px; letter-spacing: 0.055em; color: var(--ink-3); margin-top: 8px; font-variant-numeric: tabular-nums; }
+
+.field { display: flex; flex-direction: column; gap: 8px; }
+.field-lab { font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3); }
+.field-in {
+  height: 56px; background: none; border: 0; border-bottom: 1px solid var(--line-2);
+  color: var(--ink); font-family: var(--f-ui); font-size: 17px; padding: 0;
+  transition: border-color 240ms var(--ease-cut);
+}
+.field-in::placeholder { color: var(--ink-3); }
+.field-in:focus { outline: none; border-bottom-color: var(--backlight); border-bottom-width: 1.5px; }
+.field-err .field-in { border-bottom-color: var(--bad); }
+.field-msg { font-size: 12.5px; color: var(--bad); }
+
+.navbar {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 88px; padding: 0 28px; border-bottom: 1px solid var(--line);
+}
+.nav-links { display: flex; gap: 30px; align-items: center; flex-wrap: wrap; }
+.nav-link {
+  font-size: 13px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink); text-decoration: none; position: relative; padding-bottom: 4px;
+}
+.nav-link::after {
+  content: ""; position: absolute; left: 0; bottom: 0; height: 1px; width: 0;
+  background: var(--backlight); transition: width 320ms var(--ease-stone);
+}
+.nav-link:hover::after { width: 100%; }
+.mark {
+  font-family: var(--f-display); font-size: 22px; letter-spacing: 0.32em;
+  text-transform: uppercase; color: var(--ink); padding-left: 0.32em;
+}
+
+/* ------------------------------------------------------------ misc figures */
+.gridfig { display: grid; grid-template-columns: repeat(12, 1fr); gap: 6px; height: 120px; }
+.gridfig span { background: color-mix(in srgb, var(--backlight) 22%, transparent); border-top: 1px solid var(--backlight); }
+.gridfig-8 { grid-template-columns: repeat(8, 1fr); }
+.gridfig-4 { grid-template-columns: repeat(4, 1fr); }
+
+.spacebar { display: flex; align-items: center; gap: 16px; padding: 7px 0; }
+.spacebar b { display: block; height: 10px; background: var(--ink); flex: none; }
+.spacebar em { font-family: var(--f-mono); font-size: 11.5px; font-style: normal; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+
+.icons { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 4px; }
+.icon-cell {
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  padding: 22px 8px; border: 1px solid var(--line); margin: -0.5px;
+}
+.icon-cell svg { color: var(--ink); }
+.icon-cell span { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); text-align: center; }
+
+.dont { color: var(--bad); }
+.do { color: var(--good); }
+.vlist li { padding: 9px 0; border-top: 1px solid var(--line); font-size: 14.5px; color: var(--ink-2); line-height: 1.5; }
+.vlist li:first-child { border-top: 0; }
+.vlist b { color: var(--ink); font-weight: 500; }
+
+.pos {
+  position: relative; aspect-ratio: 1.3 / 1; border: 1px solid var(--line);
+  background: var(--surface); min-height: 300px;
+}
+.pos-ax { position: absolute; background: var(--line); }
+.pos-dot { position: absolute; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+.pos-dot i { width: 7px; height: 7px; background: var(--ink-3); border-radius: 50%; flex: none; }
+.pos-dot span { font-family: var(--f-mono); font-size: 10.5px; letter-spacing: 0.06em; color: var(--ink-3); }
+.pos-dot.me i { width: 11px; height: 11px; background: var(--backlight); }
+.pos-dot.me span { color: var(--ink); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; }
+.pos-lab { position: absolute; font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); }
+
+pre.tokens {
+  margin: 0; padding: 28px; overflow-x: auto;
+  background: var(--surface); border: 1px solid var(--line);
+  font-family: var(--f-mono); font-size: 12.5px; line-height: 1.85;
+  color: var(--ink-2); letter-spacing: 0.01em;
+}
+pre.tokens b { color: var(--ink); font-weight: 500; }
+pre.tokens i { color: var(--ink-3); font-style: normal; }
+pre.tokens u { color: var(--backlight-ink); text-decoration: none; }
+
+/* the wet line — loading specimen */
+.wet {
+  font-family: var(--f-display);
+  font-size: clamp(44px, 8vw, 84px);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  padding-left: 0.3em;
+  color: var(--ink-3);
+  line-height: 1.2;
+}
+@supports (-webkit-background-clip: text) {
+  .wet {
+    background-image: linear-gradient(to bottom, var(--ink-3) 50%, var(--ink) 50%);
+    background-size: 100% 200%;
+    background-position: 0 0%;
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: wet 3200ms var(--ease-stone) infinite;
+  }
+}
+@keyframes wet {
+  0%   { background-position: 0 0%; }
+  50%  { background-position: 0 100%; }
+  88%  { background-position: 0 100%; }
+  100% { background-position: 0 100%; }
+}
+
+.cursor-demo {
+  height: 150px; border: 1px solid var(--line); position: relative; overflow: hidden;
+  background:
+    linear-gradient(118deg, transparent 46%, rgba(255,255,255,0.34) 47%, transparent 48%),
+    linear-gradient(150deg, #7C7F76 0%, #A6A99E 45%, #62665D 100%);
+}
+.cursor-ring {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+  width: 78px; height: 78px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.85);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--f-ui); font-size: 9.5px; font-weight: 500; letter-spacing: 0.2em; color: #fff;
+}
+.cursor-dot { position: absolute; left: 22%; top: 30%; width: 6px; height: 6px; border-radius: 50%; background: #fff; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  .wet { color: var(--ink); background-image: none; -webkit-text-fill-color: currentColor; }
+}
+
+/* masthead */
+.mast { padding: 72px 0 88px; }
+.mast-word {
+  font-family: var(--f-display);
+  font-size: clamp(56px, 13vw, 168px);
+  line-height: 0.9;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding-left: 0.06em;
+}
+.toc { display: grid; grid-template-columns: 1fr; gap: 0; }
+@media (min-width: 640px) { .toc { grid-template-columns: 1fr 1fr; column-gap: 48px; } }
+.toc a {
+  display: flex; align-items: baseline; gap: 16px; padding: 13px 0;
+  border-top: 1px solid var(--line); text-decoration: none; color: var(--ink);
+  transition: color 200ms var(--ease-cut);
+}
+.toc a:hover { color: var(--backlight-ink); }
+.toc a span { font-family: var(--f-mono); font-size: 11.5px; color: var(--ink-3); letter-spacing: 0.1em; }
+.toc a b { font-weight: 400; font-size: 15.5px; }
+</style>
+
+<!-- ============================================================
+     MASTHEAD
+     ============================================================ -->
+<header class="wrap mast">
+  <div class="stack g40">
+    <div class="stack g16">
+      <p class="mono" style="color:var(--backlight-ink)">BRAND &amp; INTERFACE SYSTEM · VOLUME ONE · 2026</p>
+      <h1 class="mast-word">Nazara</h1>
+      <p class="label" style="letter-spacing:0.32em">Luxury Marble &amp; Granite Studio · Kishangarh, Rajasthan</p>
+    </div>
+
+    <hr class="hr">
+
+    <div class="cols cols-2" style="gap:48px">
+      <div class="stack g24">
+        <p class="lead" style="max-width:34em;color:var(--ink)">Nazara does not sell stone. It selects views.</p>
+        <p class="body mut">This document is the complete visual language: story, palette, typography, grid, components, motion, photography, iconography and tokens. It is written to be built from without further interpretation. Where a rule is absolute it says <em>always</em> or <em>never</em>. Everything else is judgement, and judgement is the brand.</p>
+      </div>
+      <div>
+        <p class="label" style="margin-bottom:18px">Contents</p>
+        <nav class="toc">
+          <a href="#s01"><span>01</span><b>Brand Story</b></a>
+          <a href="#s02"><span>02</span><b>Moodboard</b></a>
+          <a href="#s03"><span>03</span><b>Colour</b></a>
+          <a href="#s04"><span>04</span><b>Typography</b></a>
+          <a href="#s05"><span>05</span><b>Grid &amp; Spacing</b></a>
+          <a href="#s06"><span>06</span><b>Components</b></a>
+          <a href="#s07"><span>07</span><b>Motion</b></a>
+          <a href="#s08"><span>08</span><b>Photography</b></a>
+          <a href="#s09"><span>09</span><b>Iconography</b></a>
+          <a href="#s10"><span>10</span><b>Design Tokens</b></a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     01 — BRAND STORY
+     ============================================================ -->
+<section id="s01" class="wrap sec">
+  <div class="grid-rail">
+    <div class="rail">
+      <span class="rail-num">01</span>
+      <p class="rail-title">Brand Story</p>
+      <p class="rail-note">The name, the philosophy, the voice, the position.</p>
+    </div>
+
+    <div class="stack g56">
+
+      <div class="stack g24">
+        <h2 class="h1">A nazara is not scenery.<br>It is the thing you stop walking to look at.</h2>
+        <p class="body mut">नज़ारा · نظارہ — Hindi and Urdu, from the Arabic <em>naẓar</em>, "the gaze." The word does not describe a landscape. It describes the act of beholding one. It is a word about the viewer as much as the view.</p>
+        <p class="body mut">Marble is the only building material that exists to be looked at. Its structural case is weak; its optical case is total. A slab is a record of pressure, water, heat and a hundred million years of dark — a drawing made without an audience, by a hand with no intention. Nazara's craft is not manufacture. It is <strong style="color:var(--ink);font-weight:500">selection</strong>: seeing what is there, deciding what it is for, and orienting it so a room can hold it.</p>
+      </div>
+
+      <div class="plate">
+        <span class="plate-lab">Manifesto — the founding text. Reproduced verbatim; never paraphrased, never shortened.</span>
+        <p class="h3" style="max-width:22ch">Nothing here was designed.<br>Everything here was chosen.</p>
+        <p class="body mut" style="margin-top:22px">A block comes out of the hill in the dark. We wet it, rake a light across it, turn it, and look for a long time. Then we take it, or we leave it on the bench. There is no third option, and no amount of money changes the answer.</p>
+      </div>
+
+      <div class="stack g24">
+        <p class="label">The Four Principles</p>
+        <div class="rows">
+          <div class="row row-2">
+            <div class="row-k">I · The Long Look</div>
+            <div class="row-v">Nothing enters the library on a photograph. Every block is seen wet, dry, raked and lit before it is bought. The look takes as long as it takes; slowness is the product, not a bottleneck in it.</div>
+          </div>
+          <div class="row row-2">
+            <div class="row-k">II · The Named Block</div>
+            <div class="row-v">Every slab carries its block number, quarry, bench, cut date and its siblings' whereabouts. Traceability is the luxury. A slab with no history is a surface; a slab with one is a work.</div>
+          </div>
+          <div class="row row-2">
+            <div class="row-k">III · The Room Decides</div>
+            <div class="row-v">Stone is specified for a room, never for a catalogue. We fabricate to the drawing, dry-lay the bookmatch on the floor of the atelier, photograph it, and only then crate it.</div>
+          </div>
+          <div class="row row-2">
+            <div class="row-k">IV · We Say No</div>
+            <div class="row-v">Nazara turns down work: wrong stone, wrong room, wrong reason. Refusal is a service, and it is the only credible proof that the yes means something.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cols cols-2">
+        <div class="stack g16">
+          <p class="label">Emotions to produce</p>
+          <ul class="vlist">
+            <li><b>Stillness</b> — the pace of a gallery, not a showroom.</li>
+            <li><b>Weight</b> — everything on screen should feel like it has mass and consequence.</li>
+            <li><b>Patience</b> — reveals are slow; nothing competes for attention.</li>
+            <li><b>Recognition</b> — the specialist audience should feel addressed as peers.</li>
+            <li><b>Restraint</b> — the brand is never eager. It does not chase.</li>
+          </ul>
+        </div>
+        <div class="stack g16">
+          <p class="label">Emotions to avoid</p>
+          <ul class="vlist">
+            <li><b>Urgency</b> — no countdowns, no "limited stock," no pop-ups.</li>
+            <li><b>Abundance</b> — never brag about volume, range or country count.</li>
+            <li><b>Value</b> — no price signals of any kind, ever.</li>
+            <li><b>Friendliness</b> — warmth comes from craft, not from tone of service.</li>
+            <li><b>Nationalism</b> — India is a fact of provenance, never a flag.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="stack g24">
+        <p class="label">Tone of voice — register: a museum wall label crossed with a shipping manifest</p>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Never write</th><th>Write instead</th><th>Why</th></tr></thead>
+            <tbody>
+              <tr><td class="dont">"One of India's most trusted names in premium marble, with 30+ years of excellence."</td><td class="do">"Kishangarh, since 1994. Six quarries. One library."</td><td>Facts outrank adjectives. Numbers that are small and true beat numbers that are large and vague.</td></tr>
+              <tr><td class="dont">"Exquisite imported Italian marble at unbeatable prices."</td><td class="do">"Statuario Venato. Block 7741, Carrara C. Cut 18 March. Twelve slabs remain."</td><td>Specificity is the luxury signal. Never name a price or imply one.</td></tr>
+              <tr><td class="dont">"Explore our wide range of products!"</td><td class="do">"The library is open by appointment."</td><td>Scarcity of access, not breadth of catalogue. No exclamation marks anywhere in the system.</td></tr>
+              <tr><td class="dont">"We take pride in delivering world-class quality."</td><td class="do">"Every bookmatch is dry-laid and photographed before it is crated."</td><td>Describe the procedure. The reader draws the conclusion.</td></tr>
+              <tr><td class="dont">"5000+ projects · 2000+ collections · 50+ countries"</td><td class="do">"Four hundred and six blocks bought in 2025. Nineteen kept."</td><td>Invert the volume claim. The number you reject is more persuasive than the number you sold.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="body-s mut">Sentence discipline: headlines 4–12 words, no subordinate clauses. Body paragraphs of two sentences maximum on marketing pages. Technical copy uses the trade's own vocabulary without glossing it — <em>gangsaw, bookmatch, quadmatch, vein-cut, fleuri, leathered, resin-backed, first choice</em> — because the audience specifies stone for a living. Banned words, permanently: exquisite, epitome, unparalleled, world-class, one-stop, elevate, curated (as adjective), timeless, luxurious, opulent, bespoke, journey.</p>
+      </div>
+
+      <div class="stack g24">
+        <p class="label">Luxury positioning</p>
+        <p class="body mut">The category competes on two axes and everybody crowds the same corner: more stones, from more countries, faster. Nazara declines the axis entirely. Where StoneX sells <em>mastery</em> (the maker) and Classic Marble sells <em>variety</em> (the catalogue), Nazara sells <em>the gaze</em> (the beholder) — and prices access to it.</p>
+        <div class="pos">
+          <div class="pos-ax" style="left:0;right:0;top:50%;height:1px"></div>
+          <div class="pos-ax" style="top:0;bottom:0;left:50%;width:1px"></div>
+          <div class="pos-lab" style="left:16px;top:14px">↑ Provenance-led</div>
+          <div class="pos-lab" style="left:16px;bottom:14px">↓ Product-led</div>
+          <div class="pos-lab" style="right:16px;bottom:14px">Rarity →</div>
+          <div class="pos-lab" style="left:16px;bottom:36px">← Volume</div>
+          <div class="pos-dot" style="left:22%;top:74%"><i></i><span>Classic Marble</span></div>
+          <div class="pos-dot" style="left:30%;top:40%"><i></i><span>Cosentino</span></div>
+          <div class="pos-dot" style="left:60%;top:60%"><i></i><span>StoneX</span></div>
+          <div class="pos-dot" style="left:68%;top:33%"><i></i><span>Antolini</span></div>
+          <div class="pos-dot" style="left:56%;top:22%"><i></i><span>Salvatori</span></div>
+          <div class="pos-dot me" style="left:80%;top:15%"><i></i><span>Nazara</span></div>
+        </div>
+        <p class="body-s mut-3">Plot is directional, not researched market data — it exists to fix the intended corner and to keep future decisions out of the crowded lower-left.</p>
+      </div>
+
+      <div class="cols cols-3">
+        <div class="plate">
+          <span class="plate-lab">Audience · Primary</span>
+          <p class="body-s mut">Architects and interior designers specifying for a single named project. They arrive with a drawing and a deadline. Give them dimensions, finishes, lead times and slab-level availability without asking them to enquire first.</p>
+        </div>
+        <div class="plate">
+          <span class="plate-lab">Audience · Principal</span>
+          <p class="body-s mut">UHNW private clients and their project managers. They arrive with a reference image and no vocabulary. Give them the story of the block, the room it suits, and the sense that they were shown something not everyone is shown.</p>
+        </div>
+        <div class="plate">
+          <span class="plate-lab">Audience · Volume</span>
+          <p class="body-s mut">Hospitality groups, luxury developers, premium builders. They arrive with a quantity and a repeat requirement. Give them continuity of supply from one block family, and a private index of what is reserved for them.</p>
+        </div>
+      </div>
+
+      <div class="stack g16">
+        <p class="label">The Lexicon — Nazara's own words, used consistently everywhere</p>
+        <div class="rows">
+          <div class="row row-3"><div class="row-k">The Library</div><div class="mono mut-3">Nav · noun</div><div class="row-v">The stone holding. Never "products," "range," "catalogue," "inventory."</div></div>
+          <div class="row row-3"><div class="row-k">A Viewing</div><div class="mono mut-3">CTA · noun</div><div class="row-v">The appointment. Never "book a demo," "get a quote," "enquire now."</div></div>
+          <div class="row row-3"><div class="row-k">The Viewing Room</div><div class="mono mut-3">Place · UI mode</div><div class="row-v">The dark space where stone is shown. Also the name of every dark UI surface.</div></div>
+          <div class="row row-3"><div class="row-k">Provenance</div><div class="mono mut-3">Nav · noun</div><div class="row-v">Quarries, blocks, cut dates, chain of custody. Never "about us."</div></div>
+          <div class="row row-3"><div class="row-k">The Atelier</div><div class="mono mut-3">Nav · noun</div><div class="row-v">Fabrication and finishing. Never "manufacturing," "processing unit," "factory."</div></div>
+          <div class="row row-3"><div class="row-k">Works</div><div class="mono mut-3">Nav · noun</div><div class="row-v">Completed projects. Never "portfolio," "our clients," "case studies."</div></div>
+          <div class="row row-3"><div class="row-k">The Long Look</div><div class="mono mut-3">Ritual</div><div class="row-v">The selection process at the quarry bench. Used in the Journal and in Provenance.</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     02 — MOODBOARD (Viewing Room band)
+     ============================================================ -->
+<div class="band">
+<section id="s02" class="wrap sec">
+  <div class="grid-rail">
+    <div class="rail">
+      <span class="rail-num">02</span>
+      <p class="rail-title">Moodboard</p>
+      <p class="rail-note">Materials, texture, light, architecture, composition, references.</p>
+    </div>
+
+    <div class="stack g56">
+      <div class="stack g24">
+        <h2 class="h1">The room is dark. One thing in it is lit.</h2>
+        <p class="lead">Everything below descends from a single image: a slab standing upright in an unlit room, wet, with one raking light on it and a person standing far enough back to see the whole thing at once.</p>
+      </div>
+
+      <div class="cols cols-2">
+        <div class="stack g16">
+          <p class="label">Materials — the permitted set</p>
+          <ul class="vlist">
+            <li><b>Makrana calcite</b> — warm white, the stone of the Taj Mahal, quarried 90 km from the studio. The house white.</li>
+            <li><b>Verde Guatemala serpentine</b> — the green-black that gives the dark palette its undertone.</li>
+            <li><b>Honey onyx, backlit</b> — the only material permitted to emit light. Source of the accent.</li>
+            <li><b>Unfilled travertine</b> — for texture close-ups, never for hero imagery.</li>
+            <li><b>Unlacquered brass</b> — allowed to brown. Never polished gold, never bright.</li>
+            <li><b>Blackened steel · sandblasted glass · lime plaster · oiled walnut · raw linen · jute</b> — the supporting cast for any set dressing, in that order of preference.</li>
+          </ul>
+        </div>
+        <div class="stack g16">
+          <p class="label">Textures — what the camera is actually looking for</p>
+          <ul class="vlist">
+            <li><b>Gangsaw striation</b> — the fine parallel scoring left by the blade on an unpolished face.</li>
+            <li><b>The wet edge</b> — the dark advancing line as water is poured down a dry slab.</li>
+            <li><b>Chalk on raw block</b> — the quarryman's hand-written block number.</li>
+            <li><b>The 45° mitre</b> — the joint that makes stone look solid rather than clad.</li>
+            <li><b>The shadow gap</b> — 12 mm, the detail that lets a stone plane float.</li>
+            <li><b>Dust on a sill</b> — Kishangarh's white marble dust settles on everything. Do not clean it out of the frame.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cols cols-2">
+        <div class="plate plate-dark">
+          <span class="plate-lab">Lighting doctrine</span>
+          <ul class="vlist">
+            <li><b>Raking, 15°–25°</b> — light skimmed across the surface is the only way crystal and saw-texture read. Default for all stone.</li>
+            <li><b>North light</b> — for interiors. Cool, directional, unglamorous, permanent.</li>
+            <li><b>One pool in a dark room</b> — the Viewing Room condition. Falloff to true black at the frame edge.</li>
+            <li><b>Transmitted</b> — light through onyx or 20 mm marble. Rare, and the only warm light permitted.</li>
+            <li><b>Blue hour</b> — exterior and architecture, the 20 minutes before sunrise, with warm practicals inside.</li>
+            <li class="dont"><b>Never</b> — on-axis flash, fluorescent showroom tubes, mixed colour temperature, light with no visible direction.</li>
+          </ul>
+        </div>
+        <div class="plate plate-dark">
+          <span class="plate-lab">Architecture the brand lives inside</span>
+          <ul class="vlist">
+            <li><b>Peter Zumthor · Therme Vals</b> — stone as stratification; mass and water.</li>
+            <li><b>Mies van der Rohe · Barcelona Pavilion</b> — the golden onyx wall. The original backlit slab.</li>
+            <li><b>Carlo Scarpa · Brion, Olivetti</b> — the step, the joint, the shadow gap, the reverence for an edge.</li>
+            <li><b>Geoffrey Bawa</b> — architecture as a sequence of framed views. The literal translation of the name.</li>
+            <li><b>Studio Mumbai · Bijoy Jain</b> — Indian material craft at world register. The proof it need not read as export trade.</li>
+            <li><b>John Pawson · Vincent Van Duysen</b> — the void, and warmth without ornament.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cols cols-2">
+        <div class="stack g16">
+          <p class="label">Composition rules</p>
+          <ul class="vlist">
+            <li><b>One subject per frame.</b> If two things are interesting, that is two photographs.</li>
+            <li><b>Stone occupies ≤ 60% of an interior frame.</b> Negative space is the price of looking expensive.</li>
+            <li><b>One straight edge always runs parallel to the frame.</b> No accidental tilt, ever.</li>
+            <li><b>Verticals are vertical.</b> Tilt-shift or corrected in post. Non-negotiable.</li>
+            <li><b>The horizon sits on a grid line</b> — 1/3 or 1/2, never between.</li>
+            <li><b>Asymmetry over centring</b> in layout; dead-centre only for the slab typology (§08).</li>
+          </ul>
+        </div>
+        <div class="stack g16">
+          <p class="label">Visual references — photography and print</p>
+          <ul class="vlist">
+            <li><b>Hélène Binet</b> — the definitive reference for architectural light and shadow.</li>
+            <li><b>Edward Burtynsky · Carrara Marble Quarries</b> — the quarry as landscape, seen from above.</li>
+            <li><b>Bernd &amp; Hilla Becher</b> — typology. The model for the slab library (§08).</li>
+            <li><b>Candida Höfer</b> — the empty, symmetrical, unpeopled grand interior.</li>
+            <li><b>Hiroshi Sugimoto · Seascapes</b> — the long look; a horizon and almost nothing else.</li>
+            <li><b>Print:</b> Domus, Casabella, Cabana, The Gentlewoman. <b>Brand:</b> Aman, Loro Piana, Hermès windows, Boffi and Poliform catalogues.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="plate plate-dark">
+        <span class="plate-lab">Anti-references — if the work resembles any of these, it is wrong</span>
+        <p class="body-s" style="color:#A5AA9E">Slabs shot in a lit warehouse with a forklift in frame. Marble on a pure white cutout background. Blue-orange teal grading. A rendered 3D "luxury villa" interior. Stock photography of handshakes, families or smiling staff. Gold gradients. Any typeface with a swash. The word "Since" over a sepia photograph. A flag. A rotating 3D slab viewer. Watermarks. Before/after sliders. Anything with a drop shadow on it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ============================================================
+     03 — COLOUR
+     ============================================================ -->
+<section id="s03" class="wrap sec">
+  <div class="grid-rail">
+    <div class="rail">
+      <span class="rail-num">03</span>
+      <p class="rail-title">Colour</p>
+      <p class="rail-note">Nine brand values, two grounds, one rule about the accent.</p>
+    </div>
+
+    <div class="stack g56">
+      <div class="stack g24">
+        <h2 class="h1">The stone supplies the colour.<br>The interface supplies the silence.</h2>
+        <p class="body mut">The palette is deliberately achromatic with a single warm accent, because every photograph in the system is a coloured object placed on it. A saturated interface would compete with the product it exists to frame. Two decisions carry the whole palette: the neutrals are biased <em>green</em>, not warm; and the accent is defined as <em>light</em>, not as pigment.</p>
+      </div>
+
+      <div class="stack g32">
+        <div class="stack g16">
+          <p class="label">Primary — the two grounds</p>
+          <div>
+            <div class="sw">
+              <div class="sw-chip" style="background:#0F1411"></div>
+              <div>
+                <div class="sw-name">Viewing Room <span class="sw-hex">#0F1411</span></div>
+                <div class="sw-role">Primary brand colour · dark ground · footer · overlays · mega menu</div>
+                <p class="sw-why">Not black. A green-black taken from serpentine, four points of green above neutral. Against pure #000 the whites in a marble photograph go slightly blue and dead; against a green-black they read warmer and more luminous by simultaneous contrast. This is the single most consequential colour decision in the system, and it is optical, not decorative.</p>
+              </div>
+            </div>
+            <div class="sw">
+              <div class="sw-chip" style="background:#EAEBE4"></div>
+              <div>
+                <div class="sw-name">Quarry Dust <span class="sw-hex">#EAEBE4</span></div>
+                <div class="sw-role">Primary light ground · default page background</div>
+                <p class="sw-why">The pale green-grey of marble dust settled on every surface in Kishangarh. Chosen over the default warm cream because cream reads as heritage and hospitality; this reads as mineral and as a gallery wall. It also sits one step below pure white, so a white slab photographed on it still looks like the brightest thing on the page.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stack g16">
+          <p class="label">Backgrounds &amp; surfaces — elevation is expressed by ground change, never by shadow</p>
+          <div>
+            <div class="sw">
+              <div class="sw-chip" style="background:#F4F5F0"></div>
+              <div>
+                <div class="sw-name">Makrana <span class="sw-hex">#F4F5F0</span></div>
+                <div class="sw-role">Light surface · specimen plates · filter rails · forms</div>
+                <p class="sw-why">Named for the calcite quarried 90 km from the studio. One step above the ground; used for any panel that should read as a sheet laid on the page.</p>
+              </div>
+            </div>
+            <div class="sw">
+              <div class="sw-chip" style="background:#FBFBF8"></div>
+              <div>
+                <div class="sw-name">Bone <span class="sw-hex">#FBFBF8</span></div>
+                <div class="sw-role">Highest light surface · modals · image mounts · dropdowns</div>
+                <p class="sw-why">The nearest the system comes to white. Reserved for the topmost layer, so that "raised" is legible without a single shadow being drawn.</p>
+              </div>
+            </div>
+            <div class="sw">
+              <div class="sw-chip" style="background:#171E19"></div>
+              <div>
+                <div class="sw-name">Serpentine <span class="sw-hex">#171E19</span></div>
+                <div class="sw-role">Dark surface · cards and panels inside the Viewing Room</div>
+                <p class="sw-why">The dark-mode counterpart to Makrana. Same green bias, so a panel never reads as a grey patch floating on a green-black field.</p>
+              </div>
+            </div>
+            <div class="sw">
+              <div class="sw-chip" style="background:#1F2821"></div>
+              <div>
+                <div class="sw-name">Guatemala <span class="sw-hex">#1F2821</span></div>
+                <div class="sw-role">Highest dark surface · modals · hovered dark rows</div>
+                <p class="sw-why">Named for Verde Guatemala, the stone the whole dark family is sampled from. The hover state of every dark surface.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stack g16">
+          <p class="label">Text — four values, and no others</p>
+          <div>
+            <div class="sw">
+              <div class="sw-chip" style="background:#141814"></div>
+              <div>
+                <div class="sw-name">Nero <span class="sw-hex">#141814</span></div>
+                <div class="sw-role">Primary text on light · 15.9:1 on Quarry Dust</div>
+                <p class="sw-why">Two points lighter than the Viewing Room so that headline text on a light page and a dark panel are visibly different objects. Never pure black — pure black on a soft ground looks printed on, not set in.</p>
+              </div>
+            </div>
+            <div class="sw">
+              <div class="sw-chip" style="background:#565B52"></div>
+              <div>
+                <div class="sw-name">Slate <span class="sw-hex">#565B52</span></div>
+                <div class="sw-role">Secondary text on light · body copy at length · 6.9:1</div>
+                <p class="sw-why">Long-form body sits here rather than at full Nero. It lowers the shout of a full page of text and lets headlines hold rank without going larger.</p>
+              </div>
+            </div>
+            <div class="sw">
+              <div class="sw-chip" style="background:#878C81"></div>
+              <div>
+                <div class="sw-name">Ash <span class="sw-hex">#878C81</span></div>
+                <div class="sw-role">Tertiary · labels, specs, captions, placeholders · 4.6:1</div>
+                <p class="sw-why">The floor for text of any kind. Nothing in the system is set lighter than this on Quarry Dust, including disabled labels.</p>
+              </div>
+            </div>
+            <div class="sw">
+              <div class="sw-chip" style="background:#E9EBE4"></div>
+              <div>
+                <div class="sw-name">Chalk <span class="sw-hex">#E9EBE4</span></div>
+                <div class="sw-role">Primary text on dark · 15.6:1 on Viewing Room</div>
+                <p class="sw-why">Off-white, matched to the light ground so an inverted band reads as the same page turned over rather than a different site. Dark-mode secondary is #A5AA9E, tertiary #737969.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stack g16">
+          <p class="label">Accent — Backlight</p>
+          <div>
+            <div class="sw">
+              <div class="sw-chip" style="background:#E0B278"></div>
+              <div>
+                <div class="sw-name">Backlight <span class="sw-hex">#E0B278</span></div>
+                <div class="sw-role">Accent on dark grounds · hairlines, focus, glow, growing underlines</div>
+                <p class="sw-why">The colour of a 20 mm honey-onyx slab lit from behind — the one warm light the brand allows. <strong style="color:var(--ink);font-weight:500">The rule: Backlight is never a fill.</strong> It appears only as light — a 1 px rule that ignites, an underline that grows, a focus ring, a glow behind an image. No button, badge, chip, banner or block is ever this colour. That single restriction is what keeps a gold accent from reading as a gold accent.</p>
+              </div>
+            </div>
+            <div class="sw">
+              <div class="sw-chip" style="background:#B5822F"></div>
+              <div>
+                <div class="sw-name">Backlight Deep <span class="sw-hex">#B5822F</span></div>
+                <div class="sw-role">The same accent, on light grounds · rules, focus, hover underlines</div>
+                <p class="sw-why">#E0B278 disappears on Quarry Dust. This is its light-ground substitution, carrying the identical role. Substitution is automatic through the token; a designer never picks between them.</p>
+              </div>
+            </div>
+            <div class="sw">
+              <div class="sw-chip" style="background:#7A5620"></div>
+              <div>
+                <div class="sw-name">Backlight Ink <span class="sw-hex">#7A5620</span></div>
+                <div class="sw-role">The only accent value permitted for text on light · 6.1:1</div>
+                <p class="sw-why">Section numbers, hex values, the small mono line under the wordmark. Used sparingly enough that it registers as a marking system, not a colour scheme.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stack g16">
+          <p class="label">Lines — one weight, two strengths, no exceptions</p>
+          <div>
+            <div class="sw">
+              <div class="sw-chip" style="background:#D2D4C9"></div>
+              <div>
+                <div class="sw-name">Hairline <span class="sw-hex">#D2D4C9</span> <span class="mono-s mut-3">/ dark #2A322C</span></div>
+                <div class="sw-role">Default 1 px rule · table rows, section dividers, plate borders</div>
+                <p class="sw-why">The system separates things with lines and space, not with boxes and shadows. This is the workhorse of the entire interface.</p>
+              </div>
+            </div>
+            <div class="sw">
+              <div class="sw-chip" style="background:#B4B8AA"></div>
+              <div>
+                <div class="sw-name">Hairline Strong <span class="sw-hex">#B4B8AA</span> <span class="mono-s mut-3">/ dark #3D473F</span></div>
+                <div class="sw-role">Interactive 1 px rule · input underlines, outline buttons</div>
+                <p class="sw-why">A line the user can act on is always darker than a line that merely divides. That difference alone tells the eye what is interactive.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stack g16">
+          <p class="label">Semantic — drawn from the same rock, never from a stock palette</p>
+          <div>
+            <div class="sw">
+              <div class="sw-chip" style="background:#4C6B52"></div>
+              <div>
+                <div class="sw-name">Quarried · Success <span class="sw-hex">#4C6B52</span> <span class="mono-s mut-3">/ dark #86A98D</span></div>
+                <div class="sw-role">Confirmation · "In library" · viewing confirmed</div>
+                <p class="sw-why">A moss green sampled from the same serpentine family as the dark ground, so a success state never looks like it arrived from a different design system.</p>
+              </div>
+            </div>
+            <div class="sw">
+              <div class="sw-chip" style="background:#9A3B2E"></div>
+              <div>
+                <div class="sw-name">Fissure · Error <span class="sw-hex">#9A3B2E</span> <span class="mono-s mut-3">/ dark #D98878</span></div>
+                <div class="sw-role">Form errors · destructive confirmations · "Reserved"</div>
+                <p class="sw-why">The oxide red of an iron fault line running through a block — the flaw a selector looks for. Muted deliberately: an error in this system is a correction, not an alarm.</p>
+              </div>
+            </div>
+            <div class="sw">
+              <div class="sw-chip" style="background:#8A6B22"></div>
+              <div>
+                <div class="sw-name">On Hold · Warning <span class="sw-hex">#8A6B22</span> <span class="mono-s mut-3">/ dark #C79B45</span></div>
+                <div class="sw-role">"Last slab" · "On hold until…" · lead-time notices</div>
+                <p class="sw-why">Olive-gold, pushed away from Backlight in saturation and hue so the two are never confused. Warning is a state of stock; Backlight is a quality of light.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stack g16">
+          <p class="label">Hover &amp; state map — every interactive change in the system, exhaustively</p>
+          <div class="tw">
+            <table>
+              <thead><tr><th>Element</th><th>Rest</th><th>Hover</th><th>Active / Pressed</th><th>Focus</th></tr></thead>
+              <tbody>
+                <tr><td class="k">Primary button</td><td class="n">#141814 bg</td><td class="n">#1D241E bg + Backlight 1px sweep, tracking +0.025em</td><td class="n">scale 0.99</td><td class="n">1px #B5822F, offset 3px</td></tr>
+                <tr><td class="k">Outline button</td><td class="n">1px #B4B8AA</td><td class="n">1px #141814 + 5% ink wash</td><td class="n">8% ink wash</td><td class="n">1px #B5822F, offset 3px</td></tr>
+                <tr><td class="k">Text link / rule button</td><td class="n">rule #B4B8AA</td><td class="n">rule → #B5822F, grows L→R 400 ms</td><td class="n">rule 1.5px</td><td class="n">1px #B5822F, offset 3px</td></tr>
+                <tr><td class="k">Nav item</td><td class="n">#141814, no rule</td><td class="n">Backlight rule grows L→R 320 ms</td><td class="n">rule full, no motion</td><td class="n">1px ring on label</td></tr>
+                <tr><td class="k">Slab card</td><td class="n">image scale 1.00</td><td class="n">image 1.03 / 700 ms + Backlight rule over caption</td><td class="n">image 1.01</td><td class="n">1px ring around whole card</td></tr>
+                <tr><td class="k">Input</td><td class="n">underline #B4B8AA</td><td class="n">underline #878C81</td><td class="n">—</td><td class="n">underline 1.5px #B5822F, label → #141814</td></tr>
+                <tr><td class="k">Table row (dark)</td><td class="n">#171E19</td><td class="n">#1F2821</td><td class="n">#1F2821</td><td class="n">1px inset ring</td></tr>
+                <tr><td class="k">Icon button</td><td class="n">1px #B4B8AA</td><td class="n">1px #141814, glyph #141814</td><td class="n">scale 0.96</td><td class="n">1px #B5822F, offset 3px</td></tr>
+                <tr><td class="k">Disabled (any)</td><td class="n">opacity 0.32</td><td class="n">no change</td><td class="n">no change</td><td class="n">not focusable</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="plate">
+          <span class="plate-lab">Accessibility floor</span>
+          <p class="body-s mut">Body text ≥ 4.5:1 against its own ground; large display type ≥ 3:1 and in practice never below 7:1. Colour is never the only carrier of meaning: "Reserved" gets the word as well as the colour; a form error gets a message as well as a red rule. Focus is always a visible 1 px Backlight ring at 3 px offset, on every interactive element including cards and gallery tiles. Minimum touch target 44 × 44 px regardless of visual size.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     04 — TYPOGRAPHY
+     ============================================================ -->
+<section id="s04" class="wrap sec">
+  <div class="grid-rail">
+    <div class="rail">
+      <span class="rail-num">04</span>
+      <p class="rail-title">Typography</p>
+      <p class="rail-note">Three faces, three registers: poetry, practice, proof.</p>
+    </div>
+
+    <div class="stack g56">
+      <div class="stack g24">
+        <h2 class="h1">The hairline in a Didone is the vein in the stone.</h2>
+        <p class="body mut">The competition sets everything in one grotesque, which is why it reads corporate. Nazara uses three faces with strictly separated jobs. A high-contrast Didone carries the brand's voice, because its hairline-to-stem contrast is the same optical event as a white vein crossing dark marble. A neutral grotesque carries the studio's voice. A technical monospace carries the stone's own voice — every dimension, block number and coordinate in the system.</p>
+      </div>
+
+      <div class="stack g32">
+        <div class="plate">
+          <span class="plate-lab">Display &amp; Headline — Bodoni Moda · optical size axis 6–96 · weights 400, 500</span>
+          <p class="display" style="font-size:clamp(40px,8vw,92px);margin-bottom:6px">Makrana, in daylight</p>
+          <p class="display" style="font-size:clamp(28px,4vw,46px);font-style:italic;color:var(--ink-2)">Block 7741, cut on the eighteenth of March</p>
+          <div class="rows" style="margin-top:26px">
+            <div class="row row-2"><div class="row-k">Role</div><div class="row-v">Every headline 32 px and above. Slab names. Pull quotes. The wordmark. Nothing else.</div></div>
+            <div class="row row-2"><div class="row-k">Case</div><div class="row-v">Sentence case, always. Uppercase Didone reads as fashion masthead; sentence case reads as architectural monograph. The only uppercase Bodoni in the system is the wordmark itself.</div></div>
+            <div class="row row-2"><div class="row-k">Optical size</div><div class="row-v">Set <span class="mono">font-optical-sizing: auto</span>. At 96 the hairlines thin correctly; forcing a low opsz at display size is the single most common way to make this face look cheap.</div></div>
+            <div class="row row-2"><div class="row-k">Italic</div><div class="row-v">Permitted for dates, Latin stone names and single-line pull quotes. Never for a whole paragraph.</div></div>
+            <div class="row row-2"><div class="row-k">Fallback</div><div class="row-v"><span class="mono">"Bodoni Moda", Didot, "Bodoni MT", Georgia, "Times New Roman", serif</span></div></div>
+          </div>
+        </div>
+
+        <div class="plate">
+          <span class="plate-lab">Body, UI, Navigation &amp; Buttons — Archivo · weights 300, 400, 500, 600</span>
+          <p style="font-size:26px;line-height:1.45;font-weight:300;max-width:24em">A grotesque with square terminals and a large x-height, set light at size and regular at length.</p>
+          <p class="body mut" style="margin-top:14px">Archivo holds its shape at 11 px in uppercase with 0.18 em of tracking — the condition every label in this system lives in — and it has no calligraphic tendency to argue with the Didone above it. That neutrality is the point: it is the voice of the studio speaking plainly underneath the voice of the brand.</p>
+          <div class="rows" style="margin-top:26px">
+            <div class="row row-2"><div class="row-k">Role</div><div class="row-v">All body copy. All headings below 32 px. Navigation, buttons, labels, forms, tables, captions.</div></div>
+            <div class="row row-2"><div class="row-k">Weights in use</div><div class="row-v">300 for large lead paragraphs only · 400 for body · 500 for labels, buttons, nav and table keys · 600 never used above 15 px.</div></div>
+            <div class="row row-2"><div class="row-k">Button setting</div><div class="row-v">13 px · weight 500 · uppercase · tracking 0.12 em · line-height 1. Identical in every button in the system.</div></div>
+            <div class="row row-2"><div class="row-k">Fallback</div><div class="row-v"><span class="mono">Archivo, "Helvetica Neue", Helvetica, Arial, "Segoe UI", system-ui, sans-serif</span></div></div>
+          </div>
+        </div>
+
+        <div class="plate">
+          <span class="plate-lab">Numerals, Specification &amp; Provenance — IBM Plex Mono · weights 300, 400, 500</span>
+          <p class="mono" style="font-size:19px;line-height:2.1;letter-spacing:0.04em;color:var(--ink)">
+            BLOCK NZ-0412 · MAKRANA, BENCH 7<br>
+            3200 × 1900 × 20 MM · 12 SLABS<br>
+            26.5877° N &nbsp;74.8560° E · CUT 18.03.26
+          </p>
+          <div class="rows" style="margin-top:26px">
+            <div class="row row-2"><div class="row-k">Role</div><div class="row-v">Every number the brand publishes: dimensions, thicknesses, block and slab IDs, quantities, dates, coordinates, lead times, finish codes. Also the section numbering in this manual.</div></div>
+            <div class="row row-2"><div class="row-k">Why a mono</div><div class="row-v">Stone arrives with a spec sheet. Setting the specification in a technical face makes provenance look like evidence rather than marketing, and it gives the interface a second, quieter texture without adding a colour.</div></div>
+            <div class="row row-2"><div class="row-k">Numeral rule</div><div class="row-v">Always <span class="mono">font-variant-numeric: tabular-nums</span>. Numerals are Plex Mono everywhere <em>except</em> inside a Bodoni display headline, where Bodoni's own lining figures are used so the line does not break register.</div></div>
+            <div class="row row-2"><div class="row-k">Units</div><div class="row-v">Millimetres for stone, metres squared for areas, always with a thin space before the unit. Dates as <span class="mono">DD.MM.YY</span>. Coordinates to four decimals.</div></div>
+            <div class="row row-2"><div class="row-k">Fallback</div><div class="row-v"><span class="mono">"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace</span></div></div>
+          </div>
+        </div>
+
+        <div class="plate">
+          <span class="plate-lab">The 32 px rule — the system's one memorable typographic law</span>
+          <p class="h3">Bodoni above 32 px. Archivo below. Plex for anything measurable.</p>
+          <p class="body-s mut" style="margin-top:14px">Three faces would normally create a hierarchy problem. This single rule removes it: a designer never has to decide which face a piece of text takes, because size and content type decide. The only judgement left is size — which is the judgement worth making.</p>
+        </div>
+
+        <div class="stack g16">
+          <p class="label">Type scale — desktop. Every value is on the scale; nothing between values is permitted.</p>
+          <div class="tw">
+            <table>
+              <thead><tr><th>Token</th><th>Face / Weight</th><th>Size</th><th>Line-height</th><th>Tracking</th><th>Use</th></tr></thead>
+              <tbody>
+                <tr><td class="k">display-xl</td><td>Bodoni Moda 400</td><td class="n">168 / 10.5rem</td><td class="n">0.90</td><td class="n">0.06em</td><td>Wordmark only</td></tr>
+                <tr><td class="k">display-l</td><td>Bodoni Moda 400</td><td class="n">120 / 7.5rem</td><td class="n">0.94</td><td class="n">−0.025em</td><td>Homepage hero, chapter openers</td></tr>
+                <tr><td class="k">display-m</td><td>Bodoni Moda 400</td><td class="n">88 / 5.5rem</td><td class="n">0.96</td><td class="n">−0.022em</td><td>Section heroes, Works titles</td></tr>
+                <tr><td class="k">h1</td><td>Bodoni Moda 400</td><td class="n">64 / 4rem</td><td class="n">1.02</td><td class="n">−0.02em</td><td>Page titles</td></tr>
+                <tr><td class="k">h2</td><td>Bodoni Moda 400</td><td class="n">46 / 2.875rem</td><td class="n">1.08</td><td class="n">−0.015em</td><td>Section headings</td></tr>
+                <tr><td class="k">h3</td><td>Bodoni Moda 400</td><td class="n">32 / 2rem</td><td class="n">1.18</td><td class="n">−0.01em</td><td>Sub-sections, slab names in detail view</td></tr>
+                <tr><td class="k">h4</td><td>Archivo 500</td><td class="n">20 / 1.25rem</td><td class="n">1.30</td><td class="n">−0.005em</td><td>Card headings, form group titles</td></tr>
+                <tr><td class="k">lead</td><td>Archivo 300</td><td class="n">22 / 1.375rem</td><td class="n">1.55</td><td class="n">0</td><td>Standfirst, one per page maximum</td></tr>
+                <tr><td class="k">body-l</td><td>Archivo 400</td><td class="n">20 / 1.25rem</td><td class="n">1.60</td><td class="n">0</td><td>Journal long-form</td></tr>
+                <tr><td class="k">body</td><td>Archivo 400</td><td class="n">17 / 1.0625rem</td><td class="n">1.65</td><td class="n">0.005em</td><td>Default body copy</td></tr>
+                <tr><td class="k">body-s</td><td>Archivo 400</td><td class="n">15 / 0.9375rem</td><td class="n">1.60</td><td class="n">0.005em</td><td>Secondary copy, plate notes</td></tr>
+                <tr><td class="k">caption</td><td>Archivo 400</td><td class="n">13 / 0.8125rem</td><td class="n">1.50</td><td class="n">0.01em</td><td>Image captions, footnotes</td></tr>
+                <tr><td class="k">label</td><td>Archivo 500 · caps</td><td class="n">11 / 0.6875rem</td><td class="n">1.20</td><td class="n">0.18em</td><td>Eyebrows, field labels, table headers</td></tr>
+                <tr><td class="k">label-xs</td><td>Archivo 500 · caps</td><td class="n">10 / 0.625rem</td><td class="n">1.20</td><td class="n">0.22em</td><td>Icon captions, legal, colophon</td></tr>
+                <tr><td class="k">button</td><td>Archivo 500 · caps</td><td class="n">13 / 0.8125rem</td><td class="n">1.00</td><td class="n">0.12em</td><td>All buttons, all sizes</td></tr>
+                <tr><td class="k">data-l</td><td>Plex Mono 300</td><td class="n">40 / 2.5rem</td><td class="n">1.10</td><td class="n">−0.01em</td><td>Large figures: slab counts, years</td></tr>
+                <tr><td class="k">data</td><td>Plex Mono 400</td><td class="n">13 / 0.8125rem</td><td class="n">1.55</td><td class="n">0.02em</td><td>Spec lines, block numbers, tables</td></tr>
+                <tr><td class="k">data-s</td><td>Plex Mono 400</td><td class="n">11.5 / 0.72rem</td><td class="n">1.45</td><td class="n">0.055em</td><td>Card spec lines, plate labels</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="cols cols-2">
+          <div class="stack g16">
+            <p class="label">Responsive type — fluid, clamped, never scaled by a blanket factor</p>
+            <div class="tw">
+              <table style="min-width:0">
+                <thead><tr><th>Token</th><th>Mobile</th><th>Tablet</th><th>Desktop</th></tr></thead>
+                <tbody>
+                  <tr><td class="k">display-l</td><td class="n">48</td><td class="n">80</td><td class="n">120</td></tr>
+                  <tr><td class="k">display-m</td><td class="n">40</td><td class="n">62</td><td class="n">88</td></tr>
+                  <tr><td class="k">h1</td><td class="n">34</td><td class="n">48</td><td class="n">64</td></tr>
+                  <tr><td class="k">h2</td><td class="n">28</td><td class="n">36</td><td class="n">46</td></tr>
+                  <tr><td class="k">h3</td><td class="n">23</td><td class="n">27</td><td class="n">32</td></tr>
+                  <tr><td class="k">lead</td><td class="n">19</td><td class="n">20</td><td class="n">22</td></tr>
+                  <tr><td class="k">body</td><td class="n">16</td><td class="n">17</td><td class="n">17</td></tr>
+                  <tr><td class="k">label</td><td class="n">10.5</td><td class="n">11</td><td class="n">11</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="body-s mut-3">Tracking tightens as size grows and loosens as it shrinks: display-l at −0.025 em, body at +0.005 em, label at +0.18 em. Negative tracking is never applied below 20 px.</p>
+          </div>
+
+          <div class="stack g16">
+            <p class="label">Measure, rhythm and hierarchy</p>
+            <ul class="vlist">
+              <li><b>Measure</b> — body copy 62 characters maximum, 45 minimum. Lead paragraphs 30 em. Never full-bleed text.</li>
+              <li><b>Paragraph spacing</b> — 1 em of the element's own line-height, never a blank line.</li>
+              <li><b>Heading space</b> — space above a heading is always 2× the space below it. This alone creates hierarchy without extra weight.</li>
+              <li><b>Widows</b> — <span class="mono">text-wrap: balance</span> on every heading; no heading ends on a single word.</li>
+              <li><b>Hyphenation</b> — off, everywhere, in every language.</li>
+              <li><b>Alignment</b> — flush left, ragged right. Nothing is justified. Nothing is centred except the wordmark on the loading screen.</li>
+              <li><b>One display item per viewport</b> — two Bodoni items above 46 px must never be visible at the same time.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="plate">
+          <span class="plate-lab">Hierarchy in practice — a slab detail page, top to bottom</span>
+          <div class="stack g8">
+            <p class="mono-s" style="color:var(--backlight-ink)">LIBRARY / MARBLE / MAKRANA</p>
+            <p class="h2" style="margin-top:8px">Makrana Albeta</p>
+            <p class="mono" style="color:var(--ink-3)">BLOCK NZ-0412 · BENCH 7 · CUT 18.03.26 · 12 SLABS IN LIBRARY</p>
+            <p class="body mut" style="margin-top:14px">A dense, low-porosity calcite from the bench that supplied the Taj Mahal's inlay ground. Cool in daylight, warm under transmitted light. Recommended vein-cut for vertical planes; cross-cut loses the drift.</p>
+            <p class="label" style="margin-top:14px">Available finishes</p>
+            <p class="mono" style="color:var(--ink)">POLISHED · HONED · LEATHERED · SANDBLASTED</p>
+          </div>
+          <p class="body-s mut-3" style="margin-top:22px">Five levels, three faces, one colour. The eyebrow orients, the Didone names, the mono proves, the Archivo explains, the mono lists. No rule, no box, no shadow is used to separate any of it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     05 — GRID & SPACING
+     ============================================================ -->
+<section id="s05" class="wrap sec">
+  <div class="grid-rail">
+    <div class="rail">
+      <span class="rail-num">05</span>
+      <p class="rail-title">Grid &amp; Spacing</p>
+      <p class="rail-note">Twelve columns, an 8 px baseline, and one proportion taken from the stone itself.</p>
+    </div>
+
+    <div class="stack g56">
+      <div class="stack g24">
+        <h2 class="h1">Every image in the system is 1.684 : 1 — the true proportion of a gangsaw slab.</h2>
+        <p class="body mut">A quarried block is sawn into slabs of roughly 3200 × 1900 mm. That ratio, 1.684, is the brand's primary image format and appears nowhere else in the industry, because everybody else crops to 16:9. Using the material's own dimension as the layout constant is what makes the grid feel authored rather than chosen from a framework.</p>
+      </div>
+
+      <div class="stack g32">
+        <div class="stack g16">
+          <p class="label">Breakpoints and column structure</p>
+          <div class="tw">
+            <table>
+              <thead><tr><th>Breakpoint</th><th>Range</th><th>Columns</th><th>Gutter</th><th>Margin</th><th>Max container</th></tr></thead>
+              <tbody>
+                <tr><td class="k">Wide</td><td class="n">≥ 1920</td><td class="n">12</td><td class="n">40</td><td class="n">120</td><td class="n">1720</td></tr>
+                <tr><td class="k">Desktop</td><td class="n">1440–1919</td><td class="n">12</td><td class="n">32</td><td class="n">80</td><td class="n">1600</td></tr>
+                <tr><td class="k">Laptop</td><td class="n">1024–1439</td><td class="n">12</td><td class="n">24</td><td class="n">48</td><td class="n">fluid</td></tr>
+                <tr><td class="k">Tablet</td><td class="n">768–1023</td><td class="n">8</td><td class="n">20</td><td class="n">40</td><td class="n">fluid</td></tr>
+                <tr><td class="k">Mobile</td><td class="n">≤ 767</td><td class="n">4</td><td class="n">16</td><td class="n">20</td><td class="n">fluid</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="cols cols-3">
+          <div class="plate">
+            <span class="plate-lab">Desktop · 12 col · 32 gutter · 80 margin</span>
+            <div class="gridfig"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          </div>
+          <div class="plate">
+            <span class="plate-lab">Tablet · 8 col · 20 gutter · 40 margin</span>
+            <div class="gridfig gridfig-8"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          </div>
+          <div class="plate">
+            <span class="plate-lab">Mobile · 4 col · 16 gutter · 20 margin</span>
+            <div class="gridfig gridfig-4"><span></span><span></span><span></span><span></span></div>
+          </div>
+        </div>
+
+        <div class="cols cols-2">
+          <div class="stack g16">
+            <p class="label">Placement rules — the asymmetry that makes it editorial</p>
+            <ul class="vlist">
+              <li><b>Text never starts at column 1.</b> Body copy occupies columns 2–7 or 6–11. The empty first column is the brand's signature margin.</li>
+              <li><b>Headlines may break the grid left</b> by one column, and only headlines.</li>
+              <li><b>Images are either full-bleed or gridded</b> — never inset by a stray amount. Full-bleed images ignore the margin entirely.</li>
+              <li><b>Two-image pairs are unequal</b>: 7 + 4 columns with a column of air between, never 6 + 6.</li>
+              <li><b>Nothing is centred</b> except the loading wordmark and the slab typology photograph.</li>
+              <li><b>Baseline</b> — an 8 px vertical grid governs all spacing. Type sits on it; images may break it.</li>
+            </ul>
+          </div>
+          <div class="stack g16">
+            <p class="label">Aspect ratios — fixed, and each one means something</p>
+            <div class="tw">
+              <table style="min-width:0">
+                <thead><tr><th>Ratio</th><th>Value</th><th>Used for</th></tr></thead>
+                <tbody>
+                  <tr><td class="k">Slab</td><td class="n">1.684 : 1</td><td>Slab cards, library grid, hero images</td></tr>
+                  <tr><td class="k">Block</td><td class="n">1 : 1</td><td>Quarry imagery, provenance tiles, journal squares</td></tr>
+                  <tr><td class="k">Plane</td><td class="n">4 : 5</td><td>Interiors, Works cards, portrait craft shots</td></tr>
+                  <tr><td class="k">Bench</td><td class="n">21 : 9</td><td>Full-bleed section breaks only, one per page</td></tr>
+                  <tr><td class="k">Detail</td><td class="n">1 : 1</td><td>Macro texture, finish samples</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="body-s mut-3">Any image that cannot be cropped to one of these five ratios without losing its subject is the wrong photograph, and is re-shot rather than re-cropped.</p>
+          </div>
+        </div>
+
+        <div class="cols cols-2">
+          <div class="stack g16">
+            <p class="label">Spacing scale — base unit 4, rhythm of 8</p>
+            <div>
+              <div class="spacebar"><b style="width:4px"></b><em>4 · space-1 · icon padding, tight stacks</em></div>
+              <div class="spacebar"><b style="width:8px"></b><em>8 · space-2 · label to value</em></div>
+              <div class="spacebar"><b style="width:12px"></b><em>12 · space-3 · list rows</em></div>
+              <div class="spacebar"><b style="width:16px"></b><em>16 · space-4 · mobile gutter</em></div>
+              <div class="spacebar"><b style="width:24px"></b><em>24 · space-5 · card internals, paragraph groups</em></div>
+              <div class="spacebar"><b style="width:32px"></b><em>32 · space-6 · desktop gutter, plate padding</em></div>
+              <div class="spacebar"><b style="width:48px"></b><em>48 · space-7 · component groups</em></div>
+              <div class="spacebar"><b style="width:64px"></b><em>64 · space-8 · mobile section rhythm</em></div>
+              <div class="spacebar"><b style="width:96px"></b><em>96 · space-9 · tablet section rhythm</em></div>
+              <div class="spacebar"><b style="width:128px"></b><em>128 · space-10 · sub-section separation</em></div>
+              <div class="spacebar"><b style="width:160px"></b><em>160 · space-11 · desktop section rhythm</em></div>
+              <div class="spacebar"><b style="width:200px"></b><em>200 · space-12 · chapter breaks, footer top</em></div>
+            </div>
+          </div>
+          <div class="stack g16">
+            <p class="label">Vertical rhythm &amp; container padding</p>
+            <div class="tw">
+              <table style="min-width:0">
+                <thead><tr><th>Interval</th><th>Mobile</th><th>Tablet</th><th>Desktop</th></tr></thead>
+                <tbody>
+                  <tr><td class="k">Between sections</td><td class="n">64</td><td class="n">96</td><td class="n">160</td></tr>
+                  <tr><td class="k">Between sub-sections</td><td class="n">48</td><td class="n">64</td><td class="n">96</td></tr>
+                  <tr><td class="k">Heading → body</td><td class="n">16</td><td class="n">20</td><td class="n">24</td></tr>
+                  <tr><td class="k">Body → next heading</td><td class="n">32</td><td class="n">40</td><td class="n">48</td></tr>
+                  <tr><td class="k">Card grid gap</td><td class="n">32</td><td class="n">32</td><td class="n">40</td></tr>
+                  <tr><td class="k">Image → caption</td><td class="n">12</td><td class="n">16</td><td class="n">16</td></tr>
+                  <tr><td class="k">Plate padding</td><td class="n">20</td><td class="n">28</td><td class="n">32</td></tr>
+                  <tr><td class="k">Header height</td><td class="n">64</td><td class="n">72</td><td class="n">88</td></tr>
+                  <tr><td class="k">Header, scrolled</td><td class="n">56</td><td class="n">64</td><td class="n">72</td></tr>
+                  <tr><td class="k">Footer top padding</td><td class="n">96</td><td class="n">128</td><td class="n">200</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="body-s mut-3">Desktop sections are separated by 160 px — roughly a fifth of a viewport of nothing. That emptiness is the most expensive thing on the page and the first thing a build will try to reduce. It does not get reduced.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     06 — COMPONENTS
+     ============================================================ -->
+<section id="s06" class="wrap sec">
+  <div class="grid-rail">
+    <div class="rail">
+      <span class="rail-num">06</span>
+      <p class="rail-title">Components</p>
+      <p class="rail-note">Zero radius, one border weight, almost no shadow.</p>
+    </div>
+
+    <div class="stack g56">
+      <div class="stack g24">
+        <h2 class="h1">Rectangles are cut. Circles are drilled.</h2>
+        <p class="body mut">Corner radius is <strong style="color:var(--ink);font-weight:500">0 on every rectangle in the system</strong> — buttons, cards, inputs, modals, images, tags, tables. Stone is cut with a blade; a rounded corner is a moulding, and moulding is what plastic does. The only curve permitted is a full circle, used for exactly three things: the icon button, the custom cursor, and the scroll indicator. That is the whole geometry.</p>
+      </div>
+
+      <div class="stack g32">
+
+        <!-- Buttons -->
+        <div class="plate">
+          <span class="plate-lab">Buttons — hover the specimens</span>
+          <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:center">
+            <button class="btn btn-ink">Request a viewing</button>
+            <button class="btn btn-line">The library</button>
+            <button class="btn btn-text">Download the index</button>
+            <button class="btn btn-icon" aria-label="Next">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="miter"><path d="M4 12h16M14 6l6 6-6 6"/></svg>
+            </button>
+            <button class="btn btn-dis" disabled>Reserved</button>
+          </div>
+          <div class="rows" style="margin-top:28px">
+            <div class="row row-3"><div class="row-k">Ink · primary</div><div class="mono mut-3">56 h · 0 r</div><div class="row-v">Nero ground, Quarry Dust label, 32 px side padding. One per view, maximum. Hover: ground → #1D241E, tracking 0.12 → 0.145 em, and a 1 px Backlight rule sweeps the bottom edge left to right in 400 ms.</div></div>
+            <div class="row row-3"><div class="row-k">Line · secondary</div><div class="mono mut-3">56 h · 1 px</div><div class="row-v">Transparent with a Hairline Strong border. The default button of the system; used for everything that is not the single primary action.</div></div>
+            <div class="row row-3"><div class="row-k">Rule · tertiary</div><div class="mono mut-3">auto h</div><div class="row-v">Label with a full-width 1 px rule beneath at Hairline Strong. On hover a Backlight rule grows across it from the left. This is also the treatment for every inline text link.</div></div>
+            <div class="row row-3"><div class="row-k">Icon</div><div class="mono mut-3">44 × 44 · circle</div><div class="row-v">The only circular rectangle-replacement in the system. Gallery arrows, close, filter toggle, sound. Never carries a label.</div></div>
+            <div class="row row-3"><div class="row-k">Disabled</div><div class="mono mut-3">opacity .32</div><div class="row-v">Any variant at 32% opacity, <span class="mono">pointer-events: none</span>, and always accompanied by a reason in mono beneath it — "Reserved until 04.11.26".</div></div>
+            <div class="row row-3"><div class="row-k">Sizes</div><div class="mono mut-3">56 / 48 / 40</div><div class="row-v">Large 56 (page actions) · Medium 48 (inline, filters) · Small 40 (table row actions). Side padding is always 4× the height's tenth: 32 / 28 / 24.</div></div>
+            <div class="row row-3"><div class="row-k">Forbidden</div><div class="mono mut-3">—</div><div class="row-v">No gold buttons. No icon-plus-label buttons except the mobile menu. No full-width buttons on desktop. No shadow, ever. No radius, ever.</div></div>
+          </div>
+        </div>
+
+        <!-- Cards -->
+        <div class="plate">
+          <span class="plate-lab">Slab card — the component that carries the whole brand. Hover it.</span>
+          <div class="cols cols-3">
+            <a class="card-demo" href="#s06">
+              <div class="card-img"><i></i></div>
+              <div class="card-cap">
+                <div class="card-name">Makrana Albeta</div>
+                <div class="card-spec">MARBLE · 3200 × 1900 × 20 MM · BLOCK NZ-0412 · 12 SLABS</div>
+              </div>
+            </a>
+            <a class="card-demo" href="#s06">
+              <div class="card-img"><i style="background:linear-gradient(140deg,#5C6058 0%,#8E9188 40%,#4A4E47 100%)"></i></div>
+              <div class="card-cap">
+                <div class="card-name">Verde Guatemala</div>
+                <div class="card-spec">MARBLE · 2900 × 1750 × 20 MM · BLOCK NZ-0388 · 4 SLABS</div>
+              </div>
+            </a>
+            <a class="card-demo" href="#s06">
+              <div class="card-img"><i style="background:linear-gradient(126deg,#A9A296 0%,#CFC8B9 46%,#8F887C 100%)"></i></div>
+              <div class="card-cap">
+                <div class="card-name">Onice Miele</div>
+                <div class="card-spec">ONYX · 2600 × 1600 × 20 MM · BLOCK NZ-0401 · 2 SLABS</div>
+              </div>
+            </a>
+          </div>
+          <div class="rows" style="margin-top:28px">
+            <div class="row row-2"><div class="row-k">Anatomy</div><div class="row-v">Image at 1.684 : 1 · 20 px · name in Bodoni 24 · 8 px · spec line in Plex Mono 11.5 uppercase. Nothing else. No badge, no price, no "view more."</div></div>
+            <div class="row row-2"><div class="row-k">Chrome</div><div class="row-v">No border, no background, no shadow, no radius. The card is defined entirely by the image edge and the space around it. Grid gap 40 px desktop supplies all the separation needed.</div></div>
+            <div class="row row-2"><div class="row-k">Hover</div><div class="row-v">Image scales 1.00 → 1.03 over 700 ms on <span class="mono">--ease-stone</span>, clipped by the frame; a 1 px Backlight rule grows left-to-right above the caption over 500 ms. Nothing moves position. Nothing fades.</div></div>
+            <div class="row row-2"><div class="row-k">The spec line</div><div class="row-v">Mandatory and never abbreviated. Family · dimensions · block number · slabs remaining. It is the component's proof of provenance and the single detail that separates Nazara's card from every competitor's.</div></div>
+            <div class="row row-2"><div class="row-k">Sold / reserved</div><div class="row-v">Image desaturates to 0%, the spec line's slab count is replaced by the word RESERVED in Fissure. The card is still clickable — history is part of the library.</div></div>
+          </div>
+        </div>
+
+        <div class="cols cols-2">
+          <div class="plate">
+            <span class="plate-lab">Work card — 4 : 5</span>
+            <p class="body-s mut">Portrait image at 4:5, full-bleed within its column. Caption <em>overlays</em> only on hover: a Viewing Room scrim at 55% wipes up from the bottom over 480 ms carrying the project name in Bodoni 24 and a mono line — "PRIVATE RESIDENCE · JODHPUR · 2025 · MAKRANA ALBETA, VEIN-CUT". At rest there is no text at all: the photograph is asked to work alone.</p>
+          </div>
+          <div class="plate">
+            <span class="plate-lab">Editorial card — no image</span>
+            <p class="body-s mut">A 1 px rule above, an 11 px eyebrow (JOURNAL · THE LONG LOOK), a Bodoni 32 headline, a two-line standfirst in Slate, and a mono date. Used in the Journal index and the footer. Proves the system can hold attention with type alone — which is the test of whether a luxury layout is real.</p>
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="plate">
+          <span class="plate-lab">Navigation — desktop bar at rest</span>
+          <div class="navbar" style="border:1px solid var(--line);background:var(--surface-2)">
+            <div class="mark">Nazara</div>
+            <nav class="nav-links">
+              <a class="nav-link" href="#s06">Library</a>
+              <a class="nav-link" href="#s06">Provenance</a>
+              <a class="nav-link" href="#s06">Works</a>
+              <a class="nav-link" href="#s06">Atelier</a>
+              <a class="nav-link" href="#s06">Journal</a>
+              <a class="nav-link" href="#s06" style="color:var(--backlight-ink)">Request a viewing</a>
+            </nav>
+          </div>
+          <div class="rows" style="margin-top:28px">
+            <div class="row row-2"><div class="row-k">Structure</div><div class="row-v">Wordmark left, five links right, the viewing request last and set in Backlight Ink. Deliberately not centred: a centred wordmark is the category's default and reads as a museum that has run out of ideas.</div></div>
+            <div class="row row-2"><div class="row-k">Height &amp; behaviour</div><div class="row-v">88 px at rest, 72 px once scrolled, transparent over full-bleed heroes with a <span class="mono">backdrop-filter: blur(20px)</span> and a Quarry Dust wash at 72% once it leaves the hero. Hides on scroll down, returns on scroll up, 240 ms.</div></div>
+            <div class="row row-2"><div class="row-k">Mega menu</div><div class="row-v">Library opens a full-width Viewing Room panel over 480 ms: four columns of families (Marble · Granite · Onyx · Quartzite · Limestone · Semi-Precious), one featured slab at 1.684:1 on the right, and a single mono line of live counts. Closes on mouse-leave with 200 ms of forgiveness.</div></div>
+            <div class="row row-2"><div class="row-k">Mobile</div><div class="row-v">64 px bar, wordmark left, a two-line menu glyph right. Opens a full-screen Viewing Room drawer; items set in Bodoni 34 px, stacked flush left, entering on a 60 ms stagger. Closing reverses the stagger.</div></div>
+            <div class="row row-2"><div class="row-k">Never</div><div class="row-v">No search icon in the primary bar (search lives inside the Library). No language switcher in the header. No phone number, no WhatsApp button, no sticky enquiry tab.</div></div>
+          </div>
+        </div>
+
+        <!-- Forms -->
+        <div class="plate">
+          <span class="plate-lab">Forms — Request a Viewing. Focus a field.</span>
+          <div class="cols cols-2" style="gap:32px">
+            <div class="field">
+              <label class="field-lab" for="f1">Name</label>
+              <input class="field-in" id="f1" type="text" placeholder="Full name">
+            </div>
+            <div class="field">
+              <label class="field-lab" for="f2">Practice or studio</label>
+              <input class="field-in" id="f2" type="text" placeholder="Optional">
+            </div>
+            <div class="field">
+              <label class="field-lab" for="f3">Project location</label>
+              <input class="field-in" id="f3" type="text" placeholder="City, country">
+            </div>
+            <div class="field field-err">
+              <label class="field-lab" for="f4">Approximate area</label>
+              <input class="field-in" id="f4" type="text" value="four hundred">
+              <span class="field-msg">Enter the area in square metres, as a number.</span>
+            </div>
+          </div>
+          <div class="rows" style="margin-top:28px">
+            <div class="row row-2"><div class="row-k">Field</div><div class="row-v">Underline only — a 1 px Hairline Strong rule, no box, no fill, no radius. 56 px tall. Label sits above at 11 px uppercase, 0.18 em, in Ash. Placeholders are examples, never repeats of the label.</div></div>
+            <div class="row row-2"><div class="row-k">Focus</div><div class="row-v">Rule thickens to 1.5 px and turns Backlight; the label turns Nero. No glow, no colour fill, no animation on the field itself.</div></div>
+            <div class="row row-2"><div class="row-k">Error</div><div class="row-v">Rule turns Fissure; a 12.5 px message appears below stating what to do, not what went wrong. Never "Invalid input." Always "Enter the area in square metres, as a number."</div></div>
+            <div class="row row-2"><div class="row-k">Checkbox / radio</div><div class="row-v">16 × 16, 1 px, radius 0. Checked state fills Nero with a 1.25 px Bone tick. Radios are the same square with a filled 8 px centre — the system has no round radio, because the system has no round rectangles.</div></div>
+            <div class="row row-2"><div class="row-k">Select</div><div class="row-v">Custom, matching the underlined field, with a 10 px caret drawn at 1.25 px. Options in a Bone panel, 1 px border, no radius, no shadow. Project type: Residence · Hospitality · Retail · Yacht · Aviation · Institutional.</div></div>
+            <div class="row row-2"><div class="row-k">Submission</div><div class="row-v">Button label "Request a viewing" — never "Submit," never "Send." On success the form area wipes to Viewing Room over 600 ms and one line appears in Bodoni 32: <em>"Your viewing is being arranged. We will write within one working day."</em> No confetti, no tick, no modal.</div></div>
+          </div>
+        </div>
+
+        <!-- Gallery -->
+        <div class="cols cols-2">
+          <div class="plate">
+            <span class="plate-lab">Gallery &amp; the Library</span>
+            <ul class="vlist">
+              <li><b>Index</b> — sticky filter rail at columns 1–2 (Family, Colour, Origin, Finish, Format, Availability), grid at 3–12. Three up desktop, two tablet, one mobile, 40 px gap.</li>
+              <li><b>Result count</b> in mono above the grid: "41 STONES · 6 FAMILIES". Filters apply instantly; the grid re-flows without a spinner.</li>
+              <li><b>Bookmatch viewer</b> — the signature interaction. A draggable vertical divider flips the slab between single and mirrored. Handle is a 1 px line with a 44 px circular grip; the cursor becomes DRAG.</li>
+              <li><b>Lightbox</b> — full-bleed on Viewing Room, arrow keys, mono caption bottom-left with the complete spec, close top-right. Double-click zooms to 100% so the vein can be inspected at true scale.</li>
+              <li><b>Loading</b> — images arrive by curtain-wipe (§07), never by skeleton block, never by blur-up.</li>
+            </ul>
+          </div>
+          <div class="plate">
+            <span class="plate-lab">Image treatment — absolute rules</span>
+            <ul class="vlist">
+              <li><b>No radius, no border, no shadow.</b> Images sit directly on the ground.</li>
+              <li><b>A hairline may sit beneath a caption, never around a photograph.</b></li>
+              <li><b>Never crop a slab's own edges arbitrarily</b> — show the whole slab with its true edges, or a macro that is unmistakably a detail. Never something in between.</li>
+              <li><b>No text over an image</b> except the Work card's hover scrim and the full-bleed hero, where it sits over a Viewing Room gradient at 0–55%.</li>
+              <li><b>No colour overlays, no duotone, no filters.</b> The grade is done in post (§08) and shipped baked.</li>
+              <li><b>Captions</b> always in mono, always left, always specifying the stone.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Borders shadows radius -->
+        <div class="cols cols-3">
+          <div class="plate">
+            <span class="plate-lab">Corner radius</span>
+            <p class="mono" style="font-size:34px;color:var(--ink);line-height:1.2">0</p>
+            <p class="body-s mut" style="margin-top:12px">On everything rectangular, at every size, in every state. The only exception is <span class="mono">50%</span> on the icon button, the cursor and the scroll indicator. There is no radius scale because there is no radius.</p>
+          </div>
+          <div class="plate">
+            <span class="plate-lab">Borders</span>
+            <p class="mono" style="font-size:34px;color:var(--ink);line-height:1.2">1<span style="font-size:16px"> px</span></p>
+            <p class="body-s mut" style="margin-top:12px">One weight, two colours (Hairline, Hairline Strong), plus 1.5 px on a focused input. No 2 px, no 3 px, no dashed, no dotted, no double. If a thing needs more emphasis, give it more space, not a thicker line.</p>
+          </div>
+          <div class="plate">
+            <span class="plate-lab">Shadows</span>
+            <p class="mono" style="font-size:34px;color:var(--ink);line-height:1.2">2</p>
+            <p class="body-s mut" style="margin-top:12px">Two shadows exist and both are for floating layers only. <span class="mono">--shadow-lift</span>: 0 1px 2px rgba(15,20,17,.04), 0 8px 24px rgba(15,20,17,.06) — dropdowns, mega menu. <span class="mono">--shadow-modal</span>: 0 24px 80px rgba(15,20,17,.18). Cards, buttons, inputs and images never carry one.</p>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="plate plate-dark">
+          <span class="plate-lab">Footer — Viewing Room, 200 px top padding on desktop</span>
+          <div class="cols cols-2" style="gap:40px">
+            <div class="stack g24">
+              <div class="mark" style="font-size:44px;color:#E9EBE4">Nazara</div>
+              <p class="body-s" style="color:#A5AA9E;max-width:34ch">The library is open by appointment. Kishangarh, Rajasthan — the largest marble market in Asia, ninety kilometres from Makrana.</p>
+              <div>
+                <p class="label" style="color:#737969;margin-bottom:10px">Receive the Journal</p>
+                <div style="display:flex;gap:12px;align-items:flex-end;max-width:340px">
+                  <input class="field-in" type="email" placeholder="Email" style="flex:1;border-bottom-color:#3D473F;color:#E9EBE4">
+                  <span class="mono-s" style="color:#E0B278">→</span>
+                </div>
+              </div>
+            </div>
+            <div class="cols cols-2" style="gap:32px">
+              <div>
+                <p class="label" style="color:#737969;margin-bottom:12px">Navigate</p>
+                <ul class="vlist" style="--line:#2A322C">
+                  <li style="color:#A5AA9E">Library</li><li style="color:#A5AA9E">Provenance</li><li style="color:#A5AA9E">Works</li><li style="color:#A5AA9E">Atelier</li><li style="color:#A5AA9E">Journal</li>
+                </ul>
+              </div>
+              <div>
+                <p class="label" style="color:#737969;margin-bottom:12px">Studio</p>
+                <ul class="vlist" style="--line:#2A322C">
+                  <li style="color:#A5AA9E">Madanganj–Kishangarh<br>Ajmer, Rajasthan 305801</li>
+                  <li style="color:#A5AA9E">By appointment<br>Mon–Sat, 10.00–18.00 IST</li>
+                  <li style="color:#A5AA9E">Instagram · Pinterest · LinkedIn</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div style="border-top:1px solid #2A322C;margin-top:32px;padding-top:18px;display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between">
+            <span class="mono-s" style="color:#737969">26.5877° N &nbsp;74.8560° E · EST. KISHANGARH</span>
+            <span class="mono-s" style="color:#737969">© 2026 NAZARA · TERMS · PRIVACY</span>
+          </div>
+        </div>
+        <p class="body-s mut-3">Footer contents are fixed: wordmark and one sentence of place, the Journal sign-up, navigation, studio address and hours, three social channels only. No sitemap sprawl, no certifications, no payment logos, no "we also supply" list. The coordinate line is the colophon and appears on every page of the site.</p>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     07 — MOTION (Viewing Room band)
+     ============================================================ -->
+<div class="band">
+<section id="s07" class="wrap sec">
+  <div class="grid-rail">
+    <div class="rail">
+      <span class="rail-num">07</span>
+      <p class="rail-title">Motion</p>
+      <p class="rail-note">Weight, not bounce. Nothing in this system is springy.</p>
+    </div>
+
+    <div class="stack g56">
+      <div class="stack g24">
+        <h2 class="h1">Stone has mass. Motion must admit it.</h2>
+        <p class="lead">Everything decelerates and nothing overshoots. A spring easing would tell the viewer the object is light, and every frame of this brand is arguing the opposite.</p>
+      </div>
+
+      <div class="plate plate-dark">
+        <span class="plate-lab">Loading — "the wet line." The signature animation of the brand.</span>
+        <div style="display:flex;justify-content:center;padding:24px 0 12px">
+          <div class="wet">Nazara</div>
+        </div>
+        <p class="body-s" style="color:#A5AA9E;max-width:62ch;margin:0 auto;text-align:center">When water is poured down a dry slab, its true colour appears — this is how every stone in the world is judged before it is bought. The loading screen is that gesture: the wordmark sits in Ash on Viewing Room and fills with Chalk from the bottom up over 1600 ms on <span class="mono">--ease-stone</span>, holds for 400 ms, then the whole panel lifts away. It is the only centred element in the entire system.</p>
+      </div>
+
+      <div class="cols cols-2">
+        <div class="plate plate-dark">
+          <span class="plate-lab">Easing — three curves, no others</span>
+          <svg viewBox="0 0 300 150" width="100%" height="150" role="img" aria-label="Three easing curves plotted from 0,0 to 1,1">
+            <rect x="20" y="10" width="260" height="120" fill="none" stroke="#2A322C" stroke-width="1"/>
+            <path d="M20 130 C 62 22, 98 10, 280 10" fill="none" stroke="#E0B278" stroke-width="1.5"/>
+            <path d="M20 130 C 189 130, 111 10, 280 10" fill="none" stroke="#A5AA9E" stroke-width="1.25"/>
+            <path d="M20 130 C 106 130, 20 10, 280 10" fill="none" stroke="#737969" stroke-width="1.25"/>
+            <text x="24" y="26" fill="#E0B278" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1">STONE</text>
+            <text x="24" y="40" fill="#A5AA9E" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1">CUT</text>
+            <text x="24" y="54" fill="#737969" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1">LIFT</text>
+          </svg>
+          <div class="rows" style="margin-top:12px">
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">ease-stone</div><div class="row-v" style="color:#A5AA9E"><span class="mono">cubic-bezier(0.16, 1, 0.30, 1)</span> — reveals, image wipes, page transitions. Fast departure, long settle.</div></div>
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">ease-cut</div><div class="row-v" style="color:#A5AA9E"><span class="mono">cubic-bezier(0.65, 0, 0.35, 1)</span> — state changes: hover, focus, colour, opacity.</div></div>
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">ease-lift</div><div class="row-v" style="color:#A5AA9E"><span class="mono">cubic-bezier(0.33, 0, 0.00, 1)</span> — panels and drawers entering. Slight hold at the start, like something heavy being moved.</div></div>
+          </div>
+        </div>
+
+        <div class="plate plate-dark">
+          <span class="plate-lab">Durations — a fixed ladder</span>
+          <div class="tw" style="--line:#2A322C;--surface:#171E19">
+            <table style="min-width:0">
+              <thead><tr><th>Token</th><th>ms</th><th>Applies to</th></tr></thead>
+              <tbody>
+                <tr><td class="k" style="color:#E9EBE4">instant</td><td class="n" style="color:#E9EBE4">120</td><td style="color:#A5AA9E">Colour, opacity, focus rings</td></tr>
+                <tr><td class="k" style="color:#E9EBE4">state</td><td class="n" style="color:#E9EBE4">240</td><td style="color:#A5AA9E">Hover, nav bar height, tracking</td></tr>
+                <tr><td class="k" style="color:#E9EBE4">rule</td><td class="n" style="color:#E9EBE4">400</td><td style="color:#A5AA9E">Backlight rules growing</td></tr>
+                <tr><td class="k" style="color:#E9EBE4">element</td><td class="n" style="color:#E9EBE4">480</td><td style="color:#A5AA9E">Panels, mega menu, scrims</td></tr>
+                <tr><td class="k" style="color:#E9EBE4">image</td><td class="n" style="color:#E9EBE4">700</td><td style="color:#A5AA9E">Card image scale on hover</td></tr>
+                <tr><td class="k" style="color:#E9EBE4">reveal</td><td class="n" style="color:#E9EBE4">800</td><td style="color:#A5AA9E">Text lines entering</td></tr>
+                <tr><td class="k" style="color:#E9EBE4">curtain</td><td class="n" style="color:#E9EBE4">1200</td><td style="color:#A5AA9E">Image wipes, hero entry</td></tr>
+                <tr><td class="k" style="color:#E9EBE4">load</td><td class="n" style="color:#E9EBE4">1600</td><td style="color:#A5AA9E">The wet line</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="body-s" style="color:#737969;margin-top:14px">Nothing in the system is faster than 120 ms or slower than 1600 ms. Staggers are always 60 ms and never exceed eight items — beyond eight, the group animates as one.</p>
+        </div>
+      </div>
+
+      <div class="cols cols-2">
+        <div class="plate plate-dark">
+          <span class="plate-lab">How text appears — "the mason's line"</span>
+          <p class="body-s" style="color:#A5AA9E">Headlines are split by line, each line masked by its own container. On entry the line translates from <span class="mono">translateY(0.6em)</span> to 0 with <span class="mono">clip-path</span> revealing from the baseline upward, 800 ms on ease-stone, 60 ms stagger between lines. Opacity moves 0 → 1 across the first 40% only, so the type never sits visibly half-faded. Body copy does not animate line-by-line — it fades and rises 12 px as one block over 600 ms. Labels and mono specs do not animate at all; they are already there when you arrive, like a caption on a wall.</p>
+        </div>
+        <div class="plate plate-dark">
+          <span class="plate-lab">How images appear — "the curtain"</span>
+          <p class="body-s" style="color:#A5AA9E">Never a fade. An <span class="mono">inset()</span> clip-path opens from the left edge to full width over 1200 ms on ease-stone, while the image inside counter-scales 1.06 → 1.00 over the same interval. The result reads as a cloth being drawn off a slab rather than a picture loading. Full-bleed heroes use the same wipe from the bottom edge upward. Two images in the same viewport wipe 120 ms apart, never simultaneously.</p>
+        </div>
+      </div>
+
+      <div class="cols cols-2">
+        <div class="plate plate-dark">
+          <span class="plate-lab">Cursor</span>
+          <div class="cursor-demo">
+            <span class="cursor-dot"></span>
+            <span class="cursor-ring">VIEW</span>
+          </div>
+          <div class="rows" style="margin-top:20px">
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">Default</div><div class="row-v" style="color:#A5AA9E">A 6 px Chalk dot, no trailing lag, no delay. The native cursor is hidden on pointer-fine devices only.</div></div>
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">Over stone</div><div class="row-v" style="color:#A5AA9E">Expands to a 78 px ring with a 1 px stroke and the word VIEW at 9.5 px / 0.2 em, 400 ms ease-stone. Over the bookmatch handle it reads DRAG; over the lightbox, CLOSE.</div></div>
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">Blend</div><div class="row-v" style="color:#A5AA9E"><span class="mono">mix-blend-mode: difference</span> so it stays legible over any photograph without a shadow or outline.</div></div>
+            <div class="row row-2" style="--line:#2A322C"><div class="row-k" style="color:#E9EBE4">Off</div><div class="row-v" style="color:#A5AA9E">Disabled entirely on touch, on <span class="mono">pointer: coarse</span>, and under reduced motion. The native cursor returns; nothing else changes.</div></div>
+          </div>
+        </div>
+
+        <div class="plate plate-dark">
+          <span class="plate-lab">Scrolling, transitions, restraint</span>
+          <ul class="vlist" style="--line:#2A322C">
+            <li style="color:#A5AA9E"><b style="color:#E9EBE4">Smooth scroll</b> — inertial, damping 0.08, multiplier 1.0. Never faster than native, never bouncy.</li>
+            <li style="color:#A5AA9E"><b style="color:#E9EBE4">Parallax</b> — images only, 8–12% maximum. Text never parallaxes. No layer moves in the opposite direction to the scroll.</li>
+            <li style="color:#A5AA9E"><b style="color:#E9EBE4">Page transitions</b> — a Viewing Room panel wipes up over 600 ms (ease-lift), the new page loads behind it, the panel wipes off the top over 700 ms (ease-stone).</li>
+            <li style="color:#A5AA9E"><b style="color:#E9EBE4">Scroll indicator</b> — a 40 px circle with a 1 px stroke and a descending line inside, on the hero only, fading at 15% scroll.</li>
+            <li style="color:#A5AA9E"><b style="color:#E9EBE4">Never</b> — scroll-jacking, section snapping, horizontal scroll hijacks, counters that tick up, marquees, 3D tilt on cards, particle effects, video autoplay with sound.</li>
+            <li style="color:#A5AA9E"><b style="color:#E9EBE4">Reduced motion</b> — every reveal becomes a 200 ms opacity fade, parallax is 0, the custom cursor is off, the wet line holds filled, page transitions become instant. The site loses nothing legible.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ============================================================
+     08 — PHOTOGRAPHY
+     ============================================================ -->
+<section id="s08" class="wrap sec">
+  <div class="grid-rail">
+    <div class="rail">
+      <span class="rail-num">08</span>
+      <p class="rail-title">Photography</p>
+      <p class="rail-note">Three registers, one grade, one immovable typology.</p>
+    </div>
+
+    <div class="stack g56">
+      <div class="stack g24">
+        <h2 class="h1">The shadows are green. The highlights are neutral. Nothing is warm except transmitted light.</h2>
+        <p class="body mut">That single grading instruction, applied consistently, will make a library of thousands of images by different photographers read as one brand — more reliably than any logo placement. It also matches the palette: the shadows fall toward Viewing Room, the whites hold at Makrana, and the only warmth on the page is Backlight, which by definition is light passing through stone.</p>
+      </div>
+
+      <div class="stack g32">
+        <div class="cols cols-3">
+          <div class="plate">
+            <span class="plate-lab">Register I — The Stone</span>
+            <p class="body-s mut" style="margin-bottom:16px">Marble as landscape. The slab is the entire subject and the frame contains nothing else.</p>
+            <p class="mono-s mut-3" style="line-height:2">CAMERA · MEDIUM FORMAT, 100 MP+<br>LENS · 120 MM MACRO<br>APERTURE · f/11–f/16, FOCUS-STACKED<br>PLANE · SENSOR PARALLEL TO SLAB<br>LIGHT · RAKING 15°–25°, ONE SOURCE<br>FLAG · BLACK OPPOSITE, ALWAYS</p>
+          </div>
+          <div class="plate">
+            <span class="plate-lab">Register II — The Room</span>
+            <p class="body-s mut" style="margin-bottom:16px">Stone installed. Unpeopled, or one figure at the edge of frame, never looking at camera.</p>
+            <p class="mono-s mut-3" style="line-height:2">CAMERA · MEDIUM FORMAT<br>LENS · 32 MM &amp; 45 MM TILT-SHIFT<br>APERTURE · f/8–f/11<br>VERTICALS · CORRECTED, ALWAYS<br>LIGHT · AVAILABLE ONLY, NORTH<br>HOUR · BLUE HOUR OR OVERCAST NOON</p>
+          </div>
+          <div class="plate">
+            <span class="plate-lab">Register III — The Hand</span>
+            <p class="body-s mut" style="margin-bottom:16px">The quarry bench, the gangsaw, the chalk mark, the dry-lay. Craft, never portraiture.</p>
+            <p class="mono-s mut-3" style="line-height:2">CAMERA · 35 MM OR MEDIUM FORMAT<br>LENS · 80–110 MM<br>APERTURE · f/2.8–f/4<br>FOCUS · ON THE WORK, NOT THE FACE<br>LIGHT · AMBIENT, DUST IN THE BEAM<br>FRAMING · HANDS AND TOOL, TIGHT</p>
+          </div>
+        </div>
+
+        <div class="cols cols-2">
+          <div class="plate">
+            <span class="plate-lab">The typology — the single most important rule in this section</span>
+            <p class="body-s mut">Every slab entering the Library is photographed in <em>exactly the same frame</em>: standing upright against a Viewing Room wall, camera on a rail at the slab's vertical centre, sensor parallel to the face, two 4-foot softboxes at 45° left and right, no props, no floor visible, the same lens and the same distance every time.</p>
+            <p class="body-s mut" style="margin-top:14px">Over a year this produces a Becher-style typology: hundreds of images that are identical in everything except the stone. Scrolled as a grid it becomes hypnotic, and it makes comparison — the specifier's actual job — trivially easy. No competitor can copy it retroactively, because it only works if you did it from the first slab.</p>
+          </div>
+          <div class="plate">
+            <span class="plate-lab">Raking light — the standard setup</span>
+            <svg viewBox="0 0 320 170" width="100%" height="170" role="img" aria-label="Diagram: a slab lit by a source at twenty degrees, with camera perpendicular and a black flag opposite">
+              <line x1="40" y1="140" x2="280" y2="140" stroke="var(--line-2)" stroke-width="1"/>
+              <rect x="120" y="46" width="80" height="94" fill="none" stroke="var(--ink)" stroke-width="1.25"/>
+              <text x="126" y="38" fill="var(--ink-3)" font-family="IBM Plex Mono, monospace" font-size="8.5" letter-spacing="1">SLAB</text>
+              <line x1="44" y1="60" x2="118" y2="126" stroke="var(--backlight)" stroke-width="1"/>
+              <line x1="44" y1="60" x2="118" y2="112" stroke="var(--backlight)" stroke-width="1"/>
+              <circle cx="40" cy="58" r="7" fill="none" stroke="var(--backlight)" stroke-width="1.25"/>
+              <text x="24" y="42" fill="var(--backlight)" font-family="IBM Plex Mono, monospace" font-size="8.5" letter-spacing="1">KEY 20°</text>
+              <rect x="250" y="56" width="10" height="74" fill="none" stroke="var(--ink-3)" stroke-width="1.25"/>
+              <text x="234" y="46" fill="var(--ink-3)" font-family="IBM Plex Mono, monospace" font-size="8.5" letter-spacing="1">BLACK FLAG</text>
+              <path d="M150 156 l0 -12" stroke="var(--ink-3)" stroke-width="1"/>
+              <rect x="138" y="156" width="24" height="12" fill="none" stroke="var(--ink)" stroke-width="1.25"/>
+              <text x="168" y="166" fill="var(--ink-3)" font-family="IBM Plex Mono, monospace" font-size="8.5" letter-spacing="1">CAMERA, PERPENDICULAR</text>
+            </svg>
+            <p class="body-s mut" style="margin-top:8px">A key light almost parallel to the surface makes crystal, saw-scoring and vein relief visible. A black flag opposite keeps the shadow side from filling. This is the only lighting diagram the brand needs.</p>
+          </div>
+        </div>
+
+        <div class="stack g16">
+          <p class="label">Colour grade — the house recipe, applied to every frame</p>
+          <div class="tw">
+            <table>
+              <thead><tr><th>Parameter</th><th>Setting</th><th>Reason</th></tr></thead>
+              <tbody>
+                <tr><td class="k">Global saturation</td><td class="n">−8 to −12%</td><td>Stone is not colourful. Anything that looks colourful has been pushed.</td></tr>
+                <tr><td class="k">Shadow tint</td><td class="n">toward #0F1411</td><td>Green-black shadows, matched to the Viewing Room. The signature of the grade.</td></tr>
+                <tr><td class="k">Highlight tint</td><td class="n">neutral, 0 shift</td><td>Whites must stay white or the marble looks dirty.</td></tr>
+                <tr><td class="k">White point</td><td class="n">240–245 RGB</td><td>Never clipped to 255. A clipped white slab has no vein left in it.</td></tr>
+                <tr><td class="k">Black point</td><td class="n">12–16 RGB</td><td>Never crushed to 0. Detail survives in the shadow side of a raking light.</td></tr>
+                <tr><td class="k">Contrast curve</td><td class="n">gentle S, ±6</td><td>Enough to give the vein separation, not enough to look processed.</td></tr>
+                <tr><td class="k">Halation</td><td class="n">3–5% on speculars</td><td>The polished-surface glow that reads as photographed rather than rendered.</td></tr>
+                <tr><td class="k">Grain</td><td class="n">fine, 8%, ISO 400 curve</td><td>Prevents the digital-clean look that makes stone read as a 3D render.</td></tr>
+                <tr><td class="k">Sharpening</td><td class="n">capture only, no output</td><td>Over-sharpened stone acquires a halo at the vein edge and looks fake instantly.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="cols cols-2">
+          <div class="stack g16">
+            <p class="label">Mood &amp; composition</p>
+            <ul class="vlist">
+              <li><b>Quiet</b> — the frame should feel like a room someone has just left.</li>
+              <li><b>Cool, not cold</b> — the green shadow keeps it from going clinical blue.</li>
+              <li><b>Scale is always readable</b> — one element in an interior tells you how big the room is.</li>
+              <li><b>Weather is welcome</b> — dust, haze, wet floors, low sun through a saw-shed.</li>
+              <li><b>People appear rarely</b> and are always working, never presenting.</li>
+              <li><b>One straight edge parallel to the frame,</b> in every photograph, without exception.</li>
+            </ul>
+          </div>
+          <div class="stack g16">
+            <p class="label">Forbidden, absolutely</p>
+            <ul class="vlist">
+              <li class="dont">HDR, clarity sliders, sky replacement, AI upscaling.</li>
+              <li class="dont">Teal-and-orange grading, heavy vignettes, tilt-shift miniature effects.</li>
+              <li class="dont">Stone cut out on white. Stone floating. Stone reflected on a black gloss plane.</li>
+              <li class="dont">Renders presented as photographs. If it is a render it is labelled RENDER in mono.</li>
+              <li class="dont">Stock imagery of any kind, including "luxury interior" libraries.</li>
+              <li class="dont">Watermarks, logos, borders, frames, or the wordmark burned into an image.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     09 — ICONOGRAPHY
+     ============================================================ -->
+<section id="s09" class="wrap sec">
+  <div class="grid-rail">
+    <div class="rail">
+      <span class="rail-num">09</span>
+      <p class="rail-title">Iconography</p>
+      <p class="rail-note">Outline only. 1.25 px. Sharp corners. Drawn like an annotation, not an app icon.</p>
+    </div>
+
+    <div class="stack g56">
+      <div class="stack g24">
+        <h2 class="h1">The icons are architectural drawings, not symbols.</h2>
+        <p class="body mut">A filled icon reads as mass, and mass belongs to the photographs. Every icon in the system is a line drawing at a single stroke weight, constructed from straight lines and true circles, with butt caps and mitred joins — the same 0-radius logic as the components. The set is custom because the vocabulary is: no library has a glyph for a bookmatch or a vein-cut, and those are the icons this brand actually needs.</p>
+      </div>
+
+      <div class="stack g32">
+        <div class="plate">
+          <span class="plate-lab">The core set — 24 × 24, stroke 1.25, drawn on a 20 px live area</span>
+          <div class="icons">
+            <div class="icon-cell">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="miter"><rect x="2.5" y="5.5" width="19" height="13"/><path d="M5 18.5c2-4 4-6 6.5-7.5 2.5-1.5 5-2 7.5-1.8"/></svg>
+              <span>Slab</span>
+            </div>
+            <div class="icon-cell">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="miter"><path d="M3.5 8.5l8.5-4 8.5 4v9l-8.5 4-8.5-4z"/><path d="M3.5 8.5l8.5 4 8.5-4M12 12.5v9"/></svg>
+              <span>Block</span>
+            </div>
+            <div class="icon-cell">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="miter"><rect x="2.5" y="4.5" width="8.5" height="15"/><rect x="13" y="4.5" width="8.5" height="15"/><path d="M4.5 18c1.5-4 3.5-6.5 6-8M19.5 18c-1.5-4-3.5-6.5-6-8"/></svg>
+              <span>Bookmatch</span>
+            </div>
+            <div class="icon-cell">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="miter"><rect x="2.5" y="4.5" width="19" height="15"/><path d="M2.5 9h19M2.5 12h19M2.5 15h19"/></svg>
+              <span>Vein-cut</span>
+            </div>
+            <div class="icon-cell">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="miter"><rect x="2.5" y="4.5" width="19" height="15"/><path d="M12 7.5a4.5 4.5 0 0 1 0 9 4.5 4.5 0 0 1 0-9"/><path d="M12 5a7 7 0 0 1 0 14 7 7 0 0 1 0-14"/></svg>
+              <span>Cross-cut</span>
+            </div>
+            <div class="icon-cell">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="miter"><path d="M6 4.5v15M18 4.5v15"/><rect x="9.5" y="7.5" width="5" height="9"/><path d="M6 12h3.5M14.5 12H18"/></svg>
+              <span>Thickness</span>
+            </div>
+            <div class="icon-cell">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="miter"><path d="M2 19.5h20M2 19.5V15h5v-3.5h5V8h5V4.5h5"/></svg>
+              <span>Quarry</span>
+            </div>
+            <div class="icon-cell">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="miter"><rect x="3.5" y="3.5" width="17" height="17"/><path d="M3.5 20.5l17-17"/><path d="M6 17l3-3M6 13l6-6M10 17l7-7"/></svg>
+              <span>Finish</span>
+            </div>
+            <div class="icon-cell">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="miter"><path d="M12 3.5l5 6.5a5.9 5.9 0 1 1-10 0z"/><path d="M3 21h18"/></svg>
+              <span>Wet look</span>
+            </div>
+            <div class="icon-cell">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="miter"><rect x="2.5" y="7.5" width="19" height="10"/><path d="M6 7.5v10M9.5 7.5v10M13 7.5v10M16.5 7.5v10"/></svg>
+              <span>Crate</span>
+            </div>
+            <div class="icon-cell">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="miter"><rect x="2.5" y="4.5" width="19" height="15"/><path d="M8 4.5l4 15 4-15"/></svg>
+              <span>Viewing</span>
+            </div>
+            <div class="icon-cell">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="miter"><circle cx="10.5" cy="10.5" r="7"/><path d="M15.5 15.5l6 6"/></svg>
+              <span>Inspect</span>
+            </div>
+            <div class="icon-cell">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="miter"><circle cx="12" cy="8" r="4"/><path d="M12 12v9M8 21h8"/></svg>
+              <span>Origin</span>
+            </div>
+            <div class="icon-cell">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="miter"><rect x="3.5" y="5.5" width="17" height="15"/><path d="M3.5 10h17M8 3.5v4M16 3.5v4"/></svg>
+              <span>Appointment</span>
+            </div>
+            <div class="icon-cell">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="miter"><path d="M4 12h16M14 6l6 6-6 6"/></svg>
+              <span>Forward</span>
+            </div>
+            <div class="icon-cell">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="miter"><path d="M5 5l14 14M19 5L5 19"/></svg>
+              <span>Close</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cols cols-2">
+          <div class="stack g16">
+            <p class="label">Construction</p>
+            <div class="rows">
+              <div class="row row-2"><div class="row-k">Style</div><div class="row-v">Outline only. There is no filled variant of any icon, in any state, including active navigation and selected filters — selection is shown by a Backlight rule, not by a filled glyph.</div></div>
+              <div class="row row-2"><div class="row-k">Stroke</div><div class="row-v">1.25 px at 24. Optically compensated: 1 px at 16 · 1.25 px at 20 and 24 · 1.5 px at 32 · 2 px at 48. Never scale an SVG without correcting the stroke.</div></div>
+              <div class="row row-2"><div class="row-k">Terminals</div><div class="row-v"><span class="mono">stroke-linecap: butt</span> · <span class="mono">stroke-linejoin: miter</span>. Sharp corners, cut ends — the same law as the 0 radius.</div></div>
+              <div class="row row-2"><div class="row-k">Grid</div><div class="row-v">24 × 24 artboard, 2 px padding, 20 × 20 live area. Keylines: square 18 · circle 20 · portrait 16 × 20 · landscape 20 × 16.</div></div>
+              <div class="row row-2"><div class="row-k">Geometry</div><div class="row-v">Circles, straight lines, 45° and 90° only. No arbitrary bezier curves, no organic shapes, no perspective except the block's isometric.</div></div>
+              <div class="row row-2"><div class="row-k">Colour</div><div class="row-v"><span class="mono">currentColor</span>, always. Icons inherit the text colour of their context and are never coloured independently — including Backlight.</div></div>
+            </div>
+          </div>
+          <div class="stack g16">
+            <p class="label">Animation &amp; use</p>
+            <ul class="vlist">
+              <li><b>Icons do not morph decoratively.</b> Only state changes animate.</li>
+              <li><b>Menu → Close</b> — the two lines rotate to ±45° and cross, 240 ms ease-cut.</li>
+              <li><b>Arrow on hover</b> — translates 3 px in its own direction, 240 ms. It does not grow, spin or bounce.</li>
+              <li><b>Plus → Minus</b> — the vertical stroke rotates 90° and vanishes into the horizontal, 240 ms.</li>
+              <li><b>Chevron</b> — rotates 180° on expand, 240 ms. No other rotation exists in the set.</li>
+              <li><b>Never</b> — emoji, anywhere. Filled hearts, stars, carts, trophies, badges. Icons inside body copy. An icon and a label in the same button, except the mobile menu.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     10 — TOKENS
+     ============================================================ -->
+<section id="s10" class="wrap sec">
+  <div class="grid-rail">
+    <div class="rail">
+      <span class="rail-num">10</span>
+      <p class="rail-title">Design Tokens</p>
+      <p class="rail-note">The complete handover. Nothing in the build should need a value that is not here.</p>
+    </div>
+
+    <div class="stack g40">
+      <div class="stack g24">
+        <h2 class="h1">Everything above, as values.</h2>
+        <p class="body mut">Semantic names, not literal ones: a component asks for <span class="mono">--ground</span> or <span class="mono">--accent</span>, never for a hex. Theme switching, the Viewing Room band, and any future palette revision then happen in one place. Literal colour names are kept in comments so the brand vocabulary survives into the codebase.</p>
+      </div>
+
+<pre class="tokens"><i>/* ---------- COLOUR · light ground (default) ---------- */</i>
+<b>--ground</b>            <u>#EAEBE4</u>   <i>/* Quarry Dust  */</i>
+<b>--surface</b>           <u>#F4F5F0</u>   <i>/* Makrana      */</i>
+<b>--surface-raised</b>    <u>#FBFBF8</u>   <i>/* Bone         */</i>
+<b>--ink</b>               <u>#141814</u>   <i>/* Nero         */</i>
+<b>--ink-secondary</b>     <u>#565B52</u>   <i>/* Slate        */</i>
+<b>--ink-tertiary</b>      <u>#878C81</u>   <i>/* Ash          */</i>
+<b>--line</b>              <u>#D2D4C9</u>   <i>/* Hairline     */</i>
+<b>--line-strong</b>       <u>#B4B8AA</u>   <i>/* Hairline Strong */</i>
+<b>--accent</b>            <u>#B5822F</u>   <i>/* Backlight Deep — light grounds  */</i>
+<b>--accent-ink</b>        <u>#7A5620</u>   <i>/* Backlight Ink — accent text only */</i>
+<b>--success</b>           <u>#4C6B52</u>   <i>/* Quarried     */</i>
+<b>--error</b>             <u>#9A3B2E</u>   <i>/* Fissure      */</i>
+<b>--warning</b>           <u>#8A6B22</u>   <i>/* On Hold      */</i>
+<b>--inverse-ground</b>    <u>#0F1411</u>
+<b>--inverse-ink</b>       <u>#EDEEE8</u>
+
+<i>/* ---------- COLOUR · Viewing Room (dark theme AND .viewing-room band) ---------- */</i>
+<b>--ground</b>            <u>#0F1411</u>   <i>/* Viewing Room */</i>
+<b>--surface</b>           <u>#171E19</u>   <i>/* Serpentine   */</i>
+<b>--surface-raised</b>    <u>#1F2821</u>   <i>/* Guatemala    */</i>
+<b>--ink</b>               <u>#E9EBE4</u>   <i>/* Chalk        */</i>
+<b>--ink-secondary</b>     <u>#A5AA9E</u>
+<b>--ink-tertiary</b>      <u>#737969</u>
+<b>--line</b>              <u>#2A322C</u>
+<b>--line-strong</b>       <u>#3D473F</u>
+<b>--accent</b>            <u>#E0B278</u>   <i>/* Backlight    */</i>
+<b>--accent-ink</b>        <u>#E0B278</u>
+<b>--success</b>           <u>#86A98D</u>
+<b>--error</b>             <u>#D98878</u>
+<b>--warning</b>           <u>#C79B45</u>
+<b>--inverse-ground</b>    <u>#EAEBE4</u>
+<b>--inverse-ink</b>       <u>#141814</u>
+
+<i>/* ---------- STATE ---------- */</i>
+<b>--ink-hover</b>         <u>#1D241E</u>   <i>/* primary button hover ground */</i>
+<b>--wash-ink-5</b>        <u>rgba(20,24,20,0.05)</u>
+<b>--wash-ink-8</b>        <u>rgba(20,24,20,0.08)</u>
+<b>--scrim</b>             <u>rgba(15,20,17,0.55)</u>  <i>/* hover caption scrim */</i>
+<b>--scrim-heavy</b>       <u>rgba(15,20,17,0.82)</u>  <i>/* lightbox            */</i>
+<b>--disabled-opacity</b>  <u>0.32</u>
+
+<i>/* ---------- TYPE ---------- */</i>
+<b>--font-display</b>  <u>"Bodoni Moda", Didot, "Bodoni MT", Georgia, "Times New Roman", serif</u>
+<b>--font-ui</b>       <u>Archivo, "Helvetica Neue", Helvetica, Arial, "Segoe UI", system-ui, sans-serif</u>
+<b>--font-mono</b>     <u>"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace</u>
+
+<b>--text-display-xl</b> <u>10.5rem</u>  <i>/* 168 · lh 0.90 · ls  0.060em · wordmark      */</i>
+<b>--text-display-l</b>  <u>7.5rem</u>   <i>/* 120 · lh 0.94 · ls -0.025em · hero          */</i>
+<b>--text-display-m</b>  <u>5.5rem</u>   <i>/*  88 · lh 0.96 · ls -0.022em                 */</i>
+<b>--text-h1</b>         <u>4rem</u>     <i>/*  64 · lh 1.02 · ls -0.020em                 */</i>
+<b>--text-h2</b>         <u>2.875rem</u> <i>/*  46 · lh 1.08 · ls -0.015em                 */</i>
+<b>--text-h3</b>         <u>2rem</u>     <i>/*  32 · lh 1.18 · ls -0.010em                 */</i>
+<b>--text-h4</b>         <u>1.25rem</u>  <i>/*  20 · lh 1.30 · ls -0.005em · Archivo 500   */</i>
+<b>--text-lead</b>       <u>1.375rem</u> <i>/*  22 · lh 1.55 · ls  0       · Archivo 300   */</i>
+<b>--text-body-l</b>     <u>1.25rem</u>  <i>/*  20 · lh 1.60                               */</i>
+<b>--text-body</b>       <u>1.0625rem</u><i>/*  17 · lh 1.65 · ls  0.005em                 */</i>
+<b>--text-body-s</b>     <u>0.9375rem</u><i>/*  15 · lh 1.60                               */</i>
+<b>--text-caption</b>    <u>0.8125rem</u><i>/*  13 · lh 1.50                               */</i>
+<b>--text-label</b>      <u>0.6875rem</u><i>/*  11 · lh 1.20 · ls  0.180em · caps · 500    */</i>
+<b>--text-label-xs</b>   <u>0.625rem</u> <i>/*  10 · lh 1.20 · ls  0.220em · caps · 500    */</i>
+<b>--text-button</b>     <u>0.8125rem</u><i>/*  13 · lh 1.00 · ls  0.120em · caps · 500    */</i>
+<b>--text-data-l</b>     <u>2.5rem</u>   <i>/*  40 · lh 1.10 · Plex 300 · tabular          */</i>
+<b>--text-data</b>       <u>0.8125rem</u><i>/*  13 · lh 1.55 · ls  0.020em · tabular       */</i>
+<b>--text-data-s</b>     <u>0.72rem</u>  <i>/* 11.5· lh 1.45 · ls  0.055em · tabular       */</i>
+
+<b>--measure</b>            <u>62ch</u>
+<b>--measure-lead</b>       <u>30em</u>
+
+<i>/* ---------- SPACE · base 4, rhythm 8 ---------- */</i>
+<b>--space-1</b> <u>4px</u>    <b>--space-5</b> <u>24px</u>   <b>--space-9</b>  <u>96px</u>
+<b>--space-2</b> <u>8px</u>    <b>--space-6</b> <u>32px</u>   <b>--space-10</b> <u>128px</u>
+<b>--space-3</b> <u>12px</u>   <b>--space-7</b> <u>48px</u>   <b>--space-11</b> <u>160px</u>
+<b>--space-4</b> <u>16px</u>   <b>--space-8</b> <u>64px</u>   <b>--space-12</b> <u>200px</u>
+
+<i>/* ---------- GRID ---------- */</i>
+<b>--bp-mobile</b>  <u>0</u>       <b>--bp-tablet</b>  <u>768px</u>   <b>--bp-laptop</b> <u>1024px</u>
+<b>--bp-desktop</b> <u>1440px</u>  <b>--bp-wide</b>    <u>1920px</u>
+
+<b>--cols</b>       <u>4 / 8 / 12 / 12 / 12</u>        <i>/* mobile → wide */</i>
+<b>--gutter</b>     <u>16 / 20 / 24 / 32 / 40 px</u>
+<b>--margin</b>     <u>20 / 40 / 48 / 80 / 120 px</u>
+<b>--container-max</b>  <u>1600px</u>  <i>/* 1720px at ≥1920 */</i>
+<b>--baseline</b>       <u>8px</u>
+
+<b>--ratio-slab</b>    <u>1.684 / 1</u>   <i>/* 3200 × 1900 mm — primary image format */</i>
+<b>--ratio-block</b>   <u>1 / 1</u>
+<b>--ratio-plane</b>   <u>4 / 5</u>
+<b>--ratio-bench</b>   <u>21 / 9</u>
+
+<i>/* ---------- BORDER · RADIUS · SHADOW ---------- */</i>
+<b>--border-width</b>       <u>1px</u>
+<b>--border-width-focus</b> <u>1.5px</u>
+<b>--radius</b>             <u>0</u>       <i>/* every rectangle, every state */</i>
+<b>--radius-circle</b>      <u>50%</u>     <i>/* icon button · cursor · scroll indicator only */</i>
+<b>--shadow-lift</b>        <u>0 1px 2px rgba(15,20,17,.04), 0 8px 24px rgba(15,20,17,.06)</u>
+<b>--shadow-modal</b>       <u>0 24px 80px rgba(15,20,17,.18)</u>
+<b>--blur-nav</b>           <u>20px</u>
+
+<i>/* ---------- MOTION ---------- */</i>
+<b>--ease-stone</b>  <u>cubic-bezier(0.16, 1, 0.30, 1)</u>
+<b>--ease-cut</b>    <u>cubic-bezier(0.65, 0, 0.35, 1)</u>
+<b>--ease-lift</b>   <u>cubic-bezier(0.33, 0, 0.00, 1)</u>
+
+<b>--dur-instant</b> <u>120ms</u>   <b>--dur-image</b>   <u>700ms</u>
+<b>--dur-state</b>   <u>240ms</u>   <b>--dur-reveal</b>  <u>800ms</u>
+<b>--dur-rule</b>    <u>400ms</u>   <b>--dur-curtain</b> <u>1200ms</u>
+<b>--dur-element</b> <u>480ms</u>   <b>--dur-load</b>    <u>1600ms</u>
+<b>--stagger</b>     <u>60ms</u>    <i>/* max 8 items */</i>
+
+<b>--parallax-max</b> <u>0.12</u>
+<b>--scroll-damping</b> <u>0.08</u>
+
+<i>/* ---------- COMPONENT SIZES ---------- */</i>
+<b>--btn-h-lg</b> <u>56px</u>  <b>--btn-pad-lg</b> <u>32px</u>
+<b>--btn-h-md</b> <u>48px</u>  <b>--btn-pad-md</b> <u>28px</u>
+<b>--btn-h-sm</b> <u>40px</u>  <b>--btn-pad-sm</b> <u>24px</u>
+<b>--input-h</b>  <u>56px</u>
+<b>--icon-btn</b> <u>44px</u>
+<b>--target-min</b> <u>44px</u>
+<b>--header-h</b>        <u>64 / 72 / 88 px</u>   <i>/* mobile / tablet / desktop */</i>
+<b>--header-h-scrolled</b> <u>56 / 64 / 72 px</u>
+<b>--icon-size</b>  <u>16 / 20 / 24 / 32 / 48 px</u>
+<b>--icon-stroke</b> <u>1 / 1.25 / 1.25 / 1.5 / 2 px</u>
+<b>--cursor-dot</b> <u>6px</u>    <b>--cursor-ring</b> <u>78px</u>
+
+<i>/* ---------- Z-INDEX ---------- */</i>
+<b>--z-base</b> <u>0</u>       <b>--z-sticky</b> <u>100</u>   <b>--z-header</b> <u>200</u>
+<b>--z-menu</b> <u>300</u>     <b>--z-modal</b> <u>400</u>     <b>--z-lightbox</b> <u>500</u>
+<b>--z-cursor</b> <u>900</u>   <b>--z-loader</b> <u>1000</u>
+</pre>
+
+      <div class="cols cols-2">
+        <div class="plate">
+          <span class="plate-lab">Handover notes for the build</span>
+          <ul class="vlist">
+            <li><b>Theme structure</b> — the light set on bare <span class="mono">:root</span>; the Viewing Room set repeated three times: <span class="mono">@media (prefers-color-scheme: dark)</span>, <span class="mono">[data-theme="dark"]</span>, and <span class="mono">.viewing-room</span> for dark bands inside a light page.</li>
+            <li><b>Fonts</b> — Bodoni Moda with <span class="mono">font-optical-sizing: auto</span>; subset Latin + Latin-Ext; <span class="mono">display=swap</span>; preload the display face only.</li>
+            <li><b>Images</b> — AVIF with WebP fallback, <span class="mono">srcset</span> at 1×/2×, sized to the five fixed ratios at source. Never rely on CSS <span class="mono">object-fit</span> to invent a crop.</li>
+            <li><b>Motion</b> — every transition reads its duration and easing from tokens. A hard-coded <span class="mono">ms</span> value anywhere in the codebase is a bug.</li>
+            <li><b>Reduced motion</b> — one global block collapses all reveals to a 200 ms fade and disables the cursor, parallax and page transitions.</li>
+          </ul>
+        </div>
+        <div class="plate">
+          <span class="plate-lab">The five rules that must survive contact with the build</span>
+          <ul class="vlist">
+            <li><b>1 ·</b> Radius is 0 on every rectangle. Circles only for the icon button, the cursor and the scroll indicator.</li>
+            <li><b>2 ·</b> Backlight is never a fill — only a rule, a ring, a glow or a growing underline.</li>
+            <li><b>3 ·</b> Every image is one of the five ratios, and the slab ratio is 1.684 : 1.</li>
+            <li><b>4 ·</b> Every slab shown anywhere carries its mono spec line: family · dimensions · block number · slabs remaining.</li>
+            <li><b>5 ·</b> 160 px between desktop sections. The emptiness is the product.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     COLOPHON
+     ============================================================ -->
+<div class="band">
+  <footer class="wrap" style="padding:72px 24px 88px">
+    <div class="stack g24">
+      <div class="mark" style="font-size:clamp(34px,7vw,64px)">Nazara</div>
+      <hr class="hr">
+      <div style="display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between">
+        <span class="mono-s mut-3">BRAND &amp; INTERFACE SYSTEM · VOLUME ONE · 2026</span>
+        <span class="mono-s mut-3">26.5877° N &nbsp;74.8560° E · MADANGANJ–KISHANGARH, RAJASTHAN</span>
+      </div>
+    </div>
+  </footer>
+</div>
